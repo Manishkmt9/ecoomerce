@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Keepsake — Gifts Kart</title>
+  <meta name="description" content="Live real-time courier tracking for your handcrafted Gifts Kart order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+</head>
+<body style="background-color: #F8F9FA;">
+
+  <!-- Inline SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></symbol>
+  </svg>
+
+  <div class="header-wrapper">
+    <header class="header-main" role="banner">
+      <div class="container">
+        <div class="header-main-inner">
+          <a href="index.html" class="brand-logo" aria-label="Gifts Kart Home">
+            <div class="brand-logo-icon">
+              <svg width="20" height="20"><use href="#icon-gift"></use></svg>
+            </div>
+            <span>Gifts<span class="brand-highlight">Kart</span></span>
+          </a>
+
+          <!-- Compact Search Bar with Live Autocomplete -->
+          <div class="header-search-container" style="position: relative;">
+            <form class="header-search-form" id="master-search-form" role="search" onsubmit="executeGlobalSearch(event)">
+              <input type="search" id="master-search-input" class="header-search-input" placeholder="Search gifts, photo frames, lamps..." aria-label="Search Catalog" autocomplete="off" oninput="handleSearchType(this.value)">
+              <button type="submit" class="header-search-btn" aria-label="Search">
+                <svg width="18" height="18"><use href="#icon-search"></use></svg>
+              </button>
+            </form>
+
+            <!-- Live Search Autocomplete Popover Dropdown -->
+            <div id="master-search-dropdown" style="display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; min-width: 340px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.18); border: 1.5px solid #F5CBCB; z-index: 1000; max-height: 440px; overflow-y: auto; padding: 8px;">
+              <!-- Dynamic live search results -->
+            </div>
+          </div>
+
+          <nav class="header-actions" aria-label="Header Actions">
+            <a href="wishlist.html" class="header-action-item" data-action="wishlist" aria-label="Wishlist">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-heart"></use></svg>
+                <span class="header-badge" id="header-wishlist-badge">0</span>
+              </div>
+            </a>
+
+            <a href="cart.html" class="header-action-item" data-action="cart" aria-label="Cart">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-bag"></use></svg>
+                <span class="header-badge" id="header-cart-badge">0</span>
+              </div>
+            </a>
+
+            <a href="account.html" class="header-action-item" data-action="account" aria-label="Account">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-user"></use></svg>
+              </div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+        <!-- Sub-Header Categories with All 26 Categories & Mega Dropdown -->
+    <nav class="header-sub" aria-label="Categories">
+      <div class="container">
+        <div class="header-sub-inner">
+          <!-- All Categories Mega Menu Trigger -->
+          <div class="categories-btn-wrapper">
+            <button type="button" class="btn-all-categories" aria-expanded="false" aria-label="All Categories">
+              <span class="category-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span>All Categories</span>
+              <span style="font-size: 10px; margin-left: 2px;">▾</span>
+            </button>
+
+            <!-- 4-Column Luxury Mega Menu -->
+            <div class="categories-mega-menu" id="categories-mega-menu">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                
+                <!-- Group 1: Photo Frames & Clocks -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Frames &amp; Memory Gifts
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Personalized Frames</a></li>
+                    <li><a href="index.html?category=led-frame#products-section" class="sub-nav-link" data-cat="led-frame">Illuminated LED Frames</a></li>
+                    <li><a href="index.html?category=wooden-fram#products-section" class="sub-nav-link" data-cat="wooden-fram">Wooden Carved Frames</a></li>
+                    <li><a href="index.html?category=frame-clock#products-section" class="sub-nav-link" data-cat="frame-clock">Photo Frame Clocks</a></li>
+                    <li><a href="index.html?category=photo-albums#products-section" class="sub-nav-link" data-cat="photo-albums">Hardcover Photo Albums</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 2: Lighting & 3D Art -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Lamps &amp; 3D Crystals
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Night Lamps</a></li>
+                    <li><a href="index.html?category=3d-crystals#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Optical Crystals</a></li>
+                    <li><a href="index.html?category=rotaters#products-section" class="sub-nav-link" data-cat="rotaters">Rotating Photo Lamps</a></li>
+                    <li><a href="index.html?category=name-plates#products-section" class="sub-nav-link" data-cat="name-plates">3D Acrylic Name Plates</a></li>
+                    <li><a href="index.html?category=wall-clocks#products-section" class="sub-nav-link" data-cat="wall-clocks">Customized Wall Clocks</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 3: Daily Keepsakes & Mugs -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Daily Keepsakes &amp; Decor
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Ceramic Photo Mugs</a></li>
+                    <li><a href="index.html?category=water-bottle#products-section" class="sub-nav-link" data-cat="water-bottle">Insulated Water Bottles</a></li>
+                    <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Custom Photo Pillows</a></li>
+                    <li><a href="index.html?category=tshirts#products-section" class="sub-nav-link" data-cat="tshirts">Personalized T-Shirts</a></li>
+                    <li><a href="index.html?category=calendar#products-section" class="sub-nav-link" data-cat="calendar">Custom Desk Calendars</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 4: Accessories & Occasions -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Accessories &amp; Occasions
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Metal Wallet Cards</a></li>
+                    <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Custom Keychains</a></li>
+                    <li><a href="index.html?category=gents-purse#products-section" class="sub-nav-link" data-cat="gents-purse">Engraved Gents Purses</a></li>
+                    <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Artistic Resin Decor</a></li>
+                    <li><a href="index.html?category=resin-keychain#products-section" class="sub-nav-link" data-cat="resin-keychain">Resin Keychains</a></li>
+                    <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi Gift Hampers</a></li>
+                    <li><a href="index.html?category=mobile-pen-stand#products-section" class="sub-nav-link" data-cat="mobile-pen-stand">Mobile &amp; Pen Stands</a></li>
+                    <li><a href="index.html?category=key-holder#products-section" class="sub-nav-link" data-cat="key-holder">Wooden Key Holders</a></li>
+                    <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Special Offers</a></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- All Category Pills in Horizontal Scrolling Strip -->
+          <ul class="sub-nav-links">
+            <li><a href="index.html" class="sub-nav-link" data-cat="all">Home</a></li>
+            <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Frames</a></li>
+            <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Lamps</a></li>
+            <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Mugs &amp; Sippers</a></li>
+            <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Wallet Cards</a></li>
+            <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Keychains</a></li>
+            <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Pillows</a></li>
+            <li><a href="index.html?category=wooden-gifts#products-section" class="sub-nav-link" data-cat="wooden-gifts">Wooden Gifts</a></li>
+            <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Resin Art</a></li>
+            <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi</a></li>
+            <li><a href="index.html?category=water-bottle#products-section" class="sub-nav-link" data-cat="water-bottle">Water Bottles</a></li>
+            <li><a href="index.html?category=name-plates#products-section" class="sub-nav-link" data-cat="name-plates">Name Plates</a></li>
+            <li><a href="index.html?category=wall-clocks#products-section" class="sub-nav-link" data-cat="wall-clocks">Wall Clocks</a></li>
+            <li><a href="index.html?category=tshirts#products-section" class="sub-nav-link" data-cat="tshirts">T-Shirts</a></li>
+            <li><a href="index.html?category=gents-purse#products-section" class="sub-nav-link" data-cat="gents-purse">Gents Purse</a></li>
+            <li><a href="index.html?category=calendar#products-section" class="sub-nav-link" data-cat="calendar">Calendars</a></li>
+            <li><a href="index.html?category=mobile-pen-stand#products-section" class="sub-nav-link" data-cat="mobile-pen-stand">Pen Stands</a></li>
+            <li><a href="index.html?category=key-holder#products-section" class="sub-nav-link" data-cat="key-holder">Key Holders</a></li>
+            <li><a href="index.html?category=photo-albums#products-section" class="sub-nav-link" data-cat="photo-albums">Photo Albums</a></li>
+            <li><a href="index.html?category=3d-crystals#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Crystals</a></li>
+            <li><a href="index.html?category=rotaters#products-section" class="sub-nav-link" data-cat="rotaters">Rotaters</a></li>
+            <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Offers</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="py-8">
+    <div class="container" style="max-width: 860px;">
+      
+      <!-- Interactive Order Lookup Search Bar -->
+      <div class="card p-4 mb-5" style="border-radius: 16px; border: 1px solid #F5CBCB; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+        <form id="track-search-form" class="d-flex gap-2 flex-wrap" onsubmit="event.preventDefault(); window.lookupOrderTrack();">
+          <input type="text" id="track-order-input" class="form-control" placeholder="Enter Order ID (e.g. GK-89421 or 89421)..." style="flex: 1; min-width: 240px; border-radius: 24px; padding: 10px 20px;" required>
+          <button type="submit" class="btn btn-primary font-bold px-4" style="border-radius: 24px; background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">
+            🔍 Track Live Status
+          </button>
+        </form>
+      </div>
+
+      <div class="card p-6 mb-6" id="tracking-card-container" style="border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid #F5CBCB; background: #FFFFFF;">
+        <div class="d-flex justify-between align-center mb-5 flex-wrap gap-3 border-bottom pb-4">
+          <div>
+            <span class="badge badge-primary badge-pill mb-1" id="track-badge-status">⚡ In Transit</span>
+            <h2 class="h4 font-bold mb-0" id="track-heading-order-id">Order Tracking: #GK-89421</h2>
+          </div>
+          <div class="text-right">
+            <div class="caption text-muted">Carrier: <strong id="track-carrier-name">BlueDart Priority Air</strong></div>
+            <div class="caption text-muted">Tracking AWB: <strong id="track-awb-code">BLU-9982314</strong></div>
+          </div>
+        </div>
+
+        <!-- 5-Stage Timeline Container -->
+        <div class="tracking-timeline" id="tracking-timeline-steps">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="card p-4 mt-6" style="background: #FBEFEF; border: 1px solid #F5CBCB; border-radius: 12px;" id="track-live-message-box">
+          <h4 class="h5 font-bold mb-1" style="color: #7E5E9B;" id="track-live-status-title">Live Delivery Status</h4>
+          <p class="body-sm text-dark mb-0" id="track-live-status-desc">Courier executive is out for delivery in <strong>Mumbai, Maharashtra</strong>. Expected handover by 4:00 PM.</p>
+        </div>
+
+        <!-- Order Items Detail List -->
+        <div class="mt-5 pt-4 border-top" id="track-order-items-wrapper">
+          <h4 class="body-sm font-bold text-dark mb-3">Keepsakes in this Shipment:</h4>
+          <div id="track-items-list" class="d-flex flex-column gap-2">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-5 d-flex justify-between align-center flex-wrap gap-4" style="background: #FFFFFF; border-radius: 12px; border: 1px solid #F5CBCB;">
+        <div>
+          <h4 class="body-sm font-bold mb-1">Need help with your shipment?</h4>
+          <p class="caption text-muted mb-0">Our 24/7 Gifting Concierge team is here on WhatsApp to help.</p>
+        </div>
+        <a href="https://wa.me/919876543210" class="btn btn-outline btn-sm font-bold" target="_blank" rel="noopener">💬 WhatsApp Support</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       LUXURY DETAILED MULTI-COLUMN FOOTER SYSTEM
+       ==================================================================== -->
+  <footer class="footer-wrapper">
+    <div class="container">
+      
+      <!-- 1. VIP Newsletter Banner -->
+      <div class="footer-newsletter-banner">
+        <div class="footer-newsletter-text">
+          <h3>✨ Join the Gifts Kart Inner Circle</h3>
+          <p>Get ₹200 OFF on your first personalized order + secret anniversary reminder perks.</p>
+        </div>
+        <form class="footer-newsletter-form" onsubmit="event.preventDefault(); GiftsKart.toasts.success('Coupon code MEMORIES2026 applied! Welcome to GiftsKart Inner Circle.');">
+          <input type="email" class="footer-newsletter-input" placeholder="Enter your email address..." required>
+          <button type="submit" class="footer-newsletter-btn">Claim ₹200 OFF &rarr;</button>
+        </form>
+      </div>
+
+      <!-- 2. Main 5-Column Navigation Grid -->
+      <div class="footer-5col-grid">
+        
+        <!-- Column 1: Brand & Contact Info -->
+        <div>
+          <div class="d-flex align-center gap-2 mb-3">
+            <div class="brand-logo-icon"><svg width="18" height="18"><use href="#icon-gift"></use></svg></div>
+            <span class="font-bold font-primary text-white" style="font-size: 1.35rem;">Gifts<span style="color: #7E5E9B;">Kart</span></span>
+          </div>
+          <p class="footer-brand-desc">
+            India's premier luxury personalized gifts studio. Handcrafted with museum-grade laser engraving, high-clarity optical crystals, and 24-hour express dispatch across 26,000+ Indian PIN codes.
+          </p>
+          
+          <div class="footer-contact-row">
+            <span>📞</span>
+            <div><strong>Call &amp; WhatsApp:</strong> +91 98765 43210 (10 AM - 8 PM IST)</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>✉️</span>
+            <div><strong>Email Support:</strong> support@giftskart.com</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>📍</span>
+            <div><strong>Studio Lab:</strong> Bandra West, Mumbai, Maharashtra 400050</div>
+          </div>
+
+          <div class="footer-social-bar">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram">📸</a>
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp">💬</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">📘</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="YouTube">▶️</a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Popular Categories -->
+        <div>
+          <h4 class="footer-col-title">Top Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#products-section">Personalized LED Frames</a></li>
+            <li><a href="index.html#products-section">Optical 3D Crystals</a></li>
+            <li><a href="index.html#products-section">Illuminated Moon Lamps</a></li>
+            <li><a href="index.html#products-section">HD Ceramic Photo Mugs</a></li>
+            <li><a href="index.html#products-section">Velvet Touch Cushions</a></li>
+            <li><a href="index.html#products-section">Spotify Glass Plaques</a></li>
+            <li><a href="index.html#products-section">Laser Engraved Keychains</a></li>
+            <li><a href="index.html#products-section">3D Couple Nameplates</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Occasions & Recipients -->
+        <div>
+          <h4 class="footer-col-title">Shop by Occasion</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#products-section">Anniversary Keepsakes</a></li>
+            <li><a href="index.html#products-section">Birthday Surprises</a></li>
+            <li><a href="index.html#products-section">Romantic Valentine's Gifts</a></li>
+            <li><a href="index.html#products-section">Wedding &amp; Engagement</a></li>
+            <li><a href="index.html#products-section">Gifts for Her</a></li>
+            <li><a href="index.html#products-section">Gifts for Him</a></li>
+            <li><a href="index.html#products-section">Corporate Bulk Orders</a></li>
+            <li><a href="index.html#products-section">Best Friends &amp; Family</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Services & Policies -->
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="track-order.html">Track Your Order</a></li>
+            <li><a href="account.html">My Profile &amp; Orders</a></li>
+            <li><a href="wishlist.html">My Saved Wishlist</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="track-order.html">7-Day Easy Replacement</a></li>
+            <li><a href="product.html?id=prod_1001">Photo Quality Guide</a></li>
+            <li><a href="track-order.html">Express 24h Dispatch</a></li>
+            <li><a href="track-order.html">FAQs &amp; Gifting Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Trust & Assurance -->
+        <div>
+          <h4 class="footer-col-title">GiftsKart Promise</h4>
+          <p class="footer-brand-desc mb-3">
+            Every memory you trust us with is crafted with emotional perfection and inspected twice before safe dispatched packing.
+          </p>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">⚡ 24h Express Crafting</div>
+            <div class="caption text-muted">Same-day laser engraving lab.</div>
+          </div>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">🛡️ Damage-Free Guarantee</div>
+            <div class="caption text-muted">100% free instant replacement if damaged in transit.</div>
+          </div>
+          <div>
+            <div class="text-white font-bold body-sm mb-1">🎁 Silk Box Presentation</div>
+            <div class="caption text-muted">Free premium unboxing luxury packaging.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Safe & Secure Payment Methods Strip -->
+      <div class="footer-trust-strip">
+        <div class="d-flex align-center gap-3">
+          <span style="font-size: 20px;">🔒</span>
+          <div>
+            <div class="font-bold text-white body-sm">100% Secure &amp; Encrypted Payments</div>
+            <div class="caption text-muted">All transactions are secured with bank-grade 256-bit SSL encryption.</div>
+          </div>
+        </div>
+        <div class="footer-payment-badges">
+          <span class="payment-pill-badge active-badge">📱 UPI / Google Pay / PhonePe</span>
+          <span class="payment-pill-badge">💳 Visa &bull; Mastercard &bull; RuPay</span>
+          <span class="payment-pill-badge">🏦 Net Banking (All Banks)</span>
+          <span class="payment-pill-badge active-badge">💵 Cash On Delivery (COD)</span>
+        </div>
+      </div>
+
+      <!-- 4. SEO Keywords Directory (Amazon / Flipkart Style) -->
+      <div class="footer-directory-strip">
+        <div class="footer-directory-title">Popular Searches in Personalized Gifts:</div>
+        <div class="footer-directory-links">
+          <a href="index.html#products-section">Personalized Photo Frames</a> &bull;
+          <a href="index.html#products-section">3D Optical Crystals</a> &bull;
+          <a href="index.html#products-section">Custom Spotify Music Plaques</a> &bull;
+          <a href="index.html#products-section">Eternal Preserved Rose Box</a> &bull;
+          <a href="index.html#products-section">Illuminated 3D Moon Lamps</a> &bull;
+          <a href="index.html#products-section">Magic Color Changing Mugs</a> &bull;
+          <a href="index.html#products-section">Laser Engraved Wooden Heart Lamps</a> &bull;
+          <a href="index.html#products-section">Custom Photo Pillows &amp; Cushions</a> &bull;
+          <a href="index.html#products-section">Couple Metal Keychains</a> &bull;
+          <a href="index.html#products-section">3D Acrylic Door Nameplates</a> &bull;
+          <a href="index.html#products-section">Anniversary Gifts for Husband / Wife</a> &bull;
+          <a href="index.html#products-section">Birthday Surprises India</a> &bull;
+          <a href="index.html#products-section">Express Same Day Gift Delivery</a>
+        </div>
+      </div>
+
+      <!-- 5. Copyright & Legal Row -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 Gifts Kart Private Limited. All rights reserved. Crafted with passion &amp; love in India.
+        </div>
+        <div class="footer-legal-links">
+          <a href="index.html">Privacy Policy</a>
+          <a href="index.html">Terms of Service</a>
+          <a href="index.html">Shipping &amp; Delivery Policy</a>
+          <a href="index.html">Refund &amp; Replacement</a>
+          <a href="index.html">Security</a>
+          <a href="index.html">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module">
+    import { API } from './js/core/api.js';
+
+    const STAGES = [
+      { key: 'placed', label: 'Order Placed', icon: '📝', desc: 'Order registered in database' },
+      { key: 'photos', label: 'WhatsApp Photos', icon: '💬', desc: 'Pending HD photo verification' },
+      { key: 'verified', label: 'Photos Verified', icon: '✅', desc: 'Photos approved by design team' },
+      { key: 'crafting', label: 'Laser Crafting', icon: '⚡', desc: 'Precision laser engraving & assembly' },
+      { key: 'dispatched', label: 'Dispatched & Shipped', icon: '📦', desc: 'Handed to BlueDart Express Air' },
+      { key: 'out_for_delivery', label: 'Out for Delivery', icon: '🚚', desc: 'Courier executive on the way' },
+      { key: 'delivered', label: 'Delivered', icon: '🎁', desc: 'Safely delivered with smile' }
+    ];
+
+    function getStageIndex(order) {
+      const status = (order.status || '').toLowerCase();
+      const waStatus = (order.whatsapp_photos_status || '').toUpperCase();
+
+      if (status.includes('deliver') && !status.includes('out')) return 6;
+      if (status.includes('out') || status.includes('transit')) return 5;
+      if (status.includes('dispatch') || status.includes('shipped')) return 4;
+      if (status.includes('craft') || status.includes('engrav') || status.includes('confirm')) {
+        return waStatus === 'PHOTOS_RECEIVED' ? 3 : (waStatus === 'WAITING_FOR_PHOTOS' ? 1 : 3);
+      }
+      if (waStatus === 'PHOTOS_RECEIVED') return 2;
+      if (status.includes('photo') || waStatus === 'WAITING_FOR_PHOTOS' || status === 'waiting_for_customer_photos') return 1;
+      return 0; // Order Placed
+    }
+
+    async function loadTrackOrder(orderQuery) {
+      let orders = [];
+      try {
+        orders = await API.getOrders();
+      } catch (_) {}
+      if (!Array.isArray(orders) || !orders.length) {
+        try { orders = JSON.parse(localStorage.getItem('gk_orders') || '[]'); } catch (_) {}
+      }
+
+      const q = (orderQuery || '').trim().replace(/^#/, '');
+      let order = orders.find(o => {
+        const id = String(o.id || o.order_number || '').replace(/^#/, '');
+        return id.toLowerCase() === q.toLowerCase() || id.includes(q);
+      });
+
+      if (!order && !q && orders.length > 0) {
+        order = orders[0]; // fallback to latest order if no query provided
+      }
+
+      if (!order) {
+        const headingEl = document.getElementById('track-heading-order-id');
+        const msgDesc = document.getElementById('track-live-status-desc');
+        const msgTitle = document.getElementById('track-live-status-title');
+        const badgeEl = document.getElementById('track-badge-status');
+        const timelineEl = document.getElementById('tracking-timeline-steps');
+        const itemsListEl = document.getElementById('track-items-list');
+
+        if (headingEl) headingEl.textContent = q ? `Order Not Found: #${q}` : 'Order Tracking';
+        if (badgeEl) badgeEl.textContent = '⚠️ Not Found';
+        if (msgTitle) msgTitle.textContent = 'Order Record Not Found';
+        if (msgDesc) msgDesc.innerHTML = `<span style="color: #DC2626;">No matching order found in the system database${q ? ` for <strong>#${q}</strong>` : ''}. Please verify your order number from your confirmation email or log in to view your Order History in your VIP Account.</span>`;
+        if (timelineEl) timelineEl.innerHTML = '<div class="text-center py-4 text-muted font-bold">Please enter a valid Order Number to inspect real-time courier stages.</div>';
+        if (itemsListEl) itemsListEl.innerHTML = '<div class="text-center py-4 text-muted">No items to display.</div>';
+        return;
+      }
+
+      const cleanId = '#' + String(order.id || order.order_number).replace(/^#/, '');
+      const stageIdx = getStageIndex(order);
+
+      // 1. Heading & Badges
+      const headingEl = document.getElementById('track-heading-order-id');
+      const badgeEl = document.getElementById('track-badge-status');
+      const carrierEl = document.getElementById('track-carrier-name');
+      const awbEl = document.getElementById('track-awb-code');
+      const inputEl = document.getElementById('track-order-input');
+
+      if (headingEl) headingEl.textContent = `Order Tracking: ${cleanId}`;
+      if (badgeEl) badgeEl.textContent = `⚡ ${order.status || 'In Transit'}`;
+      if (carrierEl) carrierEl.textContent = order.courier || order.tracking_courier || 'BlueDart Express';
+      if (awbEl) awbEl.textContent = order.awb || order.tracking_awb || 'GKT-9982314';
+      if (inputEl) inputEl.value = cleanId.replace('#', '');
+
+      // 2. Timeline
+      const timelineEl = document.getElementById('tracking-timeline-steps');
+      if (timelineEl) {
+        timelineEl.innerHTML = STAGES.map((st, idx) => {
+          let stepClass = '';
+          let dotContent = st.icon;
+          let timeText = 'Pending';
+
+          if (idx < stageIdx) {
+            stepClass = 'is-done';
+            dotContent = '✓';
+            timeText = 'Completed';
+          } else if (idx === stageIdx) {
+            stepClass = 'is-active';
+            dotContent = st.icon;
+            timeText = 'In Progress';
+          }
+
+          return `
+            <div class="tracking-step ${stepClass}">
+              <div class="tracking-step-dot">${dotContent}</div>
+              <div class="font-bold body-sm ${idx === stageIdx ? 'text-primary' : (idx < stageIdx ? 'text-dark' : 'text-muted')}">${st.label}</div>
+              <span class="caption ${idx === stageIdx ? 'text-primary font-semibold' : 'text-muted'}">${timeText}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. Live Message & WhatsApp Callout
+      const msgDesc = document.getElementById('track-live-status-desc');
+      const msgTitle = document.getElementById('track-live-status-title');
+      const isWaitingPhotos = order.whatsapp_photos_status === 'WAITING_FOR_PHOTOS' || order.status === 'WAITING_FOR_CUSTOMER_PHOTOS';
+
+      if (msgTitle) msgTitle.textContent = `Current Stage: ${order.status || 'In Transit'}`;
+      if (msgDesc) {
+        if (isWaitingPhotos) {
+          msgDesc.innerHTML = `
+            <div class="p-3 rounded mb-2" style="background: #FFFDF0; border: 1.5px dashed #F59E0B; color: #92400E;">
+              <strong>💬 Action Required: Send HD Photos on WhatsApp</strong><br>
+              Please WhatsApp your high-resolution photos to <strong>+91 98765 43210</strong> with Order ID <strong>${cleanId}</strong>.
+            </div>
+            Shipment for <strong>${order.customer || order.shipping_name || 'Customer'}</strong> is currently waiting for your photos.
+          `;
+        } else {
+          msgDesc.innerHTML = `Shipment for <strong>${order.customer || order.shipping_name || 'Customer'}</strong> (${order.address || 'Delivery Address'}) is handled by <strong>${order.courier || order.tracking_courier || 'BlueDart'}</strong> under AWB <code>${order.awb || order.tracking_awb || 'GKT-9982314'}</code>.`;
+        }
+      }
+
+      // 4. Items with Real Quantity & Clean Formatting
+      const itemsListEl = document.getElementById('track-items-list');
+      if (itemsListEl && Array.isArray(order.items)) {
+        itemsListEl.innerHTML = order.items.map(it => {
+          let cleanTitle = String(it.title || 'Personalized Keepsake Gift')
+            .replace(/&amp;amp;/g, '&')
+            .replace(/&amp;/g, '&');
+          const itemQty = Number(it.qty || it.quantity || 1);
+          const itemPrice = it.price ? ' • ₹' + Number((it.price || 0) * itemQty).toLocaleString('en-IN') : '';
+          const itemImg = it.image || it.photo || (it.custom_photo) || 'assets/uploads/prod_6a6ad9e0d7494.webp';
+
+          return `
+            <div class="d-flex justify-between align-center p-3 rounded border bg-white flex-wrap gap-3 mb-2" style="border-radius: 12px; border: 1px solid #F5CBCB;">
+              <div class="d-flex align-center gap-3">
+                <img src="${itemImg}" alt="${cleanTitle}" style="width: 52px; height: 52px; object-fit: cover; border-radius: 8px; border: 1px solid #F5CBCB;" onerror="this.src='assets/uploads/prod_6a6ad9e0d7494.webp'">
+                <div>
+                  <strong class="body-sm text-dark font-bold">${cleanTitle}</strong>
+                  <div class="caption text-muted">${it.custom || it.color || 'Custom Laser Engraved Keepsake'}${itemPrice}</div>
+                </div>
+              </div>
+              <span class="badge font-bold" style="font-size: 13px; padding: 6px 14px; border-radius: 20px; background: #FBEFEF; color: #7E5E9B; border: 1px solid #F5CBCB;">
+                QTY: ${itemQty}
+              </span>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    window.lookupOrderTrack = function() {
+      const q = document.getElementById('track-order-input')?.value;
+      if (q) loadTrackOrder(q);
+    };
+
+    // Auto-load on page ready
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('order') || urlParams.get('id') || '';
+    loadTrackOrder(initialQuery);
+  </script>
+  <script type="module" src="./js/app.js"></script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

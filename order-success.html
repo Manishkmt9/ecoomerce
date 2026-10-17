@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Gifts Kart Luxury Keepsakes</title>
+  <meta name="description" content="Your personalized gift order is confirmed and queued for 24h laser crafting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+  <style>
+    .success-main-card {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      border: 1px solid #F1E4EC;
+      background: #FFFFFF;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .success-check-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #16A34A 0%, #34D399 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+    }
+    .order-summary-box {
+      background: #FFF8FB;
+      border: 1px solid #FFD6E7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0 32px 0;
+      text-align: left;
+    }
+  </style>
+</head>
+<body style="background-color: #F8FAFC; min-height: 100vh; display: flex; flex-direction: column;">
+
+  <!-- Inline SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></symbol>
+  </svg>
+
+  <header class="header-main">
+    <div class="container text-center py-3">
+      <a href="index.html" class="brand-logo d-inline-flex" aria-label="Gifts Kart Home">
+        <div class="brand-logo-icon">
+          <svg width="20" height="20"><use href="#icon-gift"></use></svg>
+        </div>
+        <span>Gifts<span class="brand-highlight">Kart</span></span>
+      </a>
+    </div>
+  </header>
+
+  <main class="py-12" style="flex: 1 1 auto;">
+    <div class="container" style="max-width: 640px;">
+      <div class="card success-main-card">
+        
+        <!-- Large Glowing Green Checkmark -->
+        <div class="success-check-icon">
+          <svg width="38" height="38"><use href="#icon-check"></use></svg>
+        </div>
+
+        <span class="badge badge-success badge-pill mb-2" id="disp-order-badge" style="font-size: 12px; font-weight: 700; padding: 4px 14px;">
+          ✓ ORDER CONFIRMED
+        </span>
+        
+        <h1 class="h3 font-bold mb-2">Thank You for Your Order! ✨</h1>
+        <p class="body-sm text-secondary mb-3">
+          Your personalized keepsakes are now queued in our artisan lab for 24h precision laser crafting.
+        </p>
+
+        <!-- Live Animated Express Delivery Dispatch Strip -->
+        <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border: 1.5px solid #F5CBCB; border-radius: 16px; padding: 16px; margin: 18px 0; overflow: hidden; position: relative; text-align: left;">
+          <div class="d-flex justify-between align-center mb-2">
+            <span class="badge badge-success font-bold" style="font-size: 11px;">✓ Priority Air Courier Assigned</span>
+            <span style="font-size: 12px; color: #F5CBCB; font-weight: 700;">GiftsKart Express</span>
+          </div>
+          <div style="height: 48px; position: relative; overflow: hidden; background: rgba(255,255,255,0.05); border-radius: 10px;">
+            <div style="position: absolute; bottom: 8px; left: 0; right: 0; height: 2px; background: repeating-linear-gradient(90deg, #F5CBCB 0, #F5CBCB 15px, transparent 15px, transparent 30px); animation: roadMove 0.6s linear infinite;"></div>
+            <!-- Moving Delivery Van -->
+            <svg style="position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 70px; height: 38px;" viewBox="0 0 110 60">
+              <rect x="10" y="12" width="60" height="34" rx="4" fill="#7E5E9B" stroke="#F5CBCB" stroke-width="1.5"/>
+              <text x="18" y="32" fill="#FFFFFF" font-size="7" font-weight="900" letter-spacing="0.5">GIFTSKART</text>
+              <path d="M70,22 L84,22 L96,34 L96,46 L70,46 Z" fill="#9333EA" stroke="#F5CBCB" stroke-width="1.5"/>
+              <path d="M73,25 L83,25 L92,34 L73,34 Z" fill="#93C5FD" opacity="0.85"/>
+              <circle cx="28" cy="47" r="7" fill="#0F172A" stroke="#CBD5E1" stroke-width="2"/>
+              <circle cx="82" cy="47" r="7" fill="#0F172A" stroke="#CBD5E1" stroke-width="2"/>
+              <polygon points="98,34 110,25 110,48 98,42" fill="rgba(254, 240, 138, 0.45)"/>
+            </svg>
+          </div>
+          <div class="caption text-muted mt-2" style="font-size: 11.5px; color: #CBD5E1 !important;">
+            🚚 Handcrafted keepsake package dispatched to airport hub for express delivery.
+          </div>
+        </div>
+
+        <!-- Order Summary Detail Box -->
+        <div class="order-summary-box">
+          <div class="d-flex justify-between align-center mb-3 flex-wrap gap-2">
+            <span class="caption text-muted font-bold">Order Identifier:</span>
+            <span class="font-bold text-primary" id="disp-order-id" style="font-size: 16px;">#GK-89517</span>
+          </div>
+          <div class="d-flex justify-between align-center mb-3 flex-wrap gap-2">
+            <span class="caption text-muted font-bold">Estimated Delivery:</span>
+            <span class="font-bold text-dark">Tomorrow by 4:00 PM (Express Air)</span>
+          </div>
+          <div class="d-flex justify-between align-center mb-3 flex-wrap gap-2">
+            <span class="caption text-muted font-bold">Delivery Address:</span>
+            <span class="body-sm text-dark font-semibold">Flat 402, Linking Road, Bandra West, Mumbai - 400050</span>
+          </div>
+          <div class="d-flex justify-between align-center pt-3 border-top flex-wrap gap-2">
+            <span class="caption text-muted font-bold" id="disp-payment-label">Total Amount:</span>
+            <span class="font-bold text-success" id="disp-payment-amount" style="font-size: 16px;">₹2,298</span>
+          </div>
+        </div>
+
+        <!-- Clean Action CTAs Only: Track Order & Continue Shopping -->
+        <div class="d-flex flex-column gap-3 align-center">
+          <a href="track-order.html" class="btn btn-primary btn-lg w-100" id="btn-track-order" style="max-width: 380px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;">
+            🚚 Track Live Courier &rarr;
+          </a>
+          
+          <a href="index.html" class="btn btn-ghost btn-md font-bold" id="btn-back-home" style="color: #475569; text-decoration: none;">
+            🏠 Back to Home &amp; Continue Shopping
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 1. Immediately Clear Cart / Bag
+    try {
+      localStorage.setItem('gk_cart', '[]');
+      localStorage.setItem('gk_cart_count', '0');
+      localStorage.removeItem('gk_gift_wrap');
+      localStorage.removeItem('gk_applied_coupon');
+    } catch (e) {}
+
+    // 2. Prevent back button re-ordering by pushing state to Home
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function () {
+      window.location.href = 'index.html';
+    });
+
+    // 3. Retrieve latest order details from storage or URL
+    const params = new URLSearchParams(window.location.search);
+    let orderId = params.get('order') || params.get('order_number') || '';
+    const cleanId = orderId ? (orderId.startsWith('#') ? orderId : '#' + orderId) : 'Order Placed';
+    
+    const dispEl = document.getElementById('disp-order-id');
+    if (dispEl) dispEl.textContent = cleanId;
+
+    const trackBtn = document.getElementById('btn-track-order');
+    if (trackBtn && orderId) trackBtn.href = 'track-order.html?order=' + cleanId.replace('#', '');
+
+    let lastOrder = {};
+    try {
+      lastOrder = JSON.parse(localStorage.getItem('last_order_details') || '{}');
+    } catch (e) {}
+
+    const isCod = (lastOrder.paymentMethod && (lastOrder.paymentMethod.includes('CASH') || lastOrder.paymentMethod.includes('COD'))) || (!lastOrder.paymentMethod);
+    
+    const badgeEl = document.getElementById('disp-order-badge');
+    const labelEl = document.getElementById('disp-payment-label');
+    const amountEl = document.getElementById('disp-payment-amount');
+
+    let rawTotal = lastOrder.total || lastOrder.grand_total || lastOrder.total_amount || 0;
+    if (typeof rawTotal === 'string') {
+      const parsedNum = Number(rawTotal.replace(/[^0-9.]/g, ''));
+      rawTotal = !isNaN(parsedNum) && parsedNum > 0 ? parsedNum : 0;
+    }
+    const totalFormatted = rawTotal > 0 ? ('₹' + Number(rawTotal).toLocaleString('en-IN')) : 'Amount on Invoice';
+
+    if (isCod) {
+      if (badgeEl) {
+        badgeEl.textContent = '✓ ORDER PLACED (Cash on Delivery)';
+        badgeEl.style.background = '#FFF7ED';
+        badgeEl.style.color = '#EA580C';
+        badgeEl.style.border = '1px solid #FFEDD5';
+      }
+      if (labelEl) labelEl.textContent = 'Total Amount to Pay on Delivery:';
+      if (amountEl) {
+        amountEl.textContent = totalFormatted + ' (Cash on Delivery)';
+        amountEl.style.color = '#EA580C';
+      }
+    } else {
+      if (badgeEl) {
+        badgeEl.textContent = '✓ PAYMENT & ORDER CONFIRMED';
+        badgeEl.style.background = '#ECFDF5';
+        badgeEl.style.color = '#059669';
+      }
+      if (labelEl) labelEl.textContent = 'Total Amount Paid:';
+      if (amountEl) {
+        amountEl.textContent = totalFormatted + ' (Prepaid Verified)';
+        amountEl.style.color = '#16A34A';
+      }
+    }
+  </script>
+  <script type="module" src="./js/app.js"></script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

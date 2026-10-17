@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gifts Kart — Create Memories That Last Forever | Luxury Personalized Gifts</title>
+  <meta name="description" content="Shop handcrafted personalized gifts, 3D laser-engraved crystals, preserved roses, custom photo frames, and bespoke keepsakes with 24h express dispatch.">
+  <meta name="keywords" content="personalized gifts, 3D laser crystal, preserved roses, custom photo frames, anniversary gifts, birthday surprises">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+  <style>
+    /* Clean Hero Compact Layout */
+    .hero-compact {
+      padding: 30px 0 20px;
+      background: radial-gradient(at 10% 20%, rgba(245, 203, 203, 0.4) 0px, transparent 50%),
+                  radial-gradient(at 90% 10%, rgba(255, 143, 184, 0.25) 0px, transparent 50%),
+                  #FFF8FB;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1E1E1E;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 768px) {
+      .hero-title { font-size: 40px; }
+    }
+    .hero-subtitle {
+      font-size: 15px;
+      color: #4A5568;
+      max-width: 580px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #FBEFEF;
+      border: 1px solid #F5CBCB;
+      color: #7E5E9B;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .catalog-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .catalog-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1E293B;
+      margin: 0;
+    }
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    @media (max-width: 768px) {
+      .how-it-works-grid { grid-template-columns: 1fr; }
+    }
+    .step-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid #F5CBCB;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+    .step-icon-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #FBEFEF;
+      border: 1px solid #F5CBCB;
+      color: #7E5E9B;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Inline SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></symbol>
+  </svg>
+
+  <!-- ====================================================================
+       FLOATING ROUNDED TRANSPARENT PILL HEADER
+       ==================================================================== -->
+  <div class="header-wrapper" id="master-header-wrapper">
+    <header class="header-main" role="banner">
+      <div class="container">
+        <div class="header-main-inner">
+          <!-- Logo -->
+          <a href="index.html" class="brand-logo" aria-label="Gifts Kart Home">
+            <div class="brand-logo-icon">
+              <svg width="20" height="20"><use href="#icon-gift"></use></svg>
+            </div>
+            <span>Gifts<span class="brand-highlight">Kart</span></span>
+          </a>
+
+          <!-- Compact Search Bar with Live Autocomplete -->
+          <div class="header-search-container" style="position: relative;">
+            <form class="header-search-form" id="master-search-form" role="search" onsubmit="executeGlobalSearch(event)">
+              <input type="search" id="master-search-input" class="header-search-input" placeholder="Search gifts, photo frames, lamps..." aria-label="Search Catalog" autocomplete="off" oninput="handleSearchType(this.value)">
+              <button type="submit" class="header-search-btn" aria-label="Search">
+                <svg width="18" height="18"><use href="#icon-search"></use></svg>
+              </button>
+            </form>
+
+            <!-- Live Search Autocomplete Popover Dropdown -->
+            <div id="master-search-dropdown" style="display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; min-width: 340px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.18); border: 1.5px solid #F5CBCB; z-index: 1000; max-height: 440px; overflow-y: auto; padding: 8px;">
+              <!-- Dynamic live search results -->
+            </div>
+          </div>
+
+          <!-- Clean Icon-Only Actions -->
+          <nav class="header-actions" aria-label="Header Actions">
+            <!-- Mobile-only Search Icon -->
+            <button type="button" class="mobile-search-btn" id="mobile-search-open-btn" aria-label="Search" style="display:none;">
+              <svg width="20" height="20"><use href="#icon-search"></use></svg>
+            </button>
+
+            <!-- Wishlist -->
+            <a href="wishlist.html" class="header-action-item" data-action="wishlist" aria-label="Wishlist">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-heart"></use></svg>
+                <span class="header-badge" id="header-wishlist-badge">0</span>
+              </div>
+            </a>
+
+            <!-- Cart / Bag -->
+            <a href="cart.html" class="header-action-item" data-action="cart" aria-label="Cart">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-bag"></use></svg>
+                <span class="header-badge" id="header-cart-badge">0</span>
+              </div>
+            </a>
+
+            <!-- Customer Account Profile -->
+            <a href="account.html" class="header-action-item" aria-label="Account">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-user"></use></svg>
+              </div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Search Overlay -->
+    <div class="mobile-search-overlay" id="mobile-search-overlay" role="search" aria-label="Mobile Search">
+      <div class="mobile-search-overlay-inner">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" class="mobile-search-overlay-input" id="mobile-search-overlay-input" placeholder="Search gifts, photo frames, lamps..." autocomplete="off" aria-label="Search">
+        <button type="button" class="mobile-search-overlay-close" id="mobile-search-close-btn" aria-label="Close search">&times;</button>
+      </div>
+    </div>
+
+    <!-- Sub-Header Categories with All 26 Categories & Mega Dropdown -->
+    <nav class="header-sub" aria-label="Categories">
+      <div class="container">
+        <div class="header-sub-inner">
+          <!-- All Categories Mega Menu Trigger -->
+          <div class="categories-btn-wrapper">
+            <button type="button" class="btn-all-categories" aria-expanded="false" aria-label="All Categories">
+              <span class="category-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span>All Categories</span>
+              <span style="font-size: 10px; margin-left: 2px;">▾</span>
+            </button>
+
+            <!-- 4-Column Luxury Mega Menu -->
+            <div class="categories-mega-menu" id="categories-mega-menu">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                
+                <!-- Group 1: Photo Frames & Clocks -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Frames &amp; Memory Gifts
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="frames">Personalized Frames</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="led-frame">Illuminated LED Frames</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="wooden-fram">Wooden Carved Frames</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="frame-clock">Photo Frame Clocks</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="photo-albums">Hardcover Photo Albums</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 2: Lighting & 3D Art -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Lamps &amp; 3D Crystals
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Night Lamps</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Optical Crystals</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="rotaters">Rotating Photo Lamps</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="name-plates">3D Acrylic Name Plates</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="wall-clocks">Customized Wall Clocks</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 3: Daily Keepsakes & Mugs -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Daily Keepsakes &amp; Decor
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="mugs">Ceramic Photo Mugs</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="water-bottle">Insulated Water Bottles</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="pillow">Custom Photo Pillows</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="tshirts">Personalized T-Shirts</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="calendar">Custom Desk Calendars</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 4: Accessories & Occasions -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Accessories &amp; Occasions
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="wallet-card">Metal Wallet Cards</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="key-chain">Custom Keychains</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="gents-purse">Engraved Gents Purses</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="resin-products">Artistic Resin Decor</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="resin-keychain">Resin Keychains</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi Gift Hampers</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="mobile-pen-stand">Mobile &amp; Pen Stands</a></li>
+                    <li><a href="#products-section" class="sub-nav-link" data-cat="key-holder">Wooden Key Holders</a></li>
+                    <li><a href="#products-section" class="sub-nav-link highlight" data-cat="offers">Special Offers</a></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Popular Category Links Strip -->
+          <ul class="sub-nav-links">
+            <li><a href="index.html" class="sub-nav-link active" data-cat="all">Home</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="frames">Photo Frames</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Lamps</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="mugs">Mugs &amp; Sippers</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="wallet-card">Wallet Cards</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="key-chain">Keychains</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="pillow">Pillows</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="wooden-gifts">Wooden Gifts</a></li>
+            <li><a href="#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi Gifts</a></li>
+            <li><a href="#products-section" class="sub-nav-link highlight" data-cat="offers">Offers 🔥</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- ====================================================================
+         HERO SECTION (Compact & Luxury)
+         ==================================================================== -->
+    <section class="hero-compact">
+      <div class="container">
+        <div class="row align-center">
+          <div class="col-12 col-md-7">
+            <div class="hero-badge">✨ India's #1 Luxury Personalized Gifts Studio</div>
+            <h1 class="hero-title">Create Memories That <span style="color: #7E5E9B;">Last Forever</span></h1>
+            <p class="hero-subtitle">Handcrafted personalized LED frames, 3D crystals, warm glowing moon lamps, and custom keepsakes designed to evoke unforgettable emotions.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="#products-section" class="btn btn-primary btn-md">Explore All 71 Gifts &rarr;</a>
+              <a href="product.html?id=prod_21" class="btn btn-outline-primary btn-md" id="hero-customize-cta-btn">Customize Keepsake &rarr;</a>
+            </div>
+          </div>
+          <div class="col-12 col-md-5 mt-4 mt-md-0 text-center" id="hero-featured-showcase-container">
+            <div class="hero-showcase-wrapper" style="max-width: 340px; margin: 0 auto; position: relative;">
+              <a href="product.html?id=prod_21" class="hero-showcase-card-link" style="text-decoration: none; display: block;">
+                <div class="card p-3 hero-showcase-card" style="box-shadow: 0 15px 35px -5px rgba(126, 94, 155, 0.22), 0 0 0 1.5px #F5CBCB; border-radius: 20px; background: #FFFFFF;">
+                  <div style="position: relative; overflow: hidden; border-radius: 14px; aspect-ratio: 1; background: linear-gradient(135deg, #FBEFEF 0%, #FFE2E2 100%); display: flex; align-items: center; justify-content: center;">
+                    <img id="hero-main-showcase-img" src="assets/uploads/prod_6a3d08d5d8698.png" alt="Personalized Love Bank Couple PVC Wallet Card" class="hero-showcase-img" style="width: 86%; height: 86%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(126, 94, 155, 0.3));" onerror="this.src='assets/uploads/prod_6a6ad9e0d7494.webp'">
+                    <div style="position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+                      <span class="badge badge-primary badge-pill" style="font-size: 11px; padding: 4px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">⭐ #1 BESTSELLER</span>
+                      <span style="background: rgba(35, 24, 43, 0.85); color: #FFFFFF; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; backdrop-filter: blur(4px);">⭐ 4.9 (128)</span>
+                    </div>
+                  </div>
+                  <div class="pt-3 text-left">
+                    <div class="font-bold body-md text-dark" style="color: #23182B; font-size: 14px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px;">Personalized Love Bank Couple PVC Wallet Card</div>
+                    <div class="d-flex justify-between align-center mt-1">
+                      <div class="font-bold" style="color: #7E5E9B; font-size: 16px;">₹199</div>
+                      <span class="btn btn-sm btn-primary" style="padding: 5px 12px; font-size: 12px; border-radius: 8px;">Personalize &rarr;</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CIRCULAR STORY CATEGORIES BAR (Curated Single Row Carousel)
+         ==================================================================== -->
+    <section class="section py-4" id="category-section">
+      <div class="container">
+        <div class="category-slider-wrapper">
+          <button type="button" class="category-slider-nav-btn category-slider-nav-prev" id="cat-slider-prev" aria-label="Previous categories" title="Scroll left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <div class="category-slider-track" id="categories-slider-track">
+            <a href="#products-section" class="category-slider-item" data-category-slug="all">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a5a8ce840193.webp" alt="All Keepsakes" class="category-slider-img"></div>
+              <span class="category-slider-title">All Gifts</span>
+              <span class="category-slider-count">71 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="frames">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a5a89cc89867.webp" alt="Photo Frames" class="category-slider-img"></div>
+              <span class="category-slider-title">Photo Frames</span>
+              <span class="category-slider-count">29 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="lighting-gifts">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a5b3f7975b62.webp" alt="LED Lamps" class="category-slider-img"></div>
+              <span class="category-slider-title">LED Lamps</span>
+              <span class="category-slider-count">10 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="mugs">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a63b4ba45754.webp" alt="Mugs and Sippers" class="category-slider-img"></div>
+              <span class="category-slider-title">Mugs</span>
+              <span class="category-slider-count">10 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="wallet-card">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a3d08d5d8698.png" alt="Metal Wallet Cards" class="category-slider-img"></div>
+              <span class="category-slider-title">Wallet Cards</span>
+              <span class="category-slider-count">30 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="key-chain">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a3e32fdb3070.png" alt="Keychains" class="category-slider-img"></div>
+              <span class="category-slider-title">Keychains</span>
+              <span class="category-slider-count">15 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="pillow">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a60c6213959c.webp" alt="Custom Pillows" class="category-slider-img"></div>
+              <span class="category-slider-title">Pillows</span>
+              <span class="category-slider-count">12 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="wooden-gifts">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a5a8f5d91231.webp" alt="Wooden Keepsakes" class="category-slider-img"></div>
+              <span class="category-slider-title">Wooden</span>
+              <span class="category-slider-count">18 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="resin-products">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a4e98f017f8a.webp" alt="Resin Art Decor" class="category-slider-img"></div>
+              <span class="category-slider-title">Resin Art</span>
+              <span class="category-slider-count">14 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="rakhi">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a4384e00e2c5.webp" alt="Rakhi Hampers" class="category-slider-img"></div>
+              <span class="category-slider-title">Rakhi Gifts</span>
+              <span class="category-slider-count">16 Gifts</span>
+            </a>
+            <a href="#products-section" class="category-slider-item" data-category-slug="offers">
+              <div class="category-slider-icon-box"><img src="assets/uploads/prod_6a5b430d729e0.webp" alt="Special Deals" class="category-slider-img"></div>
+              <span class="category-slider-title">Offers 🔥</span>
+              <span class="category-slider-count">20 Deals</span>
+            </a>
+          </div>
+
+          <button type="button" class="category-slider-nav-btn category-slider-nav-next" id="cat-slider-next" aria-label="Next categories" title="Scroll right">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         MASTER CATALOG WITH LUXURY CATEGORY FILTER SIDEBAR
+         ==================================================================== -->
+    <section class="section pt-2" id="products-section" aria-labelledby="catalog-heading">
+      <div class="container">
+        
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <h2 id="catalog-heading" class="section-title text-left mb-1" style="font-size: 22px; font-weight: 800; color: #1E293B;">Personalized Keepsakes Collection</h2>
+            <p class="caption text-muted mb-0">Handcrafted gifts customized with your photos, names, dates &amp; Spotify codes</p>
+          </div>
+        </div>
+
+        <div class="catalog-section-header">
+          <div class="category-filter-chips" role="group" aria-label="Category filters">
+            <button type="button" class="category-filter-chip is-active" data-filter="all">All (71)</button>
+            <button type="button" class="category-filter-chip" data-filter="frames">Frames (29)</button>
+            <button type="button" class="category-filter-chip" data-filter="lighting-gifts">LED Lamps (10)</button>
+            <button type="button" class="category-filter-chip" data-filter="mugs">Mugs (10)</button>
+            <button type="button" class="category-filter-chip" data-filter="wallet-card">Wallet Cards (30)</button>
+            <button type="button" class="category-filter-chip" data-filter="key-chain">Keychains (15)</button>
+            <button type="button" class="category-filter-chip" data-filter="pillow">Pillows (12)</button>
+            <button type="button" class="category-filter-chip" data-filter="wooden-gifts">Wooden (18)</button>
+            <button type="button" class="category-filter-chip" data-filter="resin-products">Resin (14)</button>
+            <button type="button" class="category-filter-chip" data-filter="rakhi">Rakhi (16)</button>
+            <button type="button" class="category-filter-chip" data-filter="offers">Offers (20)</button>
+          </div>
+
+          <!-- Filter Button & Sort Controls Side by Side -->
+          <div class="d-flex align-center gap-3">
+            <!-- Filter Option Right Beside Sort -->
+            <button type="button" class="btn-filter-trigger" id="catalog-filter-toggle-btn" aria-label="Filters">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span>Filters</span>
+            </button>
+
+            <!-- Sort Select Dropdown -->
+            <div class="d-flex align-center gap-2">
+              <span class="caption text-muted font-bold">Sort:</span>
+              <select id="product-sort-select" class="product-sort-select" aria-label="Sort">
+                <option value="popular">Popularity</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest First</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Drawer Backdrop (Frosted Overlay) -->
+        <div class="catalog-sidebar-backdrop" id="catalog-sidebar-backdrop"></div>
+
+        <!-- Main Catalog Wrapper -->
+        <div class="catalog-main-wrapper">
+          
+          <!-- Slide-Over Category & Facet Filter Sidebar Drawer -->
+          <aside class="catalog-sidebar" id="catalog-filter-sidebar" aria-label="Filter Options Drawer">
+            <div class="catalog-sidebar-header">
+              <h3 class="catalog-sidebar-title">⚡ Filters</h3>
+              <button type="button" class="catalog-sidebar-close" id="btn-close-filter-sidebar" aria-label="Close Filter Drawer">&times;</button>
+            </div>
+
+            <div class="catalog-sidebar-body">
+              <!-- Filter Group: Categories -->
+              <div class="sidebar-filter-group">
+                <div class="sidebar-filter-title">
+                  <span>Categories</span>
+                  <span style="font-size: 11px; font-weight: normal; color: #94A3B8;">Curated Groups</span>
+                </div>
+                
+                <div class="mb-2">
+                  <div class="caption text-muted font-bold mb-1" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #7E5E9B;">✨ Popular Categories</div>
+                  <ul class="sidebar-category-list" id="sidebar-category-list">
+                    <li><a href="#products-section" class="sidebar-category-item is-active" data-cat="all"><span>All Keepsakes</span> <span class="sidebar-category-count">71</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="frames"><span>Photo Frames</span> <span class="sidebar-category-count">29</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="lighting-gifts"><span>LED Night Lamps</span> <span class="sidebar-category-count">10</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="mugs"><span>Mugs &amp; Sippers</span> <span class="sidebar-category-count">10</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="wallet-card"><span>Metal Wallet Cards</span> <span class="sidebar-category-count">30</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="key-chain"><span>Custom Keychains</span> <span class="sidebar-category-count">15</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="pillow"><span>Photo Cushions</span> <span class="sidebar-category-count">12</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="wooden-gifts"><span>Wooden Keepsakes</span> <span class="sidebar-category-count">18</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="resin-products"><span>Resin Art Decor</span> <span class="sidebar-category-count">14</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="rakhi"><span>Rakhi Hampers</span> <span class="sidebar-category-count">16</span></a></li>
+                    <li><a href="#products-section" class="sidebar-category-item" data-cat="offers"><span>Special Deals 🔥</span> <span class="sidebar-category-count">20</span></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Filter Group: Price Range -->
+              <div class="sidebar-filter-group">
+                <div class="sidebar-filter-title">Price Range</div>
+                <div class="d-flex flex-column gap-1">
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="price-filter" value="all" checked> All Prices
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="price-filter" value="under-499"> Under ₹499
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="price-filter" value="500-999"> ₹500 - ₹999
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="price-filter" value="1000-1999"> ₹1,000 - ₹1,999
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="price-filter" value="2000-above"> ₹2,000 &amp; Above
+                  </label>
+                </div>
+              </div>
+
+              <!-- Filter Group: Customer Rating -->
+              <div class="sidebar-filter-group">
+                <div class="sidebar-filter-title">Customer Ratings</div>
+                <div class="d-flex flex-column gap-1">
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="rating-filter" value="all" checked> Any Rating
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="rating-filter" value="4.5"> 4.5★ &amp; Above ⭐⭐⭐⭐✨
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="radio" name="rating-filter" value="4.0"> 4.0★ &amp; Above ⭐⭐⭐⭐
+                  </label>
+                </div>
+              </div>
+
+              <!-- Filter Group: Artisan Perks -->
+              <div class="sidebar-filter-group mb-0">
+                <div class="sidebar-filter-title">Artisan Perks</div>
+                <div class="d-flex flex-column gap-1">
+                  <label class="sidebar-checkbox-label">
+                    <input type="checkbox" id="filter-express"> ⚡ 24h Express Dispatch
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="checkbox" id="filter-silk-box"> 🎁 Free Silk Gift Box
+                  </label>
+                  <label class="sidebar-checkbox-label">
+                    <input type="checkbox" id="filter-bestseller"> 🏆 Bestsellers Only
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Drawer Bottom Action Footer -->
+            <div class="catalog-sidebar-footer">
+              <button type="button" class="btn btn-secondary btn-sm flex-1" id="btn-reset-filters-footer">Reset All</button>
+              <button type="button" class="btn btn-primary btn-sm flex-1" id="btn-apply-filters">Apply Filters</button>
+            </div>
+
+          </aside>
+
+          <!-- Right Content Area: Products Grid -->
+          <div class="catalog-content-area">
+            <div class="products-grid-6col" id="all-products-grid">
+              <!-- Populated dynamically with all 108 products by HomeController -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ORGANIZED TRUST BADGES STRIP
+         ==================================================================== -->
+    <section class="section py-4" style="background: #FFFFFF; border-top: 1px solid #F5CBCB; border-bottom: 1px solid #F5CBCB;">
+      <div class="container">
+        <div class="trust-badges-grid">
+          <div class="trust-badge-item">
+            <div class="trust-badge-icon-box">🚚</div>
+            <div>
+              <div class="trust-badge-title">FREE SHIPPING</div>
+              <div class="trust-badge-desc">On all orders above ₹499</div>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge-icon-box">✂️</div>
+            <div>
+              <div class="trust-badge-title">100% CUSTOMIZED</div>
+              <div class="trust-badge-desc">High precision laser engraving</div>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge-icon-box">🔒</div>
+            <div>
+              <div class="trust-badge-title">SAFE &amp; SECURE</div>
+              <div class="trust-badge-desc">256-Bit SSL encrypted payments</div>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge-icon-box">🎧</div>
+            <div>
+              <div class="trust-badge-title">24/7 SUPPORT</div>
+              <div class="trust-badge-desc">Dedicated WhatsApp &amp; Call help</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         HOW IT WORKS (3 SIMPLE STEPS)
+         ==================================================================== -->
+    <section class="section py-6" id="steps-section" style="background: #FFF8FB;">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <span class="tagline-badge mb-2">Simple 3-Step Process</span>
+          <h2 class="h3 section-title">How Your Keepsake is Created</h2>
+          <p class="section-subtitle">From your favorite photograph to museum-grade laser artwork.</p>
+        </div>
+
+        <div class="how-it-works-grid">
+          <div class="step-card">
+            <div class="step-icon-circle">1</div>
+            <h3 class="h5 font-bold mb-2">Choose Your Keepsake</h3>
+            <p class="caption text-muted mb-0">Select from LED frames, Spotify plaques, 3D crystals, or magic cushions.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon-circle">2</div>
+            <h3 class="h5 font-bold mb-2">Upload Photo &amp; Text</h3>
+            <p class="caption text-muted mb-0">Upload your memories with real-time preview and custom sentiment engraving.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon-circle">3</div>
+            <h3 class="h5 font-bold mb-2">Delivered to Your Doorstep</h3>
+            <p class="caption text-muted mb-0">We precision-craft within 24 hours and deliver in a luxury silk presentation box.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         GIFTRIXS-STYLE INSPIRATION GALLERY (5-Column Showcase)
+         ==================================================================== -->
+    <section class="keepsake-gallery-section" id="gallery-section">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <span class="tagline-badge mb-2">Artisanal Gallery Showcase</span>
+          <h2 class="h3 section-title">Real Unboxings &amp; Keepsakes</h2>
+          <p class="section-subtitle">Every custom order is handcrafted with museum-grade precision and wrapped with love.</p>
+        </div>
+
+        <div class="gallery-grid-5col">
+          <a href="product.html?id=prod_21" class="gallery-tile">
+            <img src="assets/uploads/prod_6a6ad9e0d7494.webp" alt="LED Frame" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">LED Photo Frame</div>
+              <div class="gallery-tile-tag">From ₹849 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_77" class="gallery-tile">
+            <img src="assets/uploads/prod_6a63b4ba45754.webp" alt="Photo Mug" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">HD Ceramic Mug</div>
+              <div class="gallery-tile-tag">From ₹499 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_81" class="gallery-tile">
+            <img src="assets/uploads/prod_6a60c6213959c.webp" alt="Memory Cushion" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Velvet Touch Cushion</div>
+              <div class="gallery-tile-tag">From ₹799 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_54" class="gallery-tile">
+            <img src="assets/uploads/prod_6a5b3f7975b62.webp" alt="Heart Lamp" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Warm Heart Lamp</div>
+              <div class="gallery-tile-tag">From ₹699 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_103" class="gallery-tile">
+            <img src="assets/uploads/prod_6a6bf33b85ec7.webp" alt="Keychain" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Resin Photo Keychain</div>
+              <div class="gallery-tile-tag">From ₹199 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_38" class="gallery-tile">
+            <img src="assets/uploads/prod_6a5a8ce840193.webp" alt="Rose Box" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Preserved Rose Box</div>
+              <div class="gallery-tile-tag">From ₹1,299 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_59" class="gallery-tile">
+            <img src="assets/uploads/prod_6a5b3f7975b62.webp" alt="3D Moon Lamp" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">3D Volumetric Moon Lamp</div>
+              <div class="gallery-tile-tag">From ₹999 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_36" class="gallery-tile">
+            <img src="assets/uploads/prod_6a5a89cc89867.webp" alt="Spotify Plaque" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Spotify Acrylic Plaque</div>
+              <div class="gallery-tile-tag">From ₹699 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_55" class="gallery-tile">
+            <img src="assets/uploads/prod_6a5b40c771e20.webp" alt="Nameplate" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">3D Gold Nameplate</div>
+              <div class="gallery-tile-tag">From ₹999 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+          <a href="product.html?id=prod_100" class="gallery-tile">
+            <img src="assets/uploads/prod_6a6aad22a6a03.webp" alt="Crystal Cube" class="gallery-tile-img" loading="lazy">
+            <div class="gallery-tile-overlay">
+              <div class="gallery-tile-title">Laser Optical Crystal</div>
+              <div class="gallery-tile-tag">From ₹1,499 <span class="btn-gallery-cta">Customize &rarr;</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TESTIMONIALS (Customer Reviews)
+         ==================================================================== -->
+    <section class="section py-6" id="testimonials-section" style="background-color: var(--color-bg-subtle);">
+      <div class="container">
+        <div class="section-header text-center mb-4">
+          <span class="tagline-badge mb-2">Trusted Worldwide</span>
+          <h2 class="h3 section-title">Heartfelt Words from Our Customers</h2>
+          <p class="section-subtitle">Over 15,000 verified five-star ratings across India.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-4 mb-4">
+            <div class="card p-4 h-100">
+              <div class="d-flex align-center gap-3 mb-2">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #F5CBCB; color: #4E2E69; display: flex; align-items: center; justify-content: center; font-weight: 800;">AK</div>
+                <div>
+                  <div class="font-bold body-sm text-dark">Ananya Kapoor</div>
+                  <div class="caption text-success font-semibold">✓ Verified Buyer &bull; Mumbai</div>
+                </div>
+              </div>
+              <div class="rating-stars mb-2">★★★★★</div>
+              <p class="body-sm text-secondary mb-2">"Ordered the LED Photo Frame for our Anniversary. The warm glow made my husband cry happy tears. 10/10 unboxing experience!"</p>
+              <span class="badge badge-secondary caption font-semibold">Personalized LED Photo Frame</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 mb-4">
+            <div class="card p-4 h-100">
+              <div class="d-flex align-center gap-3 mb-2">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #FBEFEF; color: #4E2E69; display: flex; align-items: center; justify-content: center; font-weight: 800;">RS</div>
+                <div>
+                  <div class="font-bold body-sm text-dark">Rohan Sharma</div>
+                  <div class="caption text-success font-semibold">✓ Verified Buyer &bull; Bangalore</div>
+                </div>
+              </div>
+              <div class="rating-stars mb-2">★★★★★</div>
+              <p class="body-sm text-secondary mb-2">"The Spotify Acrylic plaque arrived in 2 days. When we scanned the code with our phone, our favorite song played instantly. Magical gift!"</p>
+              <span class="badge badge-secondary caption font-semibold">Custom Spotify Music Plaque</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 mb-4">
+            <div class="card p-4 h-100">
+              <div class="d-flex align-center gap-3 mb-2">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #E8F5E9; color: #1B5E20; display: flex; align-items: center; justify-content: center; font-weight: 800;">PV</div>
+                <div>
+                  <div class="font-bold body-sm text-dark">Priya Verma</div>
+                  <div class="caption text-success font-semibold">✓ Verified Buyer &bull; Delhi</div>
+                </div>
+              </div>
+              <div class="rating-stars mb-2">★★★★★</div>
+              <p class="body-sm text-secondary mb-2">"The Eternal Rose crystal box looks like something out of a fairy tale. The real preserved red rose is breathtaking and packaging is top-notch."</p>
+              <span class="badge badge-secondary caption font-semibold">Eternal Rose Crystal Keepsake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       LUXURY DETAILED MULTI-COLUMN FOOTER SYSTEM
+       ==================================================================== -->
+  <footer class="footer-wrapper">
+    <div class="container">
+      
+      <!-- 1. VIP Newsletter Banner -->
+      <div class="footer-newsletter-banner">
+        <div class="footer-newsletter-text">
+          <h3>✨ Join the Gifts Kart Inner Circle</h3>
+          <p>Get ₹200 OFF on your first personalized order + secret anniversary reminder perks.</p>
+        </div>
+        <form class="footer-newsletter-form" onsubmit="event.preventDefault(); GiftsKart.toasts.success('Coupon code MEMORIES2026 applied! Welcome to GiftsKart Inner Circle.');">
+          <input type="email" class="footer-newsletter-input" placeholder="Enter your email address..." required>
+          <button type="submit" class="footer-newsletter-btn">Claim ₹200 OFF &rarr;</button>
+        </form>
+      </div>
+
+      <!-- 2. Main 5-Column Navigation Grid -->
+      <div class="footer-5col-grid">
+        
+        <!-- Column 1: Brand & Contact Info -->
+        <div>
+          <div class="d-flex align-center gap-2 mb-3">
+            <div class="brand-logo-icon"><svg width="18" height="18"><use href="#icon-gift"></use></svg></div>
+            <span class="font-bold font-primary text-white" style="font-size: 1.35rem;">Gifts<span style="color: #7E5E9B;">Kart</span></span>
+          </div>
+          <p class="footer-brand-desc">
+            India's premier luxury personalized gifts studio. Handcrafted with museum-grade laser engraving, high-clarity optical crystals, and 24-hour express dispatch across 26,000+ Indian PIN codes.
+          </p>
+          
+          <div class="footer-contact-row">
+            <span>📞</span>
+            <div><strong>Call &amp; WhatsApp:</strong> +91 98765 43210 (10 AM - 8 PM IST)</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>✉️</span>
+            <div><strong>Email Support:</strong> support@giftskart.com</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>📍</span>
+            <div><strong>Studio Lab:</strong> Bandra West, Mumbai, Maharashtra 400050</div>
+          </div>
+
+          <div class="footer-social-bar">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram">📸</a>
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp">💬</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">📘</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="YouTube">▶️</a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Popular Categories -->
+        <div>
+          <h4 class="footer-col-title">Top Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="#products-section">Personalized LED Frames</a></li>
+            <li><a href="#products-section">Optical 3D Crystals</a></li>
+            <li><a href="#products-section">Illuminated Moon Lamps</a></li>
+            <li><a href="#products-section">HD Ceramic Photo Mugs</a></li>
+            <li><a href="#products-section">Velvet Touch Cushions</a></li>
+            <li><a href="#products-section">Spotify Glass Plaques</a></li>
+            <li><a href="#products-section">Laser Engraved Keychains</a></li>
+            <li><a href="#products-section">3D Couple Nameplates</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Occasions & Recipients -->
+        <div>
+          <h4 class="footer-col-title">Shop by Occasion</h4>
+          <ul class="footer-links-list">
+            <li><a href="#products-section">Anniversary Keepsakes</a></li>
+            <li><a href="#products-section">Birthday Surprises</a></li>
+            <li><a href="#products-section">Romantic Valentine's Gifts</a></li>
+            <li><a href="#products-section">Wedding &amp; Engagement</a></li>
+            <li><a href="#products-section">Gifts for Her</a></li>
+            <li><a href="#products-section">Gifts for Him</a></li>
+            <li><a href="#products-section">Corporate Bulk Orders</a></li>
+            <li><a href="#products-section">Best Friends &amp; Family</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Services & Policies -->
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="track-order.html">Track Your Order</a></li>
+            <li><a href="account.html">My Profile &amp; Orders</a></li>
+            <li><a href="wishlist.html">My Saved Wishlist</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="track-order.html">7-Day Easy Replacement</a></li>
+            <li><a href="product.html?id=prod_1001">Photo Quality Guide</a></li>
+            <li><a href="track-order.html">Express 24h Dispatch</a></li>
+            <li><a href="track-order.html">FAQs &amp; Gifting Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Trust & Assurance -->
+        <div>
+          <h4 class="footer-col-title">GiftsKart Promise</h4>
+          <p class="footer-brand-desc mb-3">
+            Every memory you trust us with is crafted with emotional perfection and inspected twice before safe dispatched packing.
+          </p>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">⚡ 24h Express Crafting</div>
+            <div class="caption text-muted">Same-day laser engraving lab.</div>
+          </div>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">🛡️ Damage-Free Guarantee</div>
+            <div class="caption text-muted">100% free instant replacement if damaged in transit.</div>
+          </div>
+          <div>
+            <div class="text-white font-bold body-sm mb-1">🎁 Silk Box Presentation</div>
+            <div class="caption text-muted">Free premium unboxing luxury packaging.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Safe & Secure Payment Methods Strip -->
+      <div class="footer-trust-strip">
+        <div class="d-flex align-center gap-3">
+          <span style="font-size: 20px;">🔒</span>
+          <div>
+            <div class="font-bold text-white body-sm">100% Secure &amp; Encrypted Payments</div>
+            <div class="caption text-muted">All transactions are secured with bank-grade 256-bit SSL encryption.</div>
+          </div>
+        </div>
+        <div class="footer-payment-badges">
+          <span class="payment-pill-badge active-badge">📱 UPI / Google Pay / PhonePe</span>
+          <span class="payment-pill-badge">💳 Visa &bull; Mastercard &bull; RuPay</span>
+          <span class="payment-pill-badge">🏦 Net Banking (All Banks)</span>
+          <span class="payment-pill-badge active-badge">💵 Cash On Delivery (COD)</span>
+        </div>
+      </div>
+
+      <!-- 4. SEO Keywords Directory (Clean Tag Cloud Style) -->
+      <div class="footer-directory-strip">
+        <div class="footer-directory-title mb-2">Popular Searches in Personalized Gifts:</div>
+        <div class="footer-directory-tagcloud">
+          <a href="#products-section" class="footer-tag-pill">Personalized Photo Frames</a>
+          <a href="#products-section" class="footer-tag-pill">3D Optical Crystals</a>
+          <a href="#products-section" class="footer-tag-pill">Custom Spotify Music Plaques</a>
+          <a href="#products-section" class="footer-tag-pill">Eternal Preserved Rose Box</a>
+          <a href="#products-section" class="footer-tag-pill">Illuminated 3D Moon Lamps</a>
+          <a href="#products-section" class="footer-tag-pill">Magic Color Changing Mugs</a>
+          <a href="#products-section" class="footer-tag-pill">Laser Engraved Wooden Heart Lamps</a>
+          <a href="#products-section" class="footer-tag-pill">Custom Photo Pillows &amp; Cushions</a>
+          <a href="#products-section" class="footer-tag-pill">Couple Metal Keychains</a>
+          <a href="#products-section" class="footer-tag-pill">3D Acrylic Door Nameplates</a>
+          <a href="#products-section" class="footer-tag-pill">Anniversary Gifts for Couples</a>
+          <a href="#products-section" class="footer-tag-pill">Birthday Surprises India</a>
+          <a href="#products-section" class="footer-tag-pill">Express 24h Gift Delivery</a>
+        </div>
+      </div>
+
+      <!-- 5. Copyright & Legal Row -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 Gifts Kart Private Limited. All rights reserved. Crafted with passion &amp; love in India.
+        </div>
+        <div class="footer-legal-links">
+          <a href="index.html">Privacy Policy</a>
+          <a href="index.html">Terms of Service</a>
+          <a href="index.html">Shipping &amp; Delivery Policy</a>
+          <a href="index.html">Refund &amp; Replacement</a>
+          <a href="index.html">Security</a>
+          <a href="index.html">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/pages/home.js"></script>
+  <script>
+    // Bulletproof Fallback for zero-config file:/// or delayed module execution
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var grid = document.getElementById('all-products-grid');
+        if (grid && (!grid.children || grid.children.length === 0)) {
+          try {
+            var stored = localStorage.getItem('gk_products');
+            if (stored) {
+              var prods = JSON.parse(stored);
+              if (Array.isArray(prods) && prods.length) {
+                var html = prods.map(function(p) {
+                  var discount = (p.price && p.sale_price) ? Math.round(((p.price - p.sale_price)/p.price)*100) : 0;
+                  var badge = p.badge ? '<span class="product-badge product-badge-bestseller">' + p.badge + '</span>' : (discount > 0 ? '<span class="product-badge product-badge-sale">-' + discount + '%</span>' : '');
+                  return '<article class="product-card" data-product-id="' + p.id + '">' +
+                    '<div class="product-card-media">' +
+                      '<a href="product.html?id="' + p.id + '" class="product-card-link">' +
+                        '<img src="' + (p.image || 'assets/uploads/prod_6a6ad9e0d7494.webp') + '" alt="' + p.title + '" class="product-card-img" onerror="this.src=\'assets/uploads/prod_6a6ad9e0d7494.webp\'">' +
+                      '</a>' +
+                      '<div class="product-card-badges">' + badge + '</div>' +
+                    '</div>' +
+                    '<div class="product-card-content">' +
+                      '<span class="product-card-category">' + (p.category ? (p.category.name || p.category) : 'Keepsake') + '</span>' +
+                      '<h3 class="product-card-title"><a href="product.html?id=' + p.id + '">' + p.title + '</a></h3>' +
+                      '<div class="product-card-price-row">' +
+                        '<span class="product-card-price">₹' + (p.sale_price || p.price || 999) + '</span>' +
+                        (p.price > (p.sale_price || p.price) ? '<span class="product-card-price-old">₹' + p.price + '</span>' : '') +
+                      '</div>' +
+                      '<a href="product.html?id=' + p.id + '" class="btn btn-primary btn-sm btn-block mt-2">✨ Personalize Now</a>' +
+                    '</div>' +
+                  '</article>';
+                }).join('');
+                grid.innerHTML = html;
+              }
+            }
+          } catch(e) {}
+        }
+      }, 400);
+    });
+  </script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist — Gifts Kart</title>
+  <meta name="description" content="View your saved personalized gifts, custom LED frames, and 3D crystal keepsakes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+  <style>
+    .wishlist-page-wrapper {
+      padding: 20px 0 60px;
+      min-height: 70vh;
+    }
+    .wishlist-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #F5CBCB;
+    }
+    .wishlist-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E293B;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wishlist-count-badge {
+      font-size: 13px;
+      background: #FBEFEF;
+      color: #7E5E9B;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      border: 1px solid #F5CBCB;
+      transition: all 0.3s ease;
+    }
+    .wishlist-empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1.5px solid #F5CBCB;
+      box-shadow: 0 8px 24px rgba(126, 94, 155, 0.06);
+      max-width: 540px;
+      margin: 40px auto;
+    }
+    .wishlist-empty-icon {
+      font-size: 54px;
+      margin-bottom: 16px;
+      display: inline-block;
+      animation: heartBeat 2s infinite ease-in-out;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG Icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 12 20 22 4 22 4 12"></polyline>
+      <rect x="2" y="7" width="20" height="5"></rect>
+      <line x1="12" y1="22" x2="12" y2="7"></line>
+      <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+      <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+    </symbol>
+  </svg>
+
+  <!-- ====================================================================
+       FLOATING ROUNDED TRANSPARENT PILL HEADER
+       ==================================================================== -->
+  <div class="header-wrapper">
+    <header class="header-main" role="banner">
+      <div class="container">
+        <div class="header-main-inner">
+          <a href="index.html" class="brand-logo" aria-label="Gifts Kart Home">
+            <div class="brand-logo-icon">
+              <svg width="20" height="20"><use href="#icon-gift"></use></svg>
+            </div>
+            <span>Gifts<span class="brand-highlight">Kart</span></span>
+          </a>
+
+          <!-- Compact Search Bar with Live Autocomplete -->
+          <div class="header-search-container" style="position: relative;">
+            <form class="header-search-form" id="master-search-form" role="search" onsubmit="executeGlobalSearch(event)">
+              <input type="search" id="master-search-input" class="header-search-input" placeholder="Search gifts, photo frames, lamps..." aria-label="Search Catalog" autocomplete="off" oninput="handleSearchType(this.value)">
+              <button type="submit" class="header-search-btn" aria-label="Search">
+                <svg width="18" height="18"><use href="#icon-search"></use></svg>
+              </button>
+            </form>
+
+            <!-- Live Search Autocomplete Popover Dropdown -->
+            <div id="master-search-dropdown" style="display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; min-width: 340px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.18); border: 1.5px solid #F5CBCB; z-index: 1000; max-height: 440px; overflow-y: auto; padding: 8px;">
+              <!-- Dynamic live search results -->
+            </div>
+          </div>
+
+          <nav class="header-actions" aria-label="Header Actions">
+            <a href="wishlist.html" class="header-action-item" data-action="wishlist" aria-label="Wishlist">
+              <div class="header-action-icon">
+                <svg width="20" height="20" style="color: #7E5E9B;"><use href="#icon-heart"></use></svg>
+                <span class="header-badge" id="header-wishlist-count">0</span>
+              </div>
+            </a>
+
+            <a href="cart.html" class="header-action-item" data-action="cart" aria-label="Cart">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-bag"></use></svg>
+                <span class="header-badge" id="header-cart-count">0</span>
+              </div>
+            </a>
+
+            <a href="account.html" class="header-action-item" data-action="account" aria-label="Account">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-user"></use></svg>
+              </div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+        <!-- Sub-Header Categories with All 26 Categories & Mega Dropdown -->
+    <nav class="header-sub" aria-label="Categories">
+      <div class="container">
+        <div class="header-sub-inner">
+          <!-- All Categories Mega Menu Trigger -->
+          <div class="categories-btn-wrapper">
+            <button type="button" class="btn-all-categories" aria-expanded="false" aria-label="All Categories">
+              <span class="category-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span>All Categories</span>
+              <span style="font-size: 10px; margin-left: 2px;">▾</span>
+            </button>
+
+            <!-- 4-Column Luxury Mega Menu -->
+            <div class="categories-mega-menu" id="categories-mega-menu">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                
+                <!-- Group 1: Photo Frames & Clocks -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Frames &amp; Memory Gifts
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Personalized Frames</a></li>
+                    <li><a href="index.html?category=led-frame#products-section" class="sub-nav-link" data-cat="led-frame">Illuminated LED Frames</a></li>
+                    <li><a href="index.html?category=wooden-fram#products-section" class="sub-nav-link" data-cat="wooden-fram">Wooden Carved Frames</a></li>
+                    <li><a href="index.html?category=frame-clock#products-section" class="sub-nav-link" data-cat="frame-clock">Photo Frame Clocks</a></li>
+                    <li><a href="index.html?category=photo-albums#products-section" class="sub-nav-link" data-cat="photo-albums">Hardcover Photo Albums</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 2: Lighting & 3D Art -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Lamps &amp; 3D Crystals
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Night Lamps</a></li>
+                    <li><a href="index.html?category=3d-crystals#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Optical Crystals</a></li>
+                    <li><a href="index.html?category=rotaters#products-section" class="sub-nav-link" data-cat="rotaters">Rotating Photo Lamps</a></li>
+                    <li><a href="index.html?category=name-plates#products-section" class="sub-nav-link" data-cat="name-plates">3D Acrylic Name Plates</a></li>
+                    <li><a href="index.html?category=wall-clocks#products-section" class="sub-nav-link" data-cat="wall-clocks">Customized Wall Clocks</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 3: Daily Keepsakes & Mugs -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Daily Keepsakes &amp; Decor
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Ceramic Photo Mugs</a></li>
+                    <li><a href="index.html?category=water-bottle#products-section" class="sub-nav-link" data-cat="water-bottle">Insulated Water Bottles</a></li>
+                    <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Custom Photo Pillows</a></li>
+                    <li><a href="index.html?category=tshirts#products-section" class="sub-nav-link" data-cat="tshirts">Personalized T-Shirts</a></li>
+                    <li><a href="index.html?category=calendar#products-section" class="sub-nav-link" data-cat="calendar">Custom Desk Calendars</a></li>
+                  </ul>
+                </div>
+
+                <!-- Group 4: Accessories & Occasions -->
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                     Accessories &amp; Occasions
+                  </h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Metal Wallet Cards</a></li>
+                    <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Custom Keychains</a></li>
+                    <li><a href="index.html?category=gents-purse#products-section" class="sub-nav-link" data-cat="gents-purse">Engraved Gents Purses</a></li>
+                    <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Artistic Resin Decor</a></li>
+                    <li><a href="index.html?category=resin-keychain#products-section" class="sub-nav-link" data-cat="resin-keychain">Resin Keychains</a></li>
+                    <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi Gift Hampers</a></li>
+                    <li><a href="index.html?category=mobile-pen-stand#products-section" class="sub-nav-link" data-cat="mobile-pen-stand">Mobile &amp; Pen Stands</a></li>
+                    <li><a href="index.html?category=key-holder#products-section" class="sub-nav-link" data-cat="key-holder">Wooden Key Holders</a></li>
+                    <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Special Offers</a></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- All Category Pills in Horizontal Scrolling Strip -->
+          <ul class="sub-nav-links">
+            <li><a href="index.html" class="sub-nav-link" data-cat="all">Home</a></li>
+            <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Frames</a></li>
+            <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Lamps</a></li>
+            <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Mugs &amp; Sippers</a></li>
+            <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Wallet Cards</a></li>
+            <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Keychains</a></li>
+            <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Pillows</a></li>
+            <li><a href="index.html?category=wooden-gifts#products-section" class="sub-nav-link" data-cat="wooden-gifts">Wooden Gifts</a></li>
+            <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Resin Art</a></li>
+            <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi</a></li>
+            <li><a href="index.html?category=water-bottle#products-section" class="sub-nav-link" data-cat="water-bottle">Water Bottles</a></li>
+            <li><a href="index.html?category=name-plates#products-section" class="sub-nav-link" data-cat="name-plates">Name Plates</a></li>
+            <li><a href="index.html?category=wall-clocks#products-section" class="sub-nav-link" data-cat="wall-clocks">Wall Clocks</a></li>
+            <li><a href="index.html?category=tshirts#products-section" class="sub-nav-link" data-cat="tshirts">T-Shirts</a></li>
+            <li><a href="index.html?category=gents-purse#products-section" class="sub-nav-link" data-cat="gents-purse">Gents Purse</a></li>
+            <li><a href="index.html?category=calendar#products-section" class="sub-nav-link" data-cat="calendar">Calendars</a></li>
+            <li><a href="index.html?category=mobile-pen-stand#products-section" class="sub-nav-link" data-cat="mobile-pen-stand">Pen Stands</a></li>
+            <li><a href="index.html?category=key-holder#products-section" class="sub-nav-link" data-cat="key-holder">Key Holders</a></li>
+            <li><a href="index.html?category=photo-albums#products-section" class="sub-nav-link" data-cat="photo-albums">Photo Albums</a></li>
+            <li><a href="index.html?category=3d-crystals#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Crystals</a></li>
+            <li><a href="index.html?category=rotaters#products-section" class="sub-nav-link" data-cat="rotaters">Rotaters</a></li>
+            <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Offers</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ====================================================================
+       MAIN WISHLIST PAGE
+       ==================================================================== -->
+  <main class="wishlist-page-wrapper">
+    <div class="container">
+      <div class="wishlist-header-row">
+        <h1 class="wishlist-title">
+          <span>My Saved Wishlist</span>
+          <span class="wishlist-count-badge" id="wishlist-total-count">0 Items</span>
+        </h1>
+        <a href="index.html#products-section" class="btn btn-outline btn-sm">Explore More Gifts &rarr;</a>
+      </div>
+
+      <!-- Wishlist Products Grid (Dynamic Container) -->
+      <div class="products-grid-6col" id="wishlist-products-grid">
+        <div class="wishlist-empty-state col-12 w-100" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FFFFFF; border-radius: 20px; border: 1.5px solid #F5CBCB; box-shadow: 0 8px 24px rgba(126, 94, 155, 0.06); max-width: 540px; margin: 40px auto;">
+          <div class="wishlist-empty-icon" style="font-size: 54px; margin-bottom: 16px;">❤️</div>
+          <h2 style="font-size: 22px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">Your Wishlist is Empty</h2>
+          <p style="color: #64748B; font-size: 14.5px; line-height: 1.6; margin-bottom: 24px;">Discover amazing personalized gifts, custom LED photo frames, 3D crystals, and Spotify music plaques.</p>
+          <a href="index.html#products-section" class="btn btn-primary font-bold px-4 py-2" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); color: #FFF; border-radius: 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(126, 94, 155, 0.3);">
+            <span>Continue Shopping</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       LUXURY DETAILED MULTI-COLUMN FOOTER SYSTEM
+       ==================================================================== -->
+  <footer class="footer-wrapper">
+    <div class="container">
+      
+      <!-- 1. VIP Newsletter Banner -->
+      <div class="footer-newsletter-banner">
+        <div class="footer-newsletter-text">
+          <h3>✨ Join the Gifts Kart Inner Circle</h3>
+          <p>Get ₹200 OFF on your first personalized order + secret anniversary reminder perks.</p>
+        </div>
+        <form class="footer-newsletter-form" onsubmit="event.preventDefault(); GiftsKart.toasts.success('Coupon code MEMORIES2026 applied! Welcome to GiftsKart Inner Circle.');">
+          <input type="email" class="footer-newsletter-input" placeholder="Enter your email address..." required>
+          <button type="submit" class="footer-newsletter-btn">Claim ₹200 OFF &rarr;</button>
+        </form>
+      </div>
+
+      <!-- 2. Main 5-Column Navigation Grid -->
+      <div class="footer-5col-grid">
+        
+        <!-- Column 1: Brand & Contact Info -->
+        <div>
+          <div class="d-flex align-center gap-2 mb-3">
+            <div class="brand-logo-icon"><svg width="18" height="18"><use href="#icon-gift"></use></svg></div>
+            <span class="font-bold font-primary text-white" style="font-size: 1.35rem;">Gifts<span style="color: #7E5E9B;">Kart</span></span>
+          </div>
+          <p class="footer-brand-desc">
+            India's premier luxury personalized gifts studio. Handcrafted with museum-grade laser engraving, high-clarity optical crystals, and 24-hour express dispatch across 26,000+ Indian PIN codes.
+          </p>
+          
+          <div class="footer-contact-row">
+            <span>📞</span>
+            <div><strong>Call &amp; WhatsApp:</strong> +91 98765 43210 (10 AM - 8 PM IST)</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>✉️</span>
+            <div><strong>Email Support:</strong> support@giftskart.com</div>
+          </div>
+          <div class="footer-contact-row">
+            <span>📍</span>
+            <div><strong>Studio Lab:</strong> Bandra West, Mumbai, Maharashtra 400050</div>
+          </div>
+
+          <div class="footer-social-bar">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram">📸</a>
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp">💬</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">📘</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="YouTube">▶️</a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Popular Categories -->
+        <div>
+          <h4 class="footer-col-title">Top Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#products-section">Personalized LED Frames</a></li>
+            <li><a href="index.html#products-section">Optical 3D Crystals</a></li>
+            <li><a href="index.html#products-section">Illuminated Moon Lamps</a></li>
+            <li><a href="index.html#products-section">HD Ceramic Photo Mugs</a></li>
+            <li><a href="index.html#products-section">Velvet Touch Cushions</a></li>
+            <li><a href="index.html#products-section">Spotify Glass Plaques</a></li>
+            <li><a href="index.html#products-section">Laser Engraved Keychains</a></li>
+            <li><a href="index.html#products-section">3D Couple Nameplates</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Occasions & Recipients -->
+        <div>
+          <h4 class="footer-col-title">Shop by Occasion</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#products-section">Anniversary Keepsakes</a></li>
+            <li><a href="index.html#products-section">Birthday Surprises</a></li>
+            <li><a href="index.html#products-section">Romantic Valentine's Gifts</a></li>
+            <li><a href="index.html#products-section">Wedding &amp; Engagement</a></li>
+            <li><a href="index.html#products-section">Gifts for Her</a></li>
+            <li><a href="index.html#products-section">Gifts for Him</a></li>
+            <li><a href="index.html#products-section">Corporate Bulk Orders</a></li>
+            <li><a href="index.html#products-section">Best Friends &amp; Family</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Services & Policies -->
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="track-order.html">Track Your Order</a></li>
+            <li><a href="account.html">My Profile &amp; Orders</a></li>
+            <li><a href="wishlist.html">My Saved Wishlist</a></li>
+            <li><a href="cart.html">Shopping Bag</a></li>
+            <li><a href="track-order.html">7-Day Easy Replacement</a></li>
+            <li><a href="product.html?id=prod_1001">Photo Quality Guide</a></li>
+            <li><a href="track-order.html">Express 24h Dispatch</a></li>
+            <li><a href="track-order.html">FAQs &amp; Gifting Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Trust & Assurance -->
+        <div>
+          <h4 class="footer-col-title">GiftsKart Promise</h4>
+          <p class="footer-brand-desc mb-3">
+            Every memory you trust us with is crafted with emotional perfection and inspected twice before safe dispatched packing.
+          </p>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">⚡ 24h Express Crafting</div>
+            <div class="caption text-muted">Same-day laser engraving lab.</div>
+          </div>
+          <div class="mb-3">
+            <div class="text-white font-bold body-sm mb-1">🛡️ Damage-Free Guarantee</div>
+            <div class="caption text-muted">100% free instant replacement if damaged in transit.</div>
+          </div>
+          <div>
+            <div class="text-white font-bold body-sm mb-1">🎁 Silk Box Presentation</div>
+            <div class="caption text-muted">Free premium unboxing luxury packaging.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Safe & Secure Payment Methods Strip -->
+      <div class="footer-trust-strip">
+        <div class="d-flex align-center gap-3">
+          <span style="font-size: 20px;">🔒</span>
+          <div>
+            <div class="font-bold text-white body-sm">100% Secure &amp; Encrypted Payments</div>
+            <div class="caption text-muted">All transactions are secured with bank-grade 256-bit SSL encryption.</div>
+          </div>
+        </div>
+        <div class="footer-payment-badges">
+          <span class="payment-pill-badge active-badge">📱 UPI / Google Pay / PhonePe</span>
+          <span class="payment-pill-badge">💳 Visa &bull; Mastercard &bull; RuPay</span>
+          <span class="payment-pill-badge">🏦 Net Banking (All Banks)</span>
+          <span class="payment-pill-badge active-badge">💵 Cash On Delivery (COD)</span>
+        </div>
+      </div>
+
+      <!-- 4. SEO Keywords Directory (Amazon / Flipkart Style) -->
+      <div class="footer-directory-strip">
+        <div class="footer-directory-title">Popular Searches in Personalized Gifts:</div>
+        <div class="footer-directory-links">
+          <a href="index.html#products-section">Personalized Photo Frames</a> &bull;
+          <a href="index.html#products-section">3D Optical Crystals</a> &bull;
+          <a href="index.html#products-section">Custom Spotify Music Plaques</a> &bull;
+          <a href="index.html#products-section">Eternal Preserved Rose Box</a> &bull;
+          <a href="index.html#products-section">Illuminated 3D Moon Lamps</a> &bull;
+          <a href="index.html#products-section">Magic Color Changing Mugs</a> &bull;
+          <a href="index.html#products-section">Laser Engraved Wooden Heart Lamps</a> &bull;
+          <a href="index.html#products-section">Custom Photo Pillows &amp; Cushions</a> &bull;
+          <a href="index.html#products-section">Couple Metal Keychains</a> &bull;
+          <a href="index.html#products-section">3D Acrylic Door Nameplates</a> &bull;
+          <a href="index.html#products-section">Anniversary Gifts for Husband / Wife</a> &bull;
+          <a href="index.html#products-section">Birthday Surprises India</a> &bull;
+          <a href="index.html#products-section">Express Same Day Gift Delivery</a>
+        </div>
+      </div>
+
+      <!-- 5. Copyright & Legal Row -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 Gifts Kart Private Limited. All rights reserved. Crafted with passion &amp; love in India.
+        </div>
+        <div class="footer-legal-links">
+          <a href="index.html">Privacy Policy</a>
+          <a href="index.html">Terms of Service</a>
+          <a href="index.html">Shipping &amp; Delivery Policy</a>
+          <a href="index.html">Refund &amp; Replacement</a>
+          <a href="index.html">Security</a>
+          <a href="index.html">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/pages/wishlist.js"></script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

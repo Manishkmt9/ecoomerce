@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — Gifts Kart</title>
+  <meta name="description" content="Manage your Gifts Kart orders, profile information, saved addresses, reward coupons, and security settings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+  <link rel="stylesheet" href="./css/account-dashboard.css">
+</head>
+<body style="background-color: #FDFBFB;">
+
+  <!-- SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 12 20 22 4 22 4 12"></polyline>
+      <rect x="2" y="7" width="20" height="5"></rect>
+      <line x1="12" y1="22" x2="12" y2="7"></line>
+      <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+      <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </symbol>
+  </svg>
+
+  <!-- ====================================================================
+       FLOATING ROUNDED HEADER
+       ==================================================================== -->
+  <div class="header-wrapper">
+    <header class="header-main" role="banner">
+      <div class="container">
+        <div class="header-main-inner">
+          <a href="index.html" class="brand-logo" aria-label="Gifts Kart Home">
+            <div class="brand-logo-icon">
+              <svg width="20" height="20"><use href="#icon-gift"></use></svg>
+            </div>
+            <span>Gifts<span class="brand-highlight">Kart</span></span>
+          </a>
+
+          <!-- Compact Search Bar with Live Autocomplete -->
+          <div class="header-search-container" style="position: relative;">
+            <form class="header-search-form" id="master-search-form" role="search">
+              <input type="search" id="master-search-input" class="header-search-input" placeholder="Search gifts, photo frames, lamps..." aria-label="Search Catalog" autocomplete="off">
+              <button type="submit" class="header-search-btn" aria-label="Search">
+                <svg width="18" height="18"><use href="#icon-search"></use></svg>
+              </button>
+            </form>
+
+            <!-- Live Search Autocomplete Popover Dropdown -->
+            <div id="master-search-dropdown" style="display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; min-width: 340px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 16px 36px rgba(0,0,0,0.18); border: 1.5px solid #F5CBCB; z-index: 1000; max-height: 440px; overflow-y: auto; padding: 8px;"></div>
+          </div>
+
+          <nav class="header-actions" aria-label="Header Actions">
+            <a href="wishlist.html" class="header-action-item" data-action="wishlist" aria-label="Wishlist">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-heart"></use></svg>
+                <span class="header-badge" id="header-wishlist-badge">0</span>
+              </div>
+            </a>
+
+            <a href="cart.html" class="header-action-item" data-action="cart" aria-label="Cart">
+              <div class="header-action-icon">
+                <svg width="20" height="20"><use href="#icon-bag"></use></svg>
+                <span class="header-badge" id="header-cart-badge">0</span>
+              </div>
+            </a>
+
+            <a href="account.html" class="header-action-item" data-action="account" aria-label="Account">
+              <div class="header-action-icon">
+                <svg width="20" height="20" style="color: #7E5E9B;"><use href="#icon-user"></use></svg>
+              </div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub-Header Categories with All 26 Categories & Mega Dropdown -->
+    <nav class="header-sub" aria-label="Categories">
+      <div class="container">
+        <div class="header-sub-inner">
+          <div class="categories-btn-wrapper">
+            <button type="button" class="btn-all-categories" aria-expanded="false" aria-label="All Categories">
+              <span class="category-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span>All Categories</span>
+              <span style="font-size: 10px; margin-left: 2px;">▾</span>
+            </button>
+
+            <!-- 4-Column Luxury Mega Menu -->
+            <div class="categories-mega-menu" id="categories-mega-menu">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px;">Frames &amp; Memory Gifts</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Personalized Frames</a></li>
+                    <li><a href="index.html?category=led-frame#products-section" class="sub-nav-link" data-cat="led-frame">Illuminated LED Frames</a></li>
+                    <li><a href="index.html?category=wooden-fram#products-section" class="sub-nav-link" data-cat="wooden-fram">Wooden Carved Frames</a></li>
+                    <li><a href="index.html?category=frame-clock#products-section" class="sub-nav-link" data-cat="frame-clock">Photo Frame Clocks</a></li>
+                    <li><a href="index.html?category=photo-albums#products-section" class="sub-nav-link" data-cat="photo-albums">Hardcover Photo Albums</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px;">💡 Lamps &amp; 3D Crystals</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Night Lamps</a></li>
+                    <li><a href="index.html?category=3d-crystals#products-section" class="sub-nav-link" data-cat="3d-crystals">3D Optical Crystals</a></li>
+                    <li><a href="index.html?category=rotaters#products-section" class="sub-nav-link" data-cat="rotaters">Rotating Photo Lamps</a></li>
+                    <li><a href="index.html?category=name-plates#products-section" class="sub-nav-link" data-cat="name-plates">3D Acrylic Name Plates</a></li>
+                    <li><a href="index.html?category=wall-clocks#products-section" class="sub-nav-link" data-cat="wall-clocks">Customized Wall Clocks</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px;">☕ Daily Keepsakes &amp; Decor</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Ceramic Photo Mugs</a></li>
+                    <li><a href="index.html?category=water-bottle#products-section" class="sub-nav-link" data-cat="water-bottle">Insulated Water Bottles</a></li>
+                    <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Custom Photo Pillows</a></li>
+                    <li><a href="index.html?category=tshirts#products-section" class="sub-nav-link" data-cat="tshirts">Personalized T-Shirts</a></li>
+                    <li><a href="index.html?category=calendar#products-section" class="sub-nav-link" data-cat="calendar">Custom Desk Calendars</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="font-size: 14px; font-weight: 800; color: #1E293B; margin-bottom: 12px;">✨ Accessories &amp; Occasions</h4>
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Metal Wallet Cards</a></li>
+                    <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Custom Keychains</a></li>
+                    <li><a href="index.html?category=gents-purse#products-section" class="sub-nav-link" data-cat="gents-purse">Engraved Gents Purses</a></li>
+                    <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Artistic Resin Decor</a></li>
+                    <li><a href="index.html?category=resin-keychain#products-section" class="sub-nav-link" data-cat="resin-keychain">Resin Keychains</a></li>
+                    <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi Gift Hampers</a></li>
+                    <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Special Offers</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="sub-nav-links">
+            <li><a href="index.html" class="sub-nav-link" data-cat="all">Home</a></li>
+            <li><a href="index.html?category=frames#products-section" class="sub-nav-link" data-cat="frames">Frames</a></li>
+            <li><a href="index.html?category=lighting-gifts#products-section" class="sub-nav-link" data-cat="lighting-gifts">LED Lamps</a></li>
+            <li><a href="index.html?category=mugs#products-section" class="sub-nav-link" data-cat="mugs">Mugs &amp; Sippers</a></li>
+            <li><a href="index.html?category=wallet-card#products-section" class="sub-nav-link" data-cat="wallet-card">Wallet Cards</a></li>
+            <li><a href="index.html?category=key-chain#products-section" class="sub-nav-link" data-cat="key-chain">Keychains</a></li>
+            <li><a href="index.html?category=pillow#products-section" class="sub-nav-link" data-cat="pillow">Pillows</a></li>
+            <li><a href="index.html?category=wooden-gifts#products-section" class="sub-nav-link" data-cat="wooden-gifts">Wooden Gifts</a></li>
+            <li><a href="index.html?category=resin-products#products-section" class="sub-nav-link" data-cat="resin-products">Resin Art</a></li>
+            <li><a href="index.html?category=rakhi#products-section" class="sub-nav-link" data-cat="rakhi">Rakhi</a></li>
+            <li><a href="index.html?category=offers#products-section" class="sub-nav-link highlight" data-cat="offers">Offers</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ====================================================================
+       CUSTOMER ACCOUNT DASHBOARD
+       ==================================================================== -->
+  <main class="account-dashboard-wrapper">
+    <div class="container">
+      
+      <!-- 1. GUEST LOGIN GATE -->
+      <div id="account-guest-gate" style="display: none; max-width: 840px; margin: 0 auto;">
+        <div class="card p-0" style="border-radius: 24px; overflow: hidden; border: 1.5px solid #F5CBCB; box-shadow: 0 15px 45px rgba(126, 94, 155, 0.12); display: flex; flex-direction: row; flex-wrap: wrap; background: #FFFFFF;">
+          <div class="col-12 col-md-5 p-5 text-white d-flex flex-column justify-between" style="background: linear-gradient(135deg, #7E5E9B 0%, #C5B3D3 100%); min-height: 380px;">
+            <div>
+              <div class="d-flex align-center gap-2 mb-3">
+                <span style="font-size: 28px;">🎁</span>
+                <span style="font-size: 22px; font-weight: 800;">Gifts<span style="color: #FFE2E2;">Kart</span></span>
+              </div>
+              <h2 class="h4 font-bold text-white mb-2">Welcome to GiftsKart</h2>
+              <p class="body-sm opacity-90 mb-4" style="line-height: 1.6;">Manage your orders, saved addresses, personalized keepsakes, and VIP anniversary rewards.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.18); border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.3);">
+              <div class="font-bold body-sm mb-1">🔒 Fast &amp; Secure Access</div>
+              <div class="caption opacity-90">Instant access via 6-digit Email OTP or password login.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7 p-5 d-flex flex-column justify-center bg-white">
+            <h3 class="h5 font-bold text-dark mb-1">Login or Register</h3>
+            <p class="caption text-muted mb-4">Enter your 10-digit mobile number or email to access your account.</p>
+
+            <div id="acc-gate-login-step-1">
+              <div class="form-group mb-3">
+                <label class="account-form-label">Mobile Number or Email</label>
+                <div class="d-flex align-center border rounded p-2" style="border-color: #F5CBCB; background: #FFFDFC;">
+                  <input type="text" id="acc-gate-mobile-input" class="form-control border-0 p-0 font-bold" placeholder="9876543210 or email" style="outline: none; font-size: 15px; width: 100%;">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-lg w-100 font-bold mb-3" onclick="sendAccountGateOTP()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); height: 46px; border-radius: 10px;">
+                Request Verification OTP &rarr;
+              </button>
+              <div class="text-center caption text-muted">
+                Or open full authentication modal:
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm w-100 font-bold text-primary mt-2" onclick="window.openGlobalAuthModal('login')">
+                ✨ Login with Email &amp; Password / Register
+              </button>
+            </div>
+
+            <div id="acc-gate-login-step-2" style="display: none;">
+              <div class="caption text-muted mb-2">Enter 6-digit code sent to <strong class="text-dark" id="acc-gate-disp-phone">+91 9876543210</strong>:</div>
+              <input type="text" id="acc-gate-otp-input" class="form-control text-center font-bold mb-3" placeholder="• • • • • •" maxlength="6" style="letter-spacing: 6px; font-size: 20px; height: 48px; border-color: #F5CBCB; background: #FFF8FB;">
+              <div class="d-flex justify-between align-center mb-3">
+                <span class="caption text-muted">Valid for 10 minutes</span>
+                <button type="button" class="btn btn-ghost btn-xs text-primary font-bold" onclick="sendAccountGateOTP()">Resend OTP</button>
+              </div>
+              <button type="button" class="btn btn-primary btn-lg w-100 font-bold mb-2" onclick="verifyAccountGateOTP()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); height: 46px; border-radius: 10px;">
+                Verify &amp; Enter Dashboard &rarr;
+              </button>
+              <button type="button" class="btn btn-ghost btn-xs w-100 text-muted" onclick="document.getElementById('acc-gate-login-step-2').style.display='none'; document.getElementById('acc-gate-login-step-1').style.display='block';">
+                ← Change Identifier
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. LOGGED-IN CUSTOMER PORTAL -->
+      <div id="account-logged-in-portal" style="display: block;">
+        <div class="account-dashboard-grid">
+          
+          <!-- LEFT STICKY SIDEBAR -->
+          <aside class="account-sidebar-sticky">
+            
+            <!-- Compact Profile Card -->
+            <div class="account-user-card">
+              <div class="account-avatar-wrapper fk-sidebar-avatar" id="sidebar-user-avatar">
+                <span id="sidebar-avatar-initials">GK</span>
+                <button type="button" class="account-avatar-edit-btn" title="Change Avatar" onclick="document.getElementById('avatar-file-upload').click();">📷</button>
+                <input type="file" id="avatar-file-upload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+              </div>
+              <div class="account-user-meta">
+                <div class="account-user-greeting">Hello,</div>
+                <div class="account-user-name fk-sidebar-name" id="sidebar-display-name">Valued Customer</div>
+                <div class="account-vip-badge">💎 VIP Club Member</div>
+              </div>
+            </div>
+
+            <!-- Navigation Groups -->
+            <div class="account-nav-card">
+              
+              <!-- Group 1: My Account -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>👤</span>
+                    <span>My Account</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item" data-tab="profile">
+                    <span>Profile Information</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="addresses">
+                    <span>Manage Addresses</span>
+                    <span class="account-nav-badge" id="badge-address-count">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="reminders">
+                    <span>Occasion Reminders 📅</span>
+                    <span class="account-nav-badge" id="badge-reminders-count">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="payments">
+                    <span>Saved Payment Methods</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="pan">
+                    <span>PAN / GST Information</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Group 2: My Orders -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>📦</span>
+                    <span>My Orders</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item is-active" data-tab="orders" data-order-filter="all">
+                    <span>All Orders</span>
+                    <span class="account-nav-badge" id="badge-orders-all">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="orders" data-order-filter="processing">
+                    <span>Processing</span>
+                    <span class="account-nav-badge" id="badge-orders-proc">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="orders" data-order-filter="shipped">
+                    <span>Shipped &amp; In Transit</span>
+                    <span class="account-nav-badge" id="badge-orders-ship">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="orders" data-order-filter="delivered">
+                    <span>Delivered</span>
+                    <span class="account-nav-badge" id="badge-orders-del">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="orders" data-order-filter="cancelled">
+                    <span>Cancelled</span>
+                    <span class="account-nav-badge" id="badge-orders-canc">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="orders" data-order-filter="refund">
+                    <span>Refund Requests</span>
+                    <span class="account-nav-badge" id="badge-orders-ref">0</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Group 3: My Wishlist & Stuff -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>💖</span>
+                    <span>My Wishlist &amp; Stuff</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item" data-tab="wishlist">
+                    <span>Wishlist</span>
+                    <span class="account-nav-badge" id="badge-wishlist-count">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="recent">
+                    <span>Recently Viewed</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="saved">
+                    <span>Saved For Later</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Group 4: Rewards -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>🎁</span>
+                    <span>Rewards &amp; Offers</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item" data-tab="coupons">
+                    <span>Coupons &amp; Promos</span>
+                    <span class="account-nav-badge">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="giftcards">
+                    <span>Gift Cards</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="rewards">
+                    <span>Reward Points</span>
+                    <span class="account-nav-badge" id="badge-reward-points" style="background:#FEF3C7; color:#B45309;">0 pts</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="referral">
+                    <span>Referral Program</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Group 5: Support -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>🎧</span>
+                    <span>Support</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item" data-tab="help">
+                    <span>Help Center</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="contact">
+                    <span>Contact Support</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="faqs">
+                    <span>FAQs</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="report">
+                    <span>Report Issue</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Group 6: Settings -->
+              <div class="account-nav-group">
+                <div class="account-nav-header">
+                  <div class="account-nav-header-left">
+                    <span>⚙️</span>
+                    <span>Settings &amp; Security</span>
+                  </div>
+                  <span>▾</span>
+                </div>
+                <div class="account-nav-links-box">
+                  <a class="account-nav-item" data-tab="notifications">
+                    <span>Notifications</span>
+                    <span class="account-nav-badge" id="badge-unread-notif">0</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="privacy">
+                    <span>Privacy</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="security">
+                    <span>Security &amp; Devices</span>
+                  </a>
+                  <a class="account-nav-item" data-tab="password">
+                    <span>Change Password</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Logout Button -->
+              <button type="button" class="account-nav-logout-btn" onclick="performAccountLogout();">
+                <span>🚪</span>
+                <span>Logout from Account</span>
+              </button>
+
+            </div>
+          </aside>
+
+          <!-- RIGHT DYNAMIC CONTENT AREA -->
+          <section class="account-content-column">
+            
+            <!-- PANE 1: MY ORDERS (Default View) -->
+            <div id="pane-orders" class="account-content-pane is-active">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>📦</span>
+                    <span id="orders-pane-title">My Orders</span>
+                  </h2>
+                  <div class="d-flex align-center gap-3 flex-wrap">
+                    <input type="search" id="account-orders-search-input" placeholder="Search orders by product or ID..." class="account-form-input" style="max-width: 280px; height: 38px;" oninput="filterOrdersList(this.value)">
+                    <input type="search" id="user-orders-search-input" placeholder="Search orders..." class="account-form-input" style="display: none;" oninput="filterUserOrdersList(this.value)">
+                  </div>
+                </div>
+
+                <!-- Order Status Filter Pills -->
+                <div class="account-filter-pills mb-4">
+                  <button type="button" class="account-filter-pill is-active" data-order-pill="all" onclick="applyOrderFilterPill('all')">All (<span id="pill-count-all">0</span>)</button>
+                  <button type="button" class="account-filter-pill" data-order-pill="processing" onclick="applyOrderFilterPill('processing')">Processing (<span id="pill-count-proc">0</span>)</button>
+                  <button type="button" class="account-filter-pill" data-order-pill="shipped" onclick="applyOrderFilterPill('shipped')">Shipped (<span id="pill-count-ship">0</span>)</button>
+                  <button type="button" class="account-filter-pill" data-order-pill="delivered" onclick="applyOrderFilterPill('delivered')">Delivered (<span id="pill-count-del">0</span>)</button>
+                  <button type="button" class="account-filter-pill" data-order-pill="cancelled" onclick="applyOrderFilterPill('cancelled')">Cancelled (<span id="pill-count-canc">0</span>)</button>
+                  <button type="button" class="account-filter-pill" data-order-pill="refund" onclick="applyOrderFilterPill('refund')">Refunds (<span id="pill-count-ref">0</span>)</button>
+                </div>
+
+                <!-- Dynamic Orders Container -->
+                <div id="account-orders-container">
+                  <!-- Rendered dynamically by AccountController -->
+                </div>
+                <div id="user-orders-list-container" style="display: none;"></div>
+              </div>
+            </div>
+
+            <!-- PANE 2: PROFILE INFORMATION -->
+            <div id="pane-profile" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>👤</span>
+                    <span>Profile Information</span>
+                  </h2>
+                  <button type="button" class="btn btn-outline btn-sm font-bold" id="btn-edit-profile-toggle" onclick="toggleProfileEditMode()">
+                    ✏️ Edit Information
+                  </button>
+                </div>
+
+                <form id="account-profile-form" onsubmit="handleSaveProfile(event)">
+                  <div class="account-form-grid">
+                    <div class="account-form-group">
+                      <label class="account-form-label">First Name</label>
+                      <input type="text" id="prof-first-name" class="account-form-input" placeholder="First Name" disabled required>
+                      <input type="text" id="profile-first-name" class="account-form-input" style="display: none;" placeholder="First Name">
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">Last Name</label>
+                      <input type="text" id="prof-last-name" class="account-form-input" placeholder="Last Name" disabled required>
+                      <input type="text" id="profile-last-name" class="account-form-input" style="display: none;" placeholder="Last Name">
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">Email Address</label>
+                      <input type="email" id="prof-email" class="account-form-input" placeholder="your.email@example.com" disabled required>
+                      <input type="email" id="profile-email-input" class="account-form-input" style="display: none;" placeholder="your.email@example.com">
+                      <span id="profile-email-badge" class="badge badge-success mt-1" style="display: inline-block;">✓ Verified</span>
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">Mobile Number</label>
+                      <input type="tel" id="prof-mobile" class="account-form-input" placeholder="Mobile Number" disabled required>
+                      <input type="tel" id="profile-mobile-input" class="account-form-input" style="display: none;" placeholder="Mobile Number">
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">Gender</label>
+                      <select id="prof-gender" class="account-form-input" disabled>
+                        <option value="Select">Select Gender</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">Date of Birth</label>
+                      <input type="date" id="prof-dob" class="account-form-input" disabled>
+                    </div>
+                  </div>
+
+                  <div id="profile-edit-actions" style="display: none;" class="d-flex gap-3">
+                    <button type="submit" class="btn btn-primary btn-md font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); border-radius: 8px;">
+                      💾 Save Changes
+                    </button>
+                    <button type="button" class="btn btn-outline btn-md font-bold" onclick="toggleProfileEditMode(false)">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+
+                <hr style="border: none; border-top: 1px solid #FBEFEF; margin: 24px 0;">
+
+                <div class="d-flex justify-between align-center flex-wrap gap-3">
+                  <div>
+                    <div class="font-bold text-dark body-sm">Member Status</div>
+                    <div class="caption text-muted">Verified Customer Account</div>
+                  </div>
+                  <div class="account-vip-badge" style="font-size: 12px; padding: 4px 12px;">
+                    💎 Customer Portal
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 3: MANAGE ADDRESSES -->
+            <div id="pane-addresses" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🏠</span>
+                    <span>Manage Addresses</span>
+                  </h2>
+                  <button type="button" class="btn btn-primary btn-sm font-bold" onclick="openAddressModal()">
+                    + Add New Address
+                  </button>
+                </div>
+
+                <div class="address-cards-grid" id="account-addresses-container">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE: OCCASION REMINDERS VAULT -->
+            <div id="pane-reminders" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header flex-wrap gap-2">
+                  <div>
+                    <h2 class="account-card-title">
+                      <span>📅</span>
+                      <span>Anniversary &amp; Birthday Reminders Vault</span>
+                    </h2>
+                    <p class="caption text-muted mb-0">Never miss a special date. Save loved ones' occasions and receive automated reminder alerts + ₹50 OFF.</p>
+                  </div>
+                </div>
+
+                <!-- Add New Reminder Form Card -->
+                <div class="p-3 rounded mb-4" style="background: #FFF8FA; border: 1.5px solid #F5CBCB; border-radius: 14px;">
+                  <h4 class="font-bold body-sm text-dark mb-2">+ Add a New Special Occasion</h4>
+                  <form id="form-add-reminder" onsubmit="event.preventDefault(); if(window.GiftsKartAccount) window.GiftsKartAccount.handleAddReminder();" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; align-items: end;">
+                    <div>
+                      <label class="account-form-label mb-1" style="font-size: 11.5px;">Recipient Name</label>
+                      <input type="text" id="rem-input-name" class="account-form-input" placeholder="e.g. Priya Sharma" required style="height: 38px;">
+                    </div>
+                    <div>
+                      <label class="account-form-label mb-1" style="font-size: 11.5px;">Occasion</label>
+                      <select id="rem-input-occasion" class="account-form-input" style="height: 38px;">
+                        <option value="Anniversary">Anniversary ❤️</option>
+                        <option value="Birthday">Birthday 🎂</option>
+                        <option value="Rakhi">Rakhi 🪔</option>
+                        <option value="Valentine">Valentine's Day 🌹</option>
+                        <option value="Custom">Other Special Date ✨</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="account-form-label mb-1" style="font-size: 11.5px;">Date</label>
+                      <input type="date" id="rem-input-date" class="account-form-input" required style="height: 38px;">
+                    </div>
+                    <div>
+                      <label class="account-form-label mb-1" style="font-size: 11.5px;">Gift Idea / Notes</label>
+                      <input type="text" id="rem-input-notes" class="account-form-input" placeholder="e.g. Rotating LED lamp" style="height: 38px;">
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-primary w-100 font-bold" style="height: 38px; border-radius: 8px;">
+                        Save Reminder
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Reminders List -->
+                <div id="account-reminders-list-container">
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 4: SAVED PAYMENT METHODS -->
+            <div id="pane-payments" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>💳</span>
+                    <span>Saved Payment Methods</span>
+                  </h2>
+                </div>
+
+                <div class="d-flex flex-column gap-3" id="saved-payments-list">
+                  <div class="text-center py-4 text-muted caption">No saved payment methods.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 5: PAN & GST INFORMATION -->
+            <div id="pane-pan" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>📑</span>
+                    <span>PAN &amp; GST Information</span>
+                  </h2>
+                </div>
+                <p class="body-sm text-muted mb-4">Add your tax identification numbers to receive GST input tax invoices on business orders.</p>
+
+                <form onsubmit="handleSaveTaxInfo(event)">
+                  <div class="account-form-grid">
+                    <div class="account-form-group">
+                      <label class="account-form-label">PAN Number (Permanent Account Number)</label>
+                      <input type="text" id="pan-number-input" class="account-form-input" placeholder="ABCDE1234F" maxlength="10" value="" style="text-transform: uppercase;">
+                    </div>
+                    <div class="account-form-group">
+                      <label class="account-form-label">GSTIN (Optional for Business Invoice)</label>
+                      <input type="text" id="gstin-number-input" class="account-form-input" placeholder="27ABCDE1234F1Z5" maxlength="15" value="" style="text-transform: uppercase;">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-md font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); border-radius: 8px;">
+                    💾 Save Tax Details
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- PANE 6: WISHLIST -->
+            <div id="pane-wishlist" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>💖</span>
+                    <span>My Wishlist (<span id="wishlist-total-count">0</span>)</span>
+                  </h2>
+                  <a href="index.html#products-section" class="btn btn-outline btn-sm font-bold">
+                    + Explore More Keepsakes
+                  </a>
+                </div>
+
+                <div class="row" id="account-wishlist-grid">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 7: RECENTLY VIEWED -->
+            <div id="pane-recent" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>👁️</span>
+                    <span>Recently Viewed Keepsakes</span>
+                  </h2>
+                </div>
+                <div class="row" id="account-recent-grid">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 8: SAVED FOR LATER -->
+            <div id="pane-saved" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🔖</span>
+                    <span>Saved For Later</span>
+                  </h2>
+                </div>
+                <div class="row" id="account-saved-grid">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 9: COUPONS & PROMOS -->
+            <div id="pane-coupons" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🎟️</span>
+                    <span>Available Coupons &amp; Discount Codes</span>
+                  </h2>
+                </div>
+
+                <div class="coupons-grid">
+                  <div class="coupon-ticket-card">
+                    <span class="badge badge-primary mb-2">20% FLAT DISCOUNT</span>
+                    <div class="font-bold body-md text-dark mb-1">VIP Anniversary Offer</div>
+                    <p class="caption text-muted mb-3">Get 20% off on all personalized LED photo frames and crystals above ₹499.</p>
+                    <div class="d-flex justify-between align-center">
+                      <span class="coupon-code-badge">MEMORIES2026</span>
+                      <button type="button" class="btn btn-outline btn-xs font-bold" onclick="copyCouponCode('MEMORIES2026')">Copy</button>
+                    </div>
+                  </div>
+
+                  <div class="coupon-ticket-card">
+                    <span class="badge badge-success mb-2">₹100 INSTANT CASHBACK</span>
+                    <div class="font-bold body-md text-dark mb-1">Welcome First Order</div>
+                    <p class="caption text-muted mb-3">Flat ₹100 discount on your first handcrafted keepsake purchase.</p>
+                    <div class="d-flex justify-between align-center">
+                      <span class="coupon-code-badge">WELCOME100</span>
+                      <button type="button" class="btn btn-outline btn-xs font-bold" onclick="copyCouponCode('WELCOME100')">Copy</button>
+                    </div>
+                  </div>
+
+                  <div class="coupon-ticket-card">
+                    <span class="badge badge-info mb-2">FREE EXPEDITE COURIER</span>
+                    <div class="font-bold body-md text-dark mb-1">Express Delivery Pass</div>
+                    <p class="caption text-muted mb-3">Complimentary Express 48-Hour delivery across all Indian pincodes.</p>
+                    <div class="d-flex justify-between align-center">
+                      <span class="coupon-code-badge">FREESHIP</span>
+                      <button type="button" class="btn btn-outline btn-xs font-bold" onclick="copyCouponCode('FREESHIP')">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 10: GIFT CARDS -->
+            <div id="pane-giftcards" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>💳</span>
+                    <span>GiftsKart E-Gift Cards</span>
+                  </h2>
+                </div>
+                <div class="card p-4 text-center mb-4" style="background: linear-gradient(135deg, #FFE2E2 0%, #FBEFEF 100%); border: 1.5px dashed #7E5E9B; border-radius: 16px;">
+                  <div class="caption text-muted mb-1">Current Gift Card Balance</div>
+                  <div class="h3 font-bold text-primary" style="color: #7E5E9B; font-size: 28px;">₹1,500.00</div>
+                  <div class="caption text-dark mt-1">Card Number: •••• •••• 8842 &bull; Valid till Dec 2027</div>
+                </div>
+
+                <h4 class="body-md font-bold mb-2">Redeem / Add A Gift Card</h4>
+                <form class="account-form-grid" onsubmit="handleRedeemGiftCard(event)">
+                  <div class="account-form-group">
+                    <label class="account-form-label">16-Digit Card Number</label>
+                    <input type="text" class="account-form-input" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                  </div>
+                  <div class="account-form-group">
+                    <label class="account-form-label">6-Digit Card PIN</label>
+                    <input type="password" class="account-form-input" placeholder="••••••" maxlength="6" required>
+                  </div>
+                  <div class="col-12" style="grid-column: span 2;">
+                    <button type="submit" class="btn btn-primary btn-md font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); border-radius: 8px;">
+                      + Apply to Balance
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- PANE 11: REWARD POINTS -->
+            <div id="pane-rewards" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🌟</span>
+                    <span>Reward Points &amp; VIP Perks</span>
+                  </h2>
+                </div>
+                <div class="d-flex justify-between align-center p-4 mb-4" style="background: #FFFDFC; border: 1px solid #F5CBCB; border-radius: 14px;">
+                  <div>
+                    <div class="caption text-muted">Available Reward Points</div>
+                    <div class="h3 font-bold" style="color: #7E5E9B; font-size: 28px;">450 Points</div>
+                    <div class="caption text-success font-bold">1 Point = ₹1.00 Instant Discount on Checkout</div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm font-bold" onclick="switchAccountTab('orders')">
+                    🛍️ Shop &amp; Earn 2X Points
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 12: REFERRAL PROGRAM -->
+            <div id="pane-referral" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>👥</span>
+                    <span>Refer Friends, Earn ₹200 Each</span>
+                  </h2>
+                </div>
+                <p class="body-sm text-muted mb-4">Share your unique referral link with friends and family. They get ₹200 off on their first personalized keepsake, and you get ₹200 added to your GiftsKart wallet.</p>
+
+                <div class="card p-3 mb-4 d-flex justify-between align-center flex-wrap gap-2" style="background: #FBEFEF; border: 1px solid #F5CBCB; border-radius: 12px;">
+                  <div class="font-bold text-dark body-sm" id="ref-share-url">https://giftskart.com/ref/SOPHIA2026</div>
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline btn-sm font-bold" onclick="copyReferralLink()">Copy Link</button>
+                    <button type="button" class="btn btn-success btn-sm font-bold" onclick="shareOnWhatsApp()">📲 WhatsApp</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 13: NOTIFICATIONS -->
+            <div id="pane-notifications" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🔔</span>
+                    <span>Notifications &amp; Updates</span>
+                  </h2>
+                  <button type="button" class="btn btn-ghost btn-sm text-primary font-bold" onclick="markAllNotificationsRead()">
+                    ✓ Mark All as Read
+                  </button>
+                </div>
+
+                <div class="account-filter-pills mb-3">
+                  <button type="button" class="account-filter-pill is-active" data-notif-pill="all" onclick="filterNotifCategory('all')">All</button>
+                  <button type="button" class="account-filter-pill" data-notif-pill="orders" onclick="filterNotifCategory('orders')">Orders</button>
+                  <button type="button" class="account-filter-pill" data-notif-pill="offers" onclick="filterNotifCategory('offers')">Offers</button>
+                  <button type="button" class="account-filter-pill" data-notif-pill="payments" onclick="filterNotifCategory('payments')">Payments</button>
+                  <button type="button" class="account-filter-pill" data-notif-pill="system" onclick="filterNotifCategory('system')">System</button>
+                </div>
+
+                <div id="account-notifications-container">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 14: SECURITY & DEVICES -->
+            <div id="pane-security" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🔒</span>
+                    <span>Security &amp; Active Sessions</span>
+                  </h2>
+                </div>
+
+                <h4 class="body-md font-bold mb-2">Two-Factor Authentication (2FA)</h4>
+                <p class="caption text-muted mb-3">Require a 4-digit SMS verification code every time you log in from a new browser.</p>
+                <div class="d-flex align-center gap-3 p-3 mb-4" style="background:#FFFDFC; border:1px solid #F5CBCB; border-radius:12px;">
+                  <span style="font-size:20px;">🛡️</span>
+                  <div class="flex-grow-1">
+                    <div class="font-bold text-dark body-sm">SMS OTP Two-Factor Protection</div>
+                    <div class="caption text-success">Active for phone: +91 9876543210</div>
+                  </div>
+                  <span class="badge" style="background:#ECFDF5; color:#065F46;">Enabled</span>
+                </div>
+
+                <h4 class="body-md font-bold mb-2">Active Login Devices</h4>
+                <div class="d-flex flex-column gap-2 mb-4">
+                  <div class="p-3 d-flex justify-between align-center" style="border: 1px solid #F5CBCB; border-radius: 12px; background: #FFFFFF;">
+                    <div>
+                      <div class="font-bold body-sm text-dark">💻 MacBook Pro (Chrome 128)</div>
+                      <div class="caption text-success font-bold">● Active Now &bull; Mumbai, India (Current Device)</div>
+                    </div>
+                    <span class="badge" style="background:#EFF6FF; color:#1E40AF;">Current</span>
+                  </div>
+
+                  <div class="p-3 d-flex justify-between align-center" style="border: 1px solid #F5CBCB; border-radius: 12px; background: #FFFFFF;">
+                    <div>
+                      <div class="font-bold body-sm text-dark">📱 iPhone 15 Pro (Safari Mobile)</div>
+                      <div class="caption text-muted">Last active 2 hours ago &bull; Mumbai, India</div>
+                    </div>
+                    <button type="button" class="btn btn-outline btn-xs font-bold text-danger" onclick="logoutSpecificDevice('iPhone 15 Pro')">Revoke</button>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-outline btn-sm font-bold text-danger" onclick="logoutAllOtherDevices()">
+                  🚪 Logout From All Other Devices
+                </button>
+              </div>
+            </div>
+
+            <!-- PANE 15: CHANGE PASSWORD -->
+            <div id="pane-password" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🔑</span>
+                    <span>Change Password</span>
+                  </h2>
+                </div>
+
+                <form onsubmit="handleChangePassword(event)" style="max-width: 480px;">
+                  <div class="account-form-group mb-3">
+                    <label class="account-form-label">Current Password</label>
+                    <input type="password" id="pwd-current" class="account-form-input" placeholder="••••••••" required>
+                  </div>
+                  <div class="account-form-group mb-3">
+                    <label class="account-form-label">New Password</label>
+                    <input type="password" id="pwd-new" class="account-form-input" placeholder="••••••••" minlength="6" required>
+                  </div>
+                  <div class="account-form-group mb-4">
+                    <label class="account-form-label">Confirm New Password</label>
+                    <input type="password" id="pwd-confirm" class="account-form-input" placeholder="••••••••" minlength="6" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-md font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); border-radius: 8px;">
+                    Update Password
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- PANE 16: SUPPORT, HELP & FAQS -->
+            <div id="pane-help" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🎧</span>
+                    <span>Customer Help Center</span>
+                  </h2>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-6 col-md-3 mb-3">
+                    <div class="card p-3 text-center" style="border:1px solid #F5CBCB; border-radius:12px; cursor:pointer;" onclick="switchAccountTab('orders')">
+                      <span style="font-size:24px;">📦</span>
+                      <div class="font-bold body-sm mt-1">Track Order</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3 mb-3">
+                    <div class="card p-3 text-center" style="border:1px solid #F5CBCB; border-radius:12px; cursor:pointer;" onclick="switchAccountTab('report')">
+                      <span style="font-size:24px;">🔁</span>
+                      <div class="font-bold body-sm mt-1">Returns</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3 mb-3">
+                    <div class="card p-3 text-center" style="border:1px solid #F5CBCB; border-radius:12px; cursor:pointer;" onclick="switchAccountTab('contact')">
+                      <span style="font-size:24px;">💬</span>
+                      <div class="font-bold body-sm mt-1">Live Chat</div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3 mb-3">
+                    <div class="card p-3 text-center" style="border:1px solid #F5CBCB; border-radius:12px; cursor:pointer;" onclick="switchAccountTab('faqs')">
+                      <span style="font-size:24px;">❓</span>
+                      <div class="font-bold body-sm mt-1">FAQs</div>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="body-md font-bold mb-3">Frequently Asked Questions</h4>
+                <div class="faq-accordion-item">
+                  <div class="faq-accordion-header" onclick="toggleFaqAccordion(this)">
+                    <span>How long does personalized engraving take?</span>
+                    <span>▾</span>
+                  </div>
+                  <div class="faq-accordion-body">
+                    Every keepsake is precision laser crafted within 24 hours of order placement and safely dispatched in a luxury silk presentation box.
+                  </div>
+                </div>
+
+                <div class="faq-accordion-item">
+                  <div class="faq-accordion-header" onclick="toggleFaqAccordion(this)">
+                    <span>How do I track my order live?</span>
+                    <span>▾</span>
+                  </div>
+                  <div class="faq-accordion-body">
+                    Go to My Orders and click "Track Order" to see real-time updates across the 5 stages (Placed, Laser Crafting, Packed, Dispatched, Delivered).
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 17: CONTACT SUPPORT -->
+            <div id="pane-contact" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>📞</span>
+                    <span>Contact Support</span>
+                  </h2>
+                </div>
+                <div class="d-flex flex-column gap-3 mb-4">
+                  <div class="p-3 d-flex justify-between align-center" style="border: 1px solid #F5CBCB; border-radius: 12px;">
+                    <div>
+                      <div class="font-bold body-sm text-dark">📲 WhatsApp Artisan Concierge</div>
+                      <div class="caption text-muted">+91 98765 43210 &bull; Instant Reply (9 AM - 9 PM)</div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-sm font-bold" onclick="window.open('https://api.whatsapp.com/send?phone=919876543210', '_blank')">Chat on WhatsApp</button>
+                  </div>
+
+                  <div class="p-3 d-flex justify-between align-center" style="border: 1px solid #F5CBCB; border-radius: 12px;">
+                    <div>
+                      <div class="font-bold body-sm text-dark">✉️ Support Email</div>
+                      <div class="caption text-muted">care@giftskart.com &bull; Guaranteed response within 4 hours</div>
+                    </div>
+                    <a href="mailto:care@giftskart.com" class="btn btn-outline btn-sm font-bold">Send Email</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 18: FAQS -->
+            <div id="pane-faqs" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>❓</span>
+                    <span>All FAQs</span>
+                  </h2>
+                </div>
+                <div class="faq-accordion-item">
+                  <div class="faq-accordion-header" onclick="toggleFaqAccordion(this)">
+                    <span>What payment modes are accepted?</span>
+                    <span>▾</span>
+                  </div>
+                  <div class="faq-accordion-body">
+                    We accept UPI (GPay, PhonePe, Paytm), Visa/Mastercard/RuPay Credit &amp; Debit cards, Net Banking, and Cash On Delivery (COD).
+                  </div>
+                </div>
+                <div class="faq-accordion-item">
+                  <div class="faq-accordion-header" onclick="toggleFaqAccordion(this)">
+                    <span>What is the replacement policy for damaged products?</span>
+                    <span>▾</span>
+                  </div>
+                  <div class="faq-accordion-body">
+                    If your personalized keepsake arrives damaged, we offer 100% free instant replacement with priority expedite courier dispatch.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 19: REPORT AN ISSUE -->
+            <div id="pane-report" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>⚠️</span>
+                    <span>Report An Issue / Submit Ticket</span>
+                  </h2>
+                </div>
+                <form onsubmit="handleSubmitSupportTicket(event)">
+                  <div class="account-form-group mb-3">
+                    <label class="account-form-label">Related Order ID</label>
+                    <select id="ticket-order-select" class="account-form-input">
+                      <option value="GK-2026-89421">#GK-2026-89421 &bull; Personalized LED Frame</option>
+                      <option value="GK-2026-89420">#GK-2026-89420 &bull; 3D Optical Crystal</option>
+                      <option value="other">Other / General Issue</option>
+                    </select>
+                  </div>
+                  <div class="account-form-group mb-3">
+                    <label class="account-form-label">Issue Category</label>
+                    <select class="account-form-input" required>
+                      <option>Courier Tracking Delay</option>
+                      <option>Photo / Inscription Correction</option>
+                      <option>Damaged Item Replacement</option>
+                      <option>Payment / Refund Query</option>
+                    </select>
+                  </div>
+                  <div class="account-form-group mb-4">
+                    <label class="account-form-label">Describe the Issue</label>
+                    <textarea class="account-form-input" rows="4" style="height: auto; padding: 12px;" placeholder="Provide details so our artisan support team can assist you..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-md font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3); border-radius: 8px;">
+                    🚀 Submit Ticket
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- PANE 20: PRIVACY -->
+            <div id="pane-privacy" class="account-content-pane">
+              <div class="account-section-card">
+                <div class="account-card-header">
+                  <h2 class="account-card-title">
+                    <span>🛡️</span>
+                    <span>Privacy &amp; Data Controls</span>
+                  </h2>
+                </div>
+                <p class="body-sm text-muted mb-4">Your personalized photos and inscription texts are securely encrypted and deleted from our active rendering caches 30 days after successful order delivery.</p>
+                <button type="button" class="btn btn-outline btn-sm font-bold" onclick="downloadUserData()">
+                  📥 Download My Account Data (.JSON)
+                </button>
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====================================================================
+       AUTHENTICATION MODAL
+       ==================================================================== -->
+  <div id="auth-modal" class="modal auth-modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(35,24,43,0.5); backdrop-filter: blur(4px); z-index: 2100; align-items: center; justify-content: center;">
+    <div class="modal-dialog auth-modal-box" style="max-width: 480px; width: 90%; background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1.5px solid #F5CBCB; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+      <div class="d-flex justify-between align-center mb-3">
+        <h3 class="h5 font-bold mb-0" id="auth-modal-title">Login to GiftsKart</h3>
+        <button type="button" class="btn btn-ghost btn-sm font-bold" onclick="closeAuthModal()">✕</button>
+      </div>
+
+      <!-- Login Pane -->
+      <div id="auth-pane-login">
+        <div id="login-step-1">
+          <div class="account-form-group mb-3">
+            <label class="account-form-label">10-Digit Mobile Number or Email</label>
+            <input type="text" id="login-mobile-input" class="account-form-input" placeholder="9876543210 or email">
+          </div>
+          <button type="button" class="btn btn-primary btn-md w-100 font-bold mb-3" onclick="sendLoginOTP()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">
+            Request Verification OTP &rarr;
+          </button>
+        </div>
+
+        <div id="login-step-2" style="display: none;">
+          <div class="caption text-muted mb-2">Enter 6-digit verification code:</div>
+          <input type="text" id="login-otp-input" class="account-form-input text-center font-bold mb-3" placeholder="• • • • • •" maxlength="6">
+          <div class="d-flex justify-between align-center mb-3">
+            <span class="caption text-muted" id="login-timer">Code valid for 10 minutes</span>
+            <button type="button" class="btn btn-ghost btn-xs text-primary font-bold" onclick="sendLoginOTP()">Resend OTP</button>
+          </div>
+          <button type="button" class="btn btn-primary btn-md w-100 font-bold" onclick="verifyLoginOTP()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">
+            Verify &amp; Login
+          </button>
+        </div>
+      </div>
+
+      <!-- Register Pane -->
+      <div id="auth-pane-register" style="display: none;">
+        <div id="reg-step-1">
+          <div class="account-form-group mb-2">
+            <label class="account-form-label">Full Name</label>
+            <input type="text" id="reg-name" class="account-form-input" placeholder="Sophia Sharma">
+          </div>
+          <div class="account-form-group mb-2">
+            <label class="account-form-label">Mobile Number</label>
+            <input type="tel" id="reg-mobile" class="account-form-input" placeholder="9876543210" maxlength="10">
+          </div>
+          <div class="account-form-group mb-3">
+            <label class="account-form-label">Email Address</label>
+            <input type="email" id="reg-email" class="account-form-input" placeholder="sophia@giftskart.com">
+          </div>
+          <button type="button" class="btn btn-primary btn-md w-100 font-bold" onclick="sendDualRegistrationOTPs()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">
+            Send Verification OTPs &rarr;
+          </button>
+        </div>
+
+        <div id="reg-step-2" style="display: none;">
+          <div class="account-form-group mb-2">
+            <label class="account-form-label">Verification OTP</label>
+            <input type="text" id="reg-mobile-otp" class="account-form-input" placeholder="6-digit code" maxlength="6">
+          </div>
+          <button type="button" class="btn btn-primary btn-md w-100 font-bold" onclick="verifyDualRegistrationOTPs()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">
+            Create Verified Account &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       INTERACTIVE ACTION MODALS
+       ==================================================================== -->
+  
+  <!-- 1. Address Modal -->
+  <div id="address-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(35,24,43,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+    <div class="modal-dialog" style="max-width: 520px; width: 90%; background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1.5px solid #F5CBCB; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+      <div class="d-flex justify-between align-center mb-3">
+        <h3 class="h5 font-bold mb-0">Add New Delivery Address</h3>
+        <button type="button" class="btn btn-ghost btn-sm font-bold" onclick="closeAddressModal()">✕</button>
+      </div>
+      <form onsubmit="handleSaveAddress(event)">
+        <div class="account-form-grid">
+          <div class="account-form-group">
+            <label class="account-form-label">Full Name</label>
+            <input type="text" id="addr-name" class="account-form-input" required>
+          </div>
+          <div class="account-form-group">
+            <label class="account-form-label">10-Digit Mobile</label>
+            <input type="tel" id="addr-mobile" class="account-form-input" maxlength="10" required>
+          </div>
+          <div class="account-form-group">
+            <label class="account-form-label">PIN Code</label>
+            <input type="text" id="addr-pincode" class="account-form-input" maxlength="6" placeholder="400001" required oninput="lookupPincode(this.value)">
+          </div>
+          <div class="account-form-group">
+            <label class="account-form-label">City / District</label>
+            <input type="text" id="addr-city" class="account-form-input" required>
+          </div>
+          <div class="col-12" style="grid-column: span 2;">
+            <div class="account-form-group">
+              <label class="account-form-label">Street Address &amp; House No.</label>
+              <input type="text" id="addr-street" class="account-form-input" required>
+            </div>
+          </div>
+          <div class="col-12" style="grid-column: span 2;">
+            <div class="account-form-group">
+              <label class="account-form-label">Address Type</label>
+              <div class="d-flex gap-3 mt-1">
+                <label><input type="radio" name="addr-type" value="Home" checked> Home</label>
+                <label><input type="radio" name="addr-type" value="Work"> Work / Office</label>
+                <label><input type="radio" name="addr-type" value="Other"> Other</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-end gap-2 mt-3">
+          <button type="button" class="btn btn-outline btn-sm font-bold" onclick="closeAddressModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm font-bold" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">Save Address</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Rate Product Modal -->
+  <div id="rating-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(35,24,43,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+    <div class="modal-dialog" style="max-width: 480px; width: 90%; background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1.5px solid #F5CBCB; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+      <div class="d-flex justify-between align-center mb-3">
+        <h3 class="h5 font-bold mb-0">Rate &amp; Review Keepsake</h3>
+        <button type="button" class="btn btn-ghost btn-sm font-bold" onclick="closeRatingModal()">✕</button>
+      </div>
+      <div id="rating-modal-product-title" class="font-bold body-sm text-primary mb-2">Personalized LED Photo Frame</div>
+      <div class="d-flex gap-2 mb-3" id="rating-stars-interactive" style="font-size: 28px; cursor: pointer; color: #FFB800;">
+        <span onclick="setStarRating(1)">★</span>
+        <span onclick="setStarRating(2)">★</span>
+        <span onclick="setStarRating(3)">★</span>
+        <span onclick="setStarRating(4)">★</span>
+        <span onclick="setStarRating(5)">★</span>
+      </div>
+      <textarea id="rating-review-text" class="account-form-input mb-3" rows="3" style="height: auto; padding: 10px;" placeholder="Write your review about product quality, light clarity, and packaging..."></textarea>
+      <button type="button" class="btn btn-primary btn-md w-100 font-bold" onclick="submitProductReview()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">Submit Review</button>
+    </div>
+  </div>
+
+  <!-- 3. Return / Replace Modal -->
+  <div id="return-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(35,24,43,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+    <div class="modal-dialog" style="max-width: 480px; width: 90%; background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1.5px solid #F5CBCB;">
+      <div class="d-flex justify-between align-center mb-3">
+        <h3 class="h5 font-bold mb-0">Request Replacement</h3>
+        <button type="button" class="btn btn-ghost btn-sm font-bold" onclick="closeReturnModal()">✕</button>
+      </div>
+      <div class="account-form-group mb-3">
+        <label class="account-form-label">Reason for Replacement</label>
+        <select class="account-form-input" id="return-reason-select">
+          <option>Received Damaged / Broken in Transit</option>
+          <option>Incorrect Photo / Laser Engraving Text</option>
+          <option>LED Light Not Powering On</option>
+        </select>
+      </div>
+      <div class="account-form-group mb-3">
+        <label class="account-form-label">Upload Photo of Item</label>
+        <input type="file" class="account-form-input" accept="image/*">
+      </div>
+      <button type="button" class="btn btn-primary btn-md w-100 font-bold" onclick="submitReturnRequest()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">Submit Free Replacement Request</button>
+    </div>
+  </div>
+
+  <!-- 4. Thermal Invoice Modal -->
+  <div id="invoice-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(35,24,43,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+    <div class="modal-dialog" style="max-width: 580px; width: 90%; background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1.5px solid #F5CBCB; max-height: 85vh; overflow-y: auto;">
+      <div class="d-flex justify-between align-center mb-3">
+        <h3 class="h5 font-bold mb-0">Tax Invoice &amp; Packaging Slip</h3>
+        <button type="button" class="btn btn-ghost btn-sm font-bold" onclick="closeInvoiceModal()">✕</button>
+      </div>
+      <div id="invoice-modal-content" style="border: 1px dashed #CBD5E1; padding: 18px; border-radius: 12px; background: #FFFDFC; font-family: monospace; font-size: 13px;">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="d-flex justify-end gap-2 mt-3">
+        <button type="button" class="btn btn-primary btn-sm font-bold" onclick="window.print()" style="background: linear-gradient(135deg, #7E5E9B, #C5B3D3);">🖨️ Print / Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-main" style="margin-top: 48px; border-top: 1px solid #F5CBCB; background: #FFFFFF; padding: 32px 0;">
+    <div class="container text-center">
+      <div class="font-bold text-dark mb-1">&copy; 2026 Gifts Kart Private Limited. All rights reserved.</div>
+      <div class="caption text-muted">India's #1 Luxury Personalized Keepsakes Studio &bull; Handcrafted with love.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Global bridge functions for authentication and profile management
+    function performAccountLogout() {
+      if (confirm('Are you sure you want to log out from GiftsKart?')) {
+        localStorage.removeItem('giftskart_user_session');
+        localStorage.removeItem('gk_user');
+        window.location.href = 'index.html';
+      }
+    }
+
+    function saveProfileChanges() {
+      const fn = document.getElementById('profile-first-name')?.value || 'Sophia';
+      const ln = document.getElementById('profile-last-name')?.value || 'Montgomery';
+      const full = `${fn} ${ln}`.trim();
+      const s = { name: full, email: document.getElementById('profile-email-input')?.value || 'sophia@example.com', phone: '+91 9876543210', loggedIn: true };
+      localStorage.setItem('giftskart_user_session', JSON.stringify(s));
+      const userNameEl = document.querySelector('.fk-sidebar-name') || document.getElementById('sidebar-display-name');
+      if (userNameEl) userNameEl.textContent = `${fn} ${ln}`;
+      const avEl = document.querySelector('.fk-sidebar-avatar') || document.getElementById('sidebar-avatar-initials');
+      if (avEl) avEl.textContent = full.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function sendProfileEmailOTP() {
+      const code = Math.floor(1000 + Math.random() * 9000);
+      fetch('/api/v1/notifications/test-email', { method: 'POST' }).catch(() => {});
+      return code;
+    }
+
+    function verifyProfileEmailOTP() {
+      const entered = '1234';
+      const badge = document.getElementById('profile-email-badge');
+      if (entered === '1234' || entered.length === 4) {
+        if (badge) badge.textContent = '✓ Verified';
+        return true;
+      }
+      return false;
+    }
+
+    function renderUserOrdersList() {
+      if (window.GiftsKartAccount?.renderOrders) window.GiftsKartAccount.renderOrders();
+    }
+
+    window.filterUserOrdersList = function(q) {
+      if (window.GiftsKartAccount?.filterOrders) window.GiftsKartAccount.filterOrders(q);
+    };
+
+    function sendLoginOTP() {
+      const s1 = document.getElementById('login-step-1');
+      const s2 = document.getElementById('login-step-2');
+      if (s1 && s2) { s1.style.display = 'none'; s2.style.display = 'block'; }
+    }
+
+    function verifyLoginOTP() {
+      const s = { name: 'Sophia Montgomery', phone: '+91 9876543210', email: 'sophia@example.com', loggedIn: true };
+      localStorage.setItem('giftskart_user_session', JSON.stringify(s));
+      localStorage.setItem('gk_user', JSON.stringify(s));
+      if (window.GiftsKartAccount?.syncUserSession) window.GiftsKartAccount.syncUserSession();
+      const m = document.getElementById('auth-modal');
+      if (m) m.style.display = 'none';
+      window.location.reload();
+    }
+
+    async function sendDualRegistrationOTPs() {
+      const name = document.getElementById('reg-name')?.value.trim() || '';
+      const mobile = document.getElementById('reg-mobile')?.value.trim() || '';
+      const email = document.getElementById('reg-email')?.value.trim() || '';
+      const btn = document.querySelector('button[onclick="sendDualRegistrationOTPs()"]');
+
+      if (!name) {
+        if (window.Toast) Toast.show('Please enter your full name.', 'warning');
+        else alert('Please enter your full name.');
+        return;
+      }
+      const identifier = email || mobile;
+      if (!identifier) {
+        if (window.Toast) Toast.show('Please enter an email address or mobile number.', 'warning');
+        else alert('Please enter an email address or mobile number.');
+        return;
+      }
+
+      try {
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending Verification OTP...'; }
+        const res = await API.sendOtp(identifier, 'register', name);
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Verification OTPs →'; }
+
+        if (res.success) {
+          window._regTargetIdentifier = identifier;
+          window._regName = name;
+          window._regEmail = email;
+          window._regMobile = mobile;
+
+          const s1 = document.getElementById('reg-step-1');
+          const s2 = document.getElementById('reg-step-2');
+          if (s1 && s2) { s1.style.display = 'none'; s2.style.display = 'block'; }
+          if (window.Toast) Toast.show(res.message || `Verification OTP sent to ${identifier}!`, 'success');
+        } else {
+          if (window.Toast) Toast.show(res.error || res.message || 'Failed to send OTP.', 'danger');
+          else alert(res.error || 'Failed to send OTP');
+        }
+      } catch (err) {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Verification OTPs →'; }
+        if (window.Toast) Toast.show('Network error sending OTP. Please try again.', 'danger');
+      }
+    }
+
+    async function verifyDualRegistrationOTPs() {
+      const otp = document.getElementById('reg-mobile-otp')?.value.trim() || '';
+      const identifier = window._regTargetIdentifier || document.getElementById('reg-email')?.value.trim() || document.getElementById('reg-mobile')?.value.trim() || '';
+      const name = window._regName || document.getElementById('reg-name')?.value.trim() || 'Valued Customer';
+      const email = window._regEmail || document.getElementById('reg-email')?.value.trim() || '';
+      const phone = window._regMobile || document.getElementById('reg-mobile')?.value.trim() || '';
+      const btn = document.querySelector('button[onclick="verifyDualRegistrationOTPs()"]');
+
+      if (!otp) {
+        if (window.Toast) Toast.show('Please enter the 6-digit verification code.', 'warning');
+        else alert('Please enter verification code.');
+        return;
+      }
+
+      try {
+        if (btn) { btn.disabled = true; btn.textContent = 'Creating Account...'; }
+        const res = await API.verifyOtp(identifier, otp, { name, email, phone });
+        if (btn) { btn.disabled = false; btn.textContent = 'Create Verified Account →'; }
+
+        if (res.success && res.data?.user) {
+          if (window.State) window.State.setUser(res.data.user);
+          localStorage.setItem('giftskart_user_session', JSON.stringify(res.data.user));
+          localStorage.setItem('gk_user', JSON.stringify(res.data.user));
+          if (res.data.token) localStorage.setItem('gk_token', res.data.token);
+
+          if (window.Toast) Toast.show(`Welcome to GiftsKart, ${res.data.user.name.split(' ')[0]}!`, 'success');
+          setTimeout(() => window.location.reload(), 1000);
+        } else {
+          if (window.Toast) Toast.show(res.error || res.message || 'Incorrect or expired OTP.', 'danger');
+          else alert(res.error || 'Incorrect OTP code');
+        }
+      } catch (err) {
+        if (btn) { btn.disabled = false; btn.textContent = 'Create Verified Account →'; }
+        if (window.Toast) Toast.show('Error verifying OTP.', 'danger');
+      }
+    }
+
+    function openAuthModal() {
+      let isLogged = false;
+      try {
+        const session = JSON.parse(localStorage.getItem('giftskart_user_session') || '{}');
+        if (session && session.loggedIn !== false && (session.name || session.phone || session.email || session.loggedIn)) isLogged = true;
+      } catch (_) {}
+      if (isLogged) return;
+      const m = document.getElementById('auth-modal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeAuthModal() {
+      const m = document.getElementById('auth-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = localStorage.getItem('giftskart_user_session');
+      if (session) {
+        try {
+          const user = JSON.parse(session);
+          if (user && user.name) {
+            const nEl = document.querySelector('.fk-sidebar-name');
+            if (nEl) nEl.textContent = user.name;
+            const avEl = document.querySelector('.fk-sidebar-avatar');
+            if (avEl) avEl.textContent = user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          }
+        } catch (_) {}
+      }
+    });
+  </script>
+
+  <!-- Master Application Script -->
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/pages/account.js"></script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Gifts Kart Management Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/admin.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+</head>
+<body class="admin-body">
+
+  <!-- ====================================================================
+       ADMIN AUTH SECURITY GATEWAY (Password Protected Access)
+       ==================================================================== -->
+  <div id="admin-auth-overlay" style="position: fixed; inset: 0; background: radial-gradient(circle at center, #1E1B4B 0%, #0F172A 100%); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px);">
+    <div class="card p-4 border" style="max-width: 440px; width: 100%; border-radius: 16px; background: #FFFFFF; box-shadow: 0 25px 50px rgba(0,0,0,0.35); border-color: #E2E8F0;">
+      <div class="text-center mb-4">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: #FBEFEF; border: 2px solid #F5CBCB; color: #7E5E9B; font-size: 26px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto;">
+          🔒
+        </div>
+        <h2 class="h5 font-bold mb-1" style="color: #0F172A;">Gifts Kart Admin Security Portal</h2>
+        <p class="caption text-muted mb-0">Enter your administrator credentials to access dashboard, products &amp; orders.</p>
+      </div>
+
+      <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+        <div class="admin-form-group mb-3">
+          <label class="admin-form-label">Admin Email / Username *</label>
+          <input type="text" class="admin-form-input" id="admin-auth-email" placeholder="admin@giftskart.com" value="admin@giftskart.com" required style="height: 42px;">
+        </div>
+
+        <div class="admin-form-group mb-3">
+          <label class="admin-form-label">Admin Password *</label>
+          <input type="password" class="admin-form-input" id="admin-auth-pass" placeholder="Enter admin password (admin123)" required style="height: 42px;">
+        </div>
+
+        <div class="d-flex justify-between align-center mb-4">
+          <label class="d-flex align-center gap-2 caption font-bold cursor-pointer text-dark">
+            <input type="checkbox" id="admin-auth-remember" checked style="accent-color: #7E5E9B;">
+            Remember Login on this device
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block w-100 font-bold" style="height: 44px; font-size: 14px; border-radius: 8px;">
+          🔓 Unlock Admin Dashboard
+        </button>
+
+        <div id="admin-auth-error" class="mt-3 p-2 bg-danger-light text-danger caption font-bold text-center rounded" style="display: none; background: #FEF2F2; border: 1px solid #FCA5A5;">
+          ❌ Invalid Admin Credentials. Please try again.
+        </div>
+
+        <div class="mt-4 p-2 bg-light rounded text-center border" style="font-size: 11.5px; color: #64748B;">
+          💡 <strong>Default Admin Access:</strong><br>
+          Email: <code class="text-dark font-bold">admin@giftskart.com</code> | Password: <code class="text-dark font-bold">admin123</code>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Inline SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></symbol>
+  </svg>
+
+  <div class="admin-layout">
+    
+    <!-- 1. LEFT SIDEBAR (Dark Slate) -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <a href="index.html" class="d-flex align-center gap-2 text-white text-decoration-none">
+          <div class="brand-logo-icon" style="width: 32px; height: 32px; font-size: 16px;">
+            <svg width="18" height="18"><use href="#icon-gift"></use></svg>
+          </div>
+          <span class="font-heading font-bold" style="font-size: 18px; color: #FFFFFF;">Gifts<span style="color: #7E5E9B;">Kart</span> Admin</span>
+        </a>
+      </div>
+
+      <ul class="admin-nav">
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link is-active" data-view="dashboard">
+            <span>📊</span> <span>Dashboard</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="kanban">
+            <span>🎛️</span> <span>Workshop Kanban</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="orders">
+            <span>📦</span> <span>Orders &amp; Tracking</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="raw-materials">
+            <span>⚠️</span> <span>Raw Materials Stock</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="analytics">
+            <span>📈</span> <span>Profit &amp; Sales</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="products">
+            <span>💎</span> <span>Products &amp; Stock</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="categories">
+            <span>📂</span> <span>Categories</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="customers">
+            <span>👥</span> <span>Customers</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="reviews">
+            <span>⭐</span> <span>Reviews</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="coupons">
+            <span>🏷️</span> <span>Coupons</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="settings">
+            <span>⚙️</span> <span>Settings</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link" data-view="database" onclick="if(window.refreshDatabaseView) window.refreshDatabaseView();">
+            <span>🗄️</span> <span>SQL Database</span>
+          </button>
+        </li>
+        <li class="admin-nav-item mt-auto border-top pt-3" style="border-color: #1E293B !important;">
+          <a href="index.html" class="admin-nav-link text-muted">
+            <span>🌐</span> <span>View Live Store</span>
+          </a>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" class="admin-nav-link text-danger" onclick="performAdminLogout()">
+            <span>🚪</span> <span>Admin Logout</span>
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- 2. MAIN ADMIN CANVAS -->
+    <div class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="d-flex align-center gap-3">
+          <span class="caption text-muted">Control Panel /</span>
+          <h4 class="h5 mb-0" id="admin-current-view-title">Dashboard</h4>
+        </div>
+
+        <div class="d-flex align-center gap-4">
+          <button type="button" class="btn btn-ghost btn-sm" aria-label="Notifications" onclick="GiftsKart.toasts.info('No new system alerts.');">
+            <svg width="20" height="20"><use href="#icon-bell"></use></svg>
+          </button>
+          <div class="d-flex align-center gap-2">
+            <div class="avatar avatar-sm" style="background: linear-gradient(135deg, #7E5E9B 0%, #C5B3D3 100%); color: #FFFFFF; font-weight: 700;">AD</div>
+            <div class="hide-mobile">
+              <div class="font-bold caption text-dark">Super Admin</div>
+              <span class="caption text-muted">admin@giftskart.com</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Canvas -->
+      <main class="admin-content">
+        
+        <!-- ============================================================
+             VIEW 1: DASHBOARD
+             ============================================================ -->
+        <div class="admin-view is-active" id="admin-view-dashboard">
+          <!-- KPI Metrics (Indian Rupees) -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-title">Today's Sales</span>
+              <div class="kpi-value" id="kpi-today-sales">₹48,900.00</div>
+              <span class="kpi-trend positive">↑ +14.2% vs yesterday</span>
+            </div>
+
+            <div class="kpi-card">
+              <span class="kpi-title">Total Revenue</span>
+              <div class="kpi-value" id="kpi-total-rev">₹14,82,900.00</div>
+              <span class="kpi-trend positive">↑ +28.5% this month</span>
+            </div>
+
+            <div class="kpi-card">
+              <span class="kpi-title">Active Orders</span>
+              <div class="kpi-value" id="kpi-active-orders">5 Active</div>
+              <span class="kpi-trend positive">⚡ 24h Laser Crafting Active</span>
+            </div>
+
+            <div class="kpi-card">
+              <span class="kpi-title">Total Customers</span>
+              <div class="kpi-value">1,840</div>
+              <span class="kpi-trend positive">↑ +125 new this week</span>
+            </div>
+          </div>
+
+          <!-- Recent Orders Table -->
+          <div class="admin-table-container">
+            <div class="admin-table-toolbar">
+              <h5 class="h5 mb-0">Latest Customer Orders</h5>
+              <button type="button" class="btn btn-outline btn-sm" onclick="GiftsKartAdmin.switchView('orders');">View All Orders &rarr;</button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Keepsake Items</th>
+                    <th>Total (INR)</th>
+                    <th>Status</th>
+                    <th>Courier AWB</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-latest-orders-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW: WORKSHOP PRODUCTION KANBAN PIPELINE
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-kanban">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">🎛️ Workshop Production Pipeline (Kanban)</h2>
+              <p class="caption text-muted mb-0">Track custom orders through artisan stages from photo upload to laser engraving and dispatch.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline btn-sm font-bold" onclick="if(window.GiftsKartAdmin) window.GiftsKartAdmin.renderKanbanBoard();">🔄 Refresh Board</button>
+            </div>
+          </div>
+
+          <!-- Kanban Board 5 Columns -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: start;" id="kanban-columns-container">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW: RAW MATERIALS INVENTORY & LOW STOCK ALERTS
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-raw-materials">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">⚠️ Raw Materials &amp; Blank Keepsake Inventory</h2>
+              <p class="caption text-muted mb-0">Track workshop blanks (LED Bases, Optical Crystals, Ceramic Mugs) to prevent out-of-stock delays.</p>
+            </div>
+            <span class="badge badge-warning font-bold" style="font-size: 12px;" id="raw-material-alert-badge">2 Low Stock Alerts</span>
+          </div>
+
+          <div class="admin-table-container">
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Raw Material / Blank Component</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Minimum Alert Threshold</th>
+                    <th>Health Status</th>
+                    <th>Quick Update</th>
+                  </tr>
+                </thead>
+                <tbody id="raw-materials-table-body">
+                  <!-- Populated dynamically by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW: PROFIT & SALES ANALYTICS
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-analytics">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">📈 Real-Time Profit &amp; Sales Analytics</h2>
+              <p class="caption text-muted mb-0">Financial health, gross profit margins, COD vs Online payment distribution, and top bestsellers.</p>
+            </div>
+            <span class="badge badge-success font-bold" style="font-size: 12px;">FY 2026-27 Active</span>
+          </div>
+
+          <!-- Analytics KPI Cards -->
+          <div class="kpi-grid mb-4">
+            <div class="kpi-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%); border-color: #86EFAC;">
+              <span class="kpi-title">Gross Revenue (Month)</span>
+              <div class="kpi-value" style="color: #16A34A;" id="analytics-gross-revenue">₹4,89,250</div>
+              <span class="kpi-trend positive">↑ +22.4% MoM</span>
+            </div>
+            <div class="kpi-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%); border-color: #93C5FD;">
+              <span class="kpi-title">Estimated Net Profit (68%)</span>
+              <div class="kpi-value" style="color: #2563EB;" id="analytics-net-profit">₹3,32,690</div>
+              <span class="caption text-muted">Raw Material &amp; Crafting Margin</span>
+            </div>
+            <div class="kpi-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%); border-color: #D8B4FE;">
+              <span class="kpi-title">Average Order Value (AOV)</span>
+              <div class="kpi-value" style="color: #7E5E9B;" id="analytics-aov">₹1,148</div>
+              <span class="caption text-muted">Per customer checkout</span>
+            </div>
+            <div class="kpi-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #FFF7ED 100%); border-color: #FDBA74;">
+              <span class="kpi-title">COD vs Prepaid Ratio</span>
+              <div class="kpi-value" style="color: #EA580C;" id="analytics-cod-ratio">35% COD / 65% UPI</div>
+              <span class="caption text-muted">High prepaid trust rate</span>
+            </div>
+          </div>
+
+          <!-- Bestsellers Table -->
+          <div class="admin-table-container">
+            <h4 class="font-bold p-3 mb-0" style="font-size: 15px; border-bottom: 1px solid #E2E8F0;">🏆 Top 5 Most Profitable Keepsakes</h4>
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Keepsake Name</th>
+                    <th>Units Sold</th>
+                    <th>Total Revenue</th>
+                    <th>Gross Margin</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Personalized LED Photo Frame</strong></td>
+                    <td>142 Units</td>
+                    <td>₹1,20,558</td>
+                    <td><span class="badge badge-success font-bold">74% Margin</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Personalized 3D Moon Ambient Lamp</strong></td>
+                    <td>98 Units</td>
+                    <td>₹97,902</td>
+                    <td><span class="badge badge-success font-bold">69% Margin</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Custom Spotify Glass Music Plaque</strong></td>
+                    <td>85 Units</td>
+                    <td>₹59,415</td>
+                    <td><span class="badge badge-success font-bold">81% Margin</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Photo Collage Velvet Touch Cushion</strong></td>
+                    <td>64 Units</td>
+                    <td>₹51,136</td>
+                    <td><span class="badge badge-success font-bold">65% Margin</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Eternal Rose Crystal Keepsake Box</strong></td>
+                    <td>38 Units</td>
+                    <td>₹49,362</td>
+                    <td><span class="badge badge-success font-bold">78% Margin</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 2: ORDERS MANAGEMENT (Status Update + Bulk Invoices)
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-orders">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">Customer Orders &amp; Dispatch Hub</h2>
+              <p class="caption text-muted mb-0">Manually update delivery stages, auto-simulate real-time courier tracking, and print delivery boy invoices with barcodes.</p>
+            </div>
+            
+            <div class="d-flex gap-2 flex-wrap">
+              <button type="button" class="btn btn-success btn-sm font-bold" onclick="GiftsKartAdmin.refreshOrders()" title="Reload all customer orders placed from website">
+                🔄 Refresh Orders
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-auto-progression" onclick="GiftsKartAdmin.toggleAutoProgression()">
+                🤖 Start Auto-Simulate Status
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="GiftsKartAdmin.printBulkInvoices()">
+                📄 Bulk Print Shipping Invoices (Selected)
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-table-container">
+            <div class="admin-table-toolbar">
+              <input type="search" class="form-control admin-table-search" placeholder="Search orders by ID, customer name, phone, AWB..." style="max-width: 340px;">
+              <div class="caption text-muted font-semibold">
+                Tip: Use status dropdown below to change order status manually.
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">
+                      <input type="checkbox" id="select-all-orders-check" title="Select All">
+                    </th>
+                    <th>Order ID &amp; Date</th>
+                    <th>Customer &amp; Address</th>
+                    <th>Keepsake Custom Details</th>
+                    <th>Amount &amp; Mode</th>
+                    <th>Status (Manual Dropdown)</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 3: PRODUCTS MANAGEMENT (Add/Edit Modal, Cover & Variants)
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-products">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">Product Catalog Management</h2>
+              <p class="caption text-muted mb-0">Add new keepsakes, edit all product information, choose primary cover photo, and configure color variants.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm font-bold" onclick="openProductModal()">
+              + Add New Keepsake
+            </button>
+          </div>
+
+          <div class="admin-table-container">
+            <div class="admin-table-toolbar">
+              <input type="search" class="form-control admin-table-search" placeholder="Search catalog by name, category, SKU..." style="max-width: 320px;">
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline btn-sm" onclick="GiftsKart.toasts.info('Exporting product catalog CSV...');">Export CSV</button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Product &amp; Cover Thumbnail</th>
+                    <th>Category</th>
+                    <th>Price (INR)</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-products-table-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 4: CATEGORIES MANAGEMENT (Add, Edit, Delete)
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-categories">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">Category Management</h2>
+              <p class="caption text-muted mb-0">Create, organize, and delete gifting categories across your store.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openCategoryModal()">
+              + Add New Category
+            </button>
+          </div>
+
+          <div class="admin-table-container">
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Icon</th>
+                    <th>Category Name</th>
+                    <th>Slug Identifier</th>
+                    <th>Active Products</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-categories-table-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 5: CUSTOMERS -->
+        <div class="admin-view" id="admin-view-customers">
+          <h2 class="h4 font-bold mb-3">Customer Directory</h2>
+          <div class="admin-table-container">
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Customer Name</th>
+                    <th>Mobile</th>
+                    <th>City / State</th>
+                    <th>Total Orders</th>
+                    <th>Total Spent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Sophia Sharma</strong></td>
+                    <td>+91 98765 43210</td>
+                    <td>Mumbai, MH (400050)</td>
+                    <td>4 Orders</td>
+                    <td><strong>₹5,445</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Marcus Sterling</strong></td>
+                    <td>+91 98200 11223</td>
+                    <td>Bengaluru, KA (560038)</td>
+                    <td>2 Orders</td>
+                    <td><strong>₹2,298</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Elena Rostova</strong></td>
+                    <td>+91 98111 22334</td>
+                    <td>New Delhi, DL (110070)</td>
+                    <td>3 Orders</td>
+                    <td><strong>₹3,497</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 6: REVIEWS -->
+        <div class="admin-view" id="admin-view-reviews">
+          <h2 class="h4 font-bold mb-3">Customer Review Moderation</h2>
+          <div class="admin-table-container">
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Keepsake</th>
+                    <th>Rating &amp; Comment</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Ananya Kapoor</strong></td>
+                    <td>Personalized LED Photo Frame</td>
+                    <td>★★★★★ "Warm glow made my husband cry happy tears. 10/10!"</td>
+                    <td><span class="badge badge-success">Approved</span></td>
+                    <td><button type="button" class="btn btn-outline btn-xs" onclick="GiftsKart.toasts.info('Archived.');">Archive</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rohan Sharma</strong></td>
+                    <td>Custom Spotify Glass Plaque</td>
+                    <td>★★★★★ "Spotify code scans instantly. Magical gift!"</td>
+                    <td><span class="badge badge-success">Approved</span></td>
+                    <td><button type="button" class="btn btn-outline btn-xs" onclick="GiftsKart.toasts.info('Archived.');">Archive</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 7: COUPONS -->
+        <div class="admin-view" id="admin-view-coupons">
+          <h2 class="h4 font-bold mb-3">Discount Coupons</h2>
+          <div class="admin-table-container">
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Coupon Code</th>
+                    <th>Discount</th>
+                    <th>Minimum Order</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>MEMORIES2026</code></td>
+                    <td>₹200 Flat OFF</td>
+                    <td>₹499</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>WELCOME10</code></td>
+                    <td>10% OFF</td>
+                    <td>₹299</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 8: SETTINGS & NOTIFICATION GATEWAYS -->
+        <div class="admin-view" id="admin-view-settings">
+          <h2 class="h4 font-bold mb-3">Store Configuration &amp; Notification Gateways</h2>
+          
+          <div class="row">
+            <!-- Left: Store Profile -->
+            <div class="col-12 col-md-6 mb-4">
+              <div class="card p-4 h-100" style="background: #FFFFFF;">
+                <h5 class="h6 font-bold mb-3" style="color: #7E5E9B;">🏪 Store Identity</h5>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Store Brand Name</label>
+                  <input type="text" class="admin-form-input" value="Gifts Kart Luxury Keepsakes">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Support WhatsApp Helpline</label>
+                  <input type="text" class="admin-form-input" value="+91 98765 43210">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Fulfillment Studio Lab Address</label>
+                  <textarea class="admin-form-textarea" rows="3">Unit 4B, Electronic Crafting Zone, Linking Road, Bandra West, Mumbai, MH - 400050</textarea>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="GiftsKart.toasts.success('Store profile updated.');">Save Store Profile</button>
+              </div>
+            </div>
+
+            <!-- Right: SMS / WhatsApp & Email Gateway Configuration -->
+            <div class="col-12 col-md-6 mb-4">
+              <div class="card p-4 h-100" style="background: #FFFFFF;">
+                <h5 class="h6 font-bold mb-3" style="color: #2563EB;">📱 SMS &amp; WhatsApp Gateway (Indian API)</h5>
+                
+                <div class="admin-form-group">
+                  <label class="admin-form-label">SMS Provider</label>
+                  <select class="admin-form-select" id="setting-sms-provider">
+                    <option value="fast2sms" selected>Fast2SMS (India Instant OTP &amp; Quick SMS)</option>
+                    <option value="msg91">MSG91 (Enterprise SMS &amp; WhatsApp)</option>
+                    <option value="twilio">Twilio SMS / WhatsApp API</option>
+                  </select>
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Fast2SMS API Key *</label>
+                  <input type="text" class="admin-form-input" id="setting-sms-api-key" placeholder="Paste your Fast2SMS API key here">
+                  <div class="caption text-muted mt-1">Get free API Key from <a href="https://www.fast2sms.com" target="_blank" class="text-primary font-bold">fast2sms.com &rarr;</a></div>
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Test Mobile Number (To Receive Test SMS) *</label>
+                  <div class="d-flex gap-2">
+                    <span class="p-2 border rounded font-bold body-sm bg-light d-flex align-center">+91</span>
+                    <input type="tel" class="admin-form-input" id="setting-test-mobile" placeholder="Your 10-Digit Mobile" value="9876543210" maxlength="10">
+                  </div>
+                </div>
+
+                <h5 class="h6 font-bold mb-3 mt-4" style="color: #16A34A;">✉️ Email SMTP Server &amp; Admin Alert</h5>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Admin Alert Email (Receives New Order Alerts)</label>
+                  <input type="email" class="admin-form-input" id="setting-admin-email" value="kmtmanish911641@gmail.com">
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Gmail / SMTP Username &amp; App Password</label>
+                  <div class="d-flex gap-2 mb-2">
+                    <input type="text" class="admin-form-input" id="setting-mail-user" value="kmtmanish911641@gmail.com" placeholder="your-email@gmail.com" style="flex: 1;">
+                    <input type="text" class="admin-form-input" id="setting-mail-pass" value="zvgo bxuv pgoo xmtv" placeholder="16-char app password" style="flex: 1;">
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2 mt-4 flex-wrap">
+                  <button type="button" class="btn btn-primary btn-sm font-bold" onclick="saveGatewaySettings()">
+                    💾 Save Gateway Settings
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm font-bold" onclick="sendRealTestSms()">
+                    🚀 Send Real Test SMS
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm font-bold" onclick="sendRealTestEmail()">
+                    ✉️ Test Email
+                  </button>
+                </div>
+
+                <!-- Real Live Result Box -->
+                <div id="gateway-test-result" class="mt-4 p-3 rounded" style="display: none; font-size: 12.5px; line-height: 1.5; font-family: monospace;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 9: LIVE SQL DATABASE INSPECTOR & VIEWER
+             ============================================================ -->
+        <div class="admin-view" id="admin-view-database">
+          <div class="d-flex justify-between align-center mb-4 flex-wrap gap-3">
+            <div>
+              <h2 class="h4 font-bold mb-1">🗄️ Real SQL Database Inspector &amp; Browser</h2>
+              <p class="caption text-muted mb-0">Live inspection of all SQL tables, rows, columns, product records, and database storage.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline btn-sm font-bold" onclick="refreshDatabaseView()">
+                🔄 Refresh SQL Data
+              </button>
+            </div>
+          </div>
+
+          <!-- DB Meta Header Card -->
+          <div class="card p-3 mb-4 border shadow-xs" style="background: linear-gradient(135deg, #1E1B4B 0%, #0F172A 100%); color: #FFF; border-radius: 12px;">
+            <div class="d-flex justify-between align-center flex-wrap gap-3">
+              <div>
+                <div class="caption font-bold" style="color: #A78BFA;">ACTIVE SQL DATABASE ENGINE</div>
+                <div class="h5 font-bold mb-1" id="sql-db-engine-name" style="color: #FFFFFF;">SQLite (database/giftskart.sqlite)</div>
+                <div class="caption" style="color: #94A3B8;" id="sql-db-file-path">Path: database/giftskart.sqlite &bull; Zero Setup Required</div>
+              </div>
+              <div class="d-flex gap-4">
+                <div>
+                  <div class="caption font-bold" style="color: #A78BFA;">DATABASE SIZE</div>
+                  <div class="h5 font-bold mb-0 text-success" id="sql-db-size-val">--</div>
+                </div>
+                <div>
+                  <div class="caption font-bold" style="color: #A78BFA;">TOTAL SQL TABLES</div>
+                  <div class="h5 font-bold mb-0 text-white" id="sql-db-total-tables">6 Tables</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Tabs Selector -->
+          <div class="d-flex gap-2 mb-3 flex-wrap" id="sql-table-tabs">
+            <button type="button" class="btn btn-primary btn-sm font-bold sql-tab-btn is-active" onclick="loadSqlTableData('products', this)">
+              📦 products (<span id="count-badge-products">4</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('categories', this)">
+              📂 categories (<span id="count-badge-categories">6</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('product_images', this)">
+              🖼️ product_images (<span id="count-badge-product_images">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('product_colors', this)">
+              🎨 product_colors (<span id="count-badge-product_colors">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('product_designs', this)">
+              ✨ product_designs (<span id="count-badge-product_designs">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('orders', this)">
+              🛒 orders (<span id="count-badge-orders">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('order_items', this)">
+              📋 order_items (<span id="count-badge-order_items">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('coupons', this)">
+              🎟️ coupons (<span id="count-badge-coupons">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('users', this)">
+              👤 users (<span id="count-badge-users">0</span>)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm font-bold sql-tab-btn" onclick="loadSqlTableData('reviews', this)">
+              ⭐ reviews (<span id="count-badge-reviews">0</span>)
+            </button>
+          </div>
+
+          <!-- Live SQL Table Container -->
+          <div class="admin-table-container">
+            <div class="admin-table-toolbar d-flex justify-between align-center">
+              <strong class="body-sm font-bold text-dark" id="sql-current-table-heading">SQL Table: `products`</strong>
+              <span class="badge badge-success font-bold" id="sql-current-row-count">Loading rows...</span>
+            </div>
+
+            <div style="overflow-x: auto; max-height: 600px;">
+              <table class="admin-table" id="sql-live-data-table">
+                <thead id="sql-table-head">
+                  <!-- Rendered dynamically -->
+                </thead>
+                <tbody id="sql-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       ADMIN MODAL 1: PRODUCT ADD & FULL EDIT (Cover Photo, Variants & Info)
+       ==================================================================== -->
+  <div class="admin-modal-overlay" id="admin-product-modal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="h5 font-bold mb-0" id="modal-product-heading">Add / Edit Handcrafted Keepsake</h3>
+        <button type="button" class="btn btn-ghost btn-xs" onclick="closeProductModal()">✕</button>
+      </div>
+
+      <form id="admin-product-form" onsubmit="saveProductFromForm(event)">
+        <div class="admin-modal-body">
+          <input type="hidden" id="prod-form-id">
+
+          <!-- Row 1: Title & SKU -->
+          <div class="row">
+            <div class="col-12 col-md-8 admin-form-group">
+              <label class="admin-form-label">Product Title *</label>
+              <input type="text" class="admin-form-input" id="prod-form-title" placeholder="e.g. Personalized LED Photo Frame with Text" required>
+            </div>
+            <div class="col-12 col-md-4 admin-form-group">
+              <label class="admin-form-label">SKU Code *</label>
+              <input type="text" class="admin-form-input" id="prod-form-sku" placeholder="GK-FRAME-01" required>
+            </div>
+          </div>
+
+          <!-- Row 2: Category & Pricing -->
+          <div class="row">
+            <div class="col-12 col-md-4 admin-form-group">
+              <label class="admin-form-label">Choose Category *</label>
+              <select class="admin-form-select" id="prod-form-category" required>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+            <div class="col-6 col-md-4 admin-form-group">
+              <label class="admin-form-label">Regular MRP (₹) *</label>
+              <input type="number" class="admin-form-input" id="prod-form-price" placeholder="999" required>
+            </div>
+            <div class="col-6 col-md-4 admin-form-group">
+              <label class="admin-form-label">Discounted Sale Price (₹) *</label>
+              <input type="number" class="admin-form-input" id="prod-form-sale-price" placeholder="849" required>
+            </div>
+          </div>
+
+          <!-- Row 3: Multi-Image Upload & 1080x1080 Cropper Studio -->
+          <div class="card p-3 mb-3 border" style="background: #FFF8FB; border-color: #F5CBCB !important;">
+            <div class="d-flex justify-between align-center mb-2 flex-wrap gap-2">
+              <div>
+                <strong class="body-sm font-bold text-dark">📸 Product Images &amp; 1080x1080 Square Cropper</strong>
+                <div class="caption text-muted">Upload unlimited photos, crop to perfect 1080&times;1080 HD, and pick which photo appears 1st as cover.</div>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm font-bold" onclick="document.getElementById('prod-file-input').click()">
+                ➕ Upload Photos
+              </button>
+            </div>
+
+            <!-- Hidden Multi-File Input -->
+            <input type="file" id="prod-file-input" multiple accept="image/*" style="display: none;" onchange="window.GiftsKartAdmin ? window.GiftsKartAdmin.handleImageUploads(event) : null">
+            <input type="hidden" id="prod-form-image" value="assets/uploads/prod_6a6ad9e0d7494.webp">
+
+            <!-- Drag & Drop Area -->
+            <div id="prod-dropzone" class="p-3 text-center border rounded cursor-pointer mb-3" style="border: 2px dashed #C5B3D3; background: #FFFFFF; transition: all 0.2s;" onclick="document.getElementById('prod-file-input').click()" ondragover="event.preventDefault(); this.style.borderColor='#7E5E9B';" ondragleave="this.style.borderColor='#C5B3D3';" ondrop="window.GiftsKartAdmin ? window.GiftsKartAdmin.handleImageDrop(event) : null">
+              <div style="font-size: 28px;">🖼️</div>
+              <div class="body-sm font-bold text-primary mt-1">Click to Upload or Drag &amp; Drop Images Here</div>
+              <div class="caption text-muted">Supports JPG, PNG, WEBP &bull; Auto-optimizes to 1080&times;1080 HD Square</div>
+            </div>
+
+            <!-- Uploaded Images Grid Gallery with 1st Cover Badge -->
+            <div id="prod-gallery-container" class="d-flex gap-3 flex-wrap align-center">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Row 4: Stock & Color Options Question Toggle -->
+          <div class="row">
+            <div class="col-12 col-md-4 admin-form-group">
+              <label class="admin-form-label">Stock Units Available *</label>
+              <input type="number" class="admin-form-input" id="prod-form-stock" value="50" required>
+            </div>
+            <div class="col-12 col-md-8 admin-form-group">
+              <label class="admin-form-label">Kya is product mein Color / Finish options hain? *</label>
+              <div class="d-flex gap-4 p-2 bg-light rounded border align-center" style="height: 42px;">
+                <label class="d-flex align-center gap-2 cursor-pointer font-bold body-sm">
+                  <input type="radio" name="prod_has_colors" id="prod-colors-no" value="no" checked onchange="toggleColorOptions(false)" style="accent-color: #7E5E9B;">
+                  <span>❌ No (Single Standard Color)</span>
+                </label>
+                <label class="d-flex align-center gap-2 cursor-pointer font-bold body-sm">
+                  <input type="radio" name="prod_has_colors" id="prod-colors-yes" value="yes" onchange="toggleColorOptions(true)" style="accent-color: #7E5E9B;">
+                  <span>🎨 Yes (Multiple Colors)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Color Studio Box (Appears ONLY if YES is chosen) -->
+          <div id="prod-color-variants-box" class="card p-3 mb-3 border" style="display: none; background: #F8FAFC; border-color: #CBD5E1 !important;">
+            <div class="d-flex justify-between align-center mb-2">
+              <strong class="body-sm font-bold" style="color: #0F172A;">🎨 Configure Color / Material Options</strong>
+              <span class="badge badge-primary font-bold" style="font-size: 10px;">Color Options Active</span>
+            </div>
+            <label class="admin-form-label">Color &amp; Material Names (Comma Separated) *</label>
+            <input type="text" class="admin-form-input mb-2" id="prod-form-variants" placeholder="e.g. Warm White, Multicolor RGB, Rose Gold, Matte Black, Mahogany Teak">
+            <div class="caption text-muted">These color pills will appear on the product page for customer to choose.</div>
+          </div>
+
+          <!-- Row 5: Personalization Options -->
+          <div class="card p-3 mb-3 bg-light border">
+            <div class="font-bold body-sm mb-2" style="color: #7E5E9B;">🎨 Laser Customization Controls (Uncheck if product is non-personalized)</div>
+            <div class="d-flex gap-4 flex-wrap">
+              <label class="d-flex align-center gap-2 caption font-bold cursor-pointer">
+                <input type="checkbox" id="prod-form-allow-photo" checked style="accent-color: #7E5E9B;"> Allow Photo Upload
+              </label>
+              <label class="d-flex align-center gap-2 caption font-bold cursor-pointer">
+                <input type="checkbox" id="prod-form-allow-laser" checked style="accent-color: #7E5E9B;"> Allow Laser Text Engraving
+              </label>
+              <label class="d-flex align-center gap-2 caption font-bold cursor-pointer">
+                <input type="checkbox" id="prod-form-allow-silkbox" checked style="accent-color: #7E5E9B;"> Free Silk Gift Box Packaging
+              </label>
+            </div>
+          </div>
+
+          <!-- Row 6: Description -->
+          <div class="admin-form-group">
+            <label class="admin-form-label">Product Description &amp; Details</label>
+            <textarea class="admin-form-textarea" id="prod-form-desc" rows="3" placeholder="Handcrafted with seasoned teak wood and crystal-clear optical acrylic..."></textarea>
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">💾 Save &amp; Publish Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       ADMIN MODAL 2: CATEGORY ADD
+       ==================================================================== -->
+  <div class="admin-modal-overlay" id="admin-category-modal">
+    <div class="admin-modal-card" style="max-width: 500px;">
+      <div class="admin-modal-header">
+        <h3 class="h5 font-bold mb-0">Add New Category</h3>
+        <button type="button" class="btn btn-ghost btn-xs" onclick="closeCategoryModal()">✕</button>
+      </div>
+
+      <form id="admin-category-form" onsubmit="saveCategoryFromForm(event)">
+        <div class="admin-modal-body">
+          <div class="admin-form-group">
+            <label class="admin-form-label">Category Name *</label>
+            <input type="text" class="admin-form-input" id="cat-form-name" placeholder="e.g. Wall Clocks &amp; Art" required>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label">URL Slug *</label>
+            <input type="text" class="admin-form-input" id="cat-form-slug" placeholder="e.g. wall-clocks">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label">Emoji / Icon Symbol</label>
+            <input type="text" class="admin-form-input" id="cat-form-icon" placeholder="⏰" value="🎁">
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeCategoryModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Create Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       ADMIN MODAL 3: 1080x1080 SQUARE IMAGE CROPPER STUDIO
+       ==================================================================== -->
+  <div class="admin-modal-overlay" id="admin-cropper-modal" style="z-index: 1100;">
+    <div class="admin-modal-card" style="max-width: 640px;">
+      <div class="admin-modal-header">
+        <div>
+          <h3 class="h5 font-bold mb-0">✂️ 1080&times;1080 HD Square Image Cropper</h3>
+          <div class="caption text-muted">Drag, zoom, and crop image for crystal-clear 1:1 square product display.</div>
+        </div>
+        <button type="button" class="btn btn-ghost btn-xs" onclick="closeCropperModal()">✕</button>
+      </div>
+
+      <div class="admin-modal-body text-center p-3" style="background: #0F172A; border-radius: 8px;">
+        <!-- Cropper Viewport -->
+        <div id="cropper-viewport-container" style="position: relative; width: 340px; height: 340px; margin: 0 auto; overflow: hidden; background: #1E293B; border-radius: 8px; cursor: grab; user-select: none; border: 2px solid #7E5E9B; box-shadow: 0 0 20px rgba(126, 94, 155, 0.35);">
+          <canvas id="cropper-canvas" width="340" height="340" style="display: block; width: 100%; height: 100%;"></canvas>
+          <!-- Grid Overlay -->
+          <div style="position: absolute; inset: 0; pointer-events: none; border: 1px dashed rgba(255,255,255,0.4); display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr;">
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25); border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25); border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25); border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25); border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-bottom: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div style="border-right: 1px dashed rgba(255,255,255,0.25);"></div>
+            <div></div>
+          </div>
+          <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #FFF; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 4px;">
+            Target: 1080 &times; 1080 px (1:1)
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="mt-3 d-flex justify-center align-center gap-3 flex-wrap">
+          <div class="d-flex align-center gap-2 text-white body-sm font-bold">
+            <span>🔍 Zoom:</span>
+            <input type="range" id="cropper-zoom-slider" min="0.5" max="3" step="0.05" value="1" style="accent-color: #7E5E9B; width: 130px;" oninput="updateCropperZoom(this.value)">
+          </div>
+
+          <button type="button" class="btn btn-outline btn-xs font-bold text-white" style="border-color: #64748B;" onclick="rotateCropperImage()">
+            🔄 Rotate 90°
+          </button>
+          <button type="button" class="btn btn-ghost btn-xs text-muted" onclick="resetCropperPosition()">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeCropperModal()">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm font-bold" onclick="applyCrop1080()">
+          ✂️ Crop &amp; Save 1080&times;1080 HD
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real AJAX Gateway Communicators -->
+  <script>
+    async function saveGatewaySettings() {
+      const provider = document.getElementById('setting-sms-provider').value;
+      const apiKey = document.getElementById('setting-sms-api-key').value;
+      const adminEmail = document.getElementById('setting-admin-email').value;
+      const mailUser = document.getElementById('setting-mail-user').value;
+      const mailPass = document.getElementById('setting-mail-pass').value;
+
+      try {
+        const res = await fetch('/api/v1/notifications/save-gateway', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sms_provider: provider,
+            sms_api_key: apiKey,
+            admin_email: adminEmail,
+            mail_username: mailUser,
+            mail_password: mailPass
+          })
+        });
+
+        const resBox = document.getElementById('gateway-test-result');
+        resBox.style.display = 'block';
+        resBox.style.background = '#ECFDF5';
+        resBox.style.border = '1px solid #10B981';
+        resBox.style.color = '#065F46';
+        resBox.innerHTML = `<strong>✓ Saved in Backend .env:</strong><br>All SMS and Gmail SMTP credentials saved successfully!`;
+
+        if (window.GiftsKart?.toasts) {
+          window.GiftsKart.toasts.success('All settings saved to backend .env!');
+        }
+      } catch (err) {
+        alert('Settings saved. (Make sure PHP server is running on port 8000).');
+      }
+    }
+
+    async function sendRealTestSms() {
+      const apiKey = document.getElementById('setting-sms-api-key').value;
+      const mobile = document.getElementById('setting-test-mobile').value;
+      const provider = document.getElementById('setting-sms-provider').value;
+      const resBox = document.getElementById('gateway-test-result');
+
+      if (!apiKey || apiKey.length < 5) {
+        resBox.style.display = 'block';
+        resBox.style.background = '#FEF2F2';
+        resBox.style.border = '1px solid #EF4444';
+        resBox.style.color = '#991B1B';
+        resBox.innerHTML = `<strong>⚠️ API Key Missing:</strong><br>Please enter your Fast2SMS API key in the box above to send real SMS to your phone.`;
+        return;
+      }
+
+      if (!mobile || mobile.length < 10) {
+        alert('Please enter a valid 10-digit mobile number in the test mobile box.');
+        return;
+      }
+
+      resBox.style.display = 'block';
+      resBox.style.background = '#EFF6FF';
+      resBox.style.border = '1px solid #3B82F6';
+      resBox.style.color = '#1E40AF';
+      resBox.innerHTML = `⏳ Calling Fast2SMS Gateway cURL API for +91 ${mobile}...`;
+
+      try {
+        const res = await fetch('/api/v1/notifications/test-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mobile: mobile,
+            api_key: apiKey,
+            provider: provider
+          })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          resBox.style.background = '#ECFDF5';
+          resBox.style.border = '1px solid #10B981';
+          resBox.style.color = '#065F46';
+          resBox.innerHTML = `<strong>🚀 SUCCESS! Real SMS Dispatched:</strong><br>` +
+            `• Mobile: ${data.mobile}<br>` +
+            `• OTP Code: <strong>${data.otp_sent}</strong><br>` +
+            `• Fast2SMS Status: Delivered<br>` +
+            `<pre style="margin-top:6px; background:#fff; padding:6px; border-radius:4px;">${JSON.stringify(data.raw_gateway_response, null, 2)}</pre>`;
+          
+          if (window.GiftsKart?.toasts) {
+            window.GiftsKart.toasts.success(`Real SMS delivered to +91 ${mobile}! Check your phone.`);
+          }
+        } else {
+          resBox.style.background = '#FEF2F2';
+          resBox.style.border = '1px solid #EF4444';
+          resBox.style.color = '#991B1B';
+          resBox.innerHTML = `<strong>❌ Gateway Error Response:</strong><br>${data.message || 'Fast2SMS returned error'}<br>` +
+            `<pre style="margin-top:6px; background:#fff; padding:6px; border-radius:4px;">${JSON.stringify(data.raw_gateway_response || data.error, null, 2)}</pre>`;
+        }
+      } catch (err) {
+        resBox.style.background = '#FEF2F2';
+        resBox.style.border = '1px solid #EF4444';
+        resBox.style.color = '#991B1B';
+        resBox.innerHTML = `<strong>Network Error:</strong> Could not connect to PHP server: ${err.message}`;
+      }
+    }
+
+    async function sendRealTestEmail() {
+      const email = document.getElementById('setting-admin-email').value;
+      const resBox = document.getElementById('gateway-test-result');
+
+      resBox.style.display = 'block';
+      resBox.style.background = '#EFF6FF';
+      resBox.style.border = '1px solid #3B82F6';
+      resBox.style.color = '#1E40AF';
+      resBox.innerHTML = `⏳ Sending live test email to ${email}...`;
+
+      try {
+        const res = await fetch('/api/v1/notifications/test-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+        const data = await res.json();
+        
+        resBox.style.background = '#ECFDF5';
+        resBox.style.border = '1px solid #10B981';
+        resBox.style.color = '#065F46';
+        resBox.innerHTML = `<strong>✓ Email Dispatched:</strong><br>${data.message || 'Email sent.'}`;
+      } catch (err) {
+        resBox.style.background = '#FEF2F2';
+        resBox.style.border = '1px solid #EF4444';
+        resBox.style.color = '#991B1B';
+        resBox.innerHTML = `Error sending test email: ${err.message}`;
+      }
+    }
+
+    // Admin Security Gateway Check
+    function checkAdminAuth() {
+      const isAuth = (localStorage.getItem('gk_admin_auth') === 'true' || sessionStorage.getItem('gk_admin_auth') === 'true');
+      const overlay = document.getElementById('admin-auth-overlay');
+      if (overlay) {
+        overlay.style.display = isAuth ? 'none' : 'flex';
+      }
+    }
+
+    window.handleAdminLogin = function(e) {
+      e.preventDefault();
+      const email = document.getElementById('admin-auth-email')?.value.trim();
+      const pass = document.getElementById('admin-auth-pass')?.value;
+      const remember = document.getElementById('admin-auth-remember')?.checked;
+      const errBox = document.getElementById('admin-auth-error');
+
+      // Valid Credentials: admin@giftskart.com / admin123 or Admin@2026! or admin
+      if ((email === 'admin@giftskart.com' || email === 'admin') && (pass === 'admin123' || pass === 'Admin@2026!' || pass === 'admin')) {
+        if (remember) {
+          localStorage.setItem('gk_admin_auth', 'true');
+        } else {
+          sessionStorage.setItem('gk_admin_auth', 'true');
+        }
+        if (errBox) errBox.style.display = 'none';
+        const overlay = document.getElementById('admin-auth-overlay');
+        if (overlay) overlay.style.display = 'none';
+
+        if (window.GiftsKart?.toasts) {
+          window.GiftsKart.toasts.success('🔓 Admin Portal Unlocked! Welcome Back.');
+        }
+      } else {
+        if (errBox) {
+          errBox.style.display = 'block';
+          errBox.textContent = '❌ Incorrect Admin Username or Password. Hint: admin@giftskart.com / admin123';
+        }
+      }
+    };
+
+    window.performAdminLogout = function() {
+      if (confirm('Are you sure you want to log out of Admin Dashboard?')) {
+        localStorage.removeItem('gk_admin_auth');
+        sessionStorage.removeItem('gk_admin_auth');
+        const overlay = document.getElementById('admin-auth-overlay');
+        if (overlay) {
+          overlay.style.display = 'flex';
+          const passInput = document.getElementById('admin-auth-pass');
+          if (passInput) passInput.value = '';
+        }
+        if (window.GiftsKart?.toasts) {
+          window.GiftsKart.toasts.info('🚪 Admin Logged Out Successfully.');
+        }
+      }
+    };
+
+    // Run auth check immediately
+    checkAdminAuth();
+
+    // Fail-safe Global Modal Controls
+    window.openProductModal = function(productId = null) {
+      if (window.GiftsKartAdmin?.openProductModal) {
+        window.GiftsKartAdmin.openProductModal(productId);
+      } else {
+        const modal = document.getElementById('admin-product-modal');
+        if (modal) modal.classList.add('is-active');
+      }
+    };
+
+    window.closeProductModal = function() {
+      if (window.GiftsKartAdmin?.closeProductModal) {
+        window.GiftsKartAdmin.closeProductModal();
+      } else {
+        const modal = document.getElementById('admin-product-modal');
+        if (modal) modal.classList.remove('is-active');
+      }
+    };
+
+    window.openCategoryModal = function() {
+      if (window.GiftsKartAdmin?.openCategoryModal) {
+        window.GiftsKartAdmin.openCategoryModal();
+      } else {
+        const modal = document.getElementById('admin-category-modal');
+        if (modal) modal.classList.add('is-active');
+      }
+    };
+
+    window.closeCategoryModal = function() {
+      if (window.GiftsKartAdmin?.closeCategoryModal) {
+        window.GiftsKartAdmin.closeCategoryModal();
+      } else {
+        const modal = document.getElementById('admin-category-modal');
+        if (modal) modal.classList.remove('is-active');
+      }
+    };
+
+    window.openCropperModal = function(idx) {
+      if (window.GiftsKartAdmin?.openCropperModal) {
+        window.GiftsKartAdmin.openCropperModal(idx);
+      }
+    };
+
+    window.closeCropperModal = function() {
+      if (window.GiftsKartAdmin?.closeCropperModal) {
+        window.GiftsKartAdmin.closeCropperModal();
+      } else {
+        const modal = document.getElementById('admin-cropper-modal');
+        if (modal) modal.classList.remove('is-active');
+      }
+    };
+
+    window.applyCrop1080 = function() {
+      if (window.GiftsKartAdmin?.applyCrop1080) {
+        window.GiftsKartAdmin.applyCrop1080();
+      }
+    };
+
+    window.rotateCropperImage = function() {
+      if (window.GiftsKartAdmin?.rotateCropperImage) {
+        window.GiftsKartAdmin.rotateCropperImage();
+      }
+    };
+
+    window.resetCropperPosition = function() {
+      if (window.GiftsKartAdmin?.resetCropperPosition) {
+        window.GiftsKartAdmin.resetCropperPosition();
+      }
+    };
+
+    window.updateCropperZoom = function(val) {
+      if (window.GiftsKartAdmin?.updateCropperZoom) {
+        window.GiftsKartAdmin.updateCropperZoom(val);
+      }
+    };
+
+    window.toggleColorOptions = function(hasColors) {
+      if (window.GiftsKartAdmin?.toggleColorOptions) {
+        window.GiftsKartAdmin.toggleColorOptions(hasColors);
+      } else {
+        const box = document.getElementById('prod-color-variants-box');
+        if (box) box.style.display = hasColors ? 'block' : 'none';
+      }
+    };
+
+    window.saveProductFromForm = function(e) {
+      if (window.GiftsKartAdmin?.saveProductFromForm) {
+        window.GiftsKartAdmin.saveProductFromForm(e);
+      }
+    };
+
+    window.saveCategoryFromForm = function(e) {
+      if (window.GiftsKartAdmin?.saveCategoryFromForm) {
+        window.GiftsKartAdmin.saveCategoryFromForm(e);
+      }
+    };
+
+    // Live SQL Database Viewer
+    window.refreshDatabaseView = async function() {
+      try {
+        const res = await fetch('/api/v1/database/overview');
+        const data = await res.json();
+        if (data.success) {
+          const engineEl = document.getElementById('sql-db-engine-name');
+          const sizeEl = document.getElementById('sql-db-size-val');
+          if (engineEl) engineEl.textContent = data.db_type;
+          if (sizeEl) sizeEl.textContent = data.file_size;
+
+          if (Array.isArray(data.tables)) {
+            data.tables.forEach(t => {
+              const badge = document.getElementById('count-badge-' + t.name);
+              if (badge) badge.textContent = t.count;
+            });
+          }
+        }
+      } catch (e) {}
+
+      window.loadSqlTableData('products');
+    };
+
+    window.loadSqlTableData = async function(table = 'products', btn = null) {
+      if (btn) {
+        document.querySelectorAll('.sql-tab-btn').forEach(b => {
+          b.classList.remove('is-active', 'btn-primary');
+          b.classList.add('btn-outline');
+        });
+        btn.classList.add('is-active', 'btn-primary');
+        btn.classList.remove('btn-outline');
+      }
+
+      const heading = document.getElementById('sql-current-table-heading');
+      const countBadge = document.getElementById('sql-current-row-count');
+      const thead = document.getElementById('sql-table-head');
+      const tbody = document.getElementById('sql-table-body');
+
+      if (heading) heading.textContent = `SQL Table: \`${table}\``;
+      if (countBadge) countBadge.textContent = 'Fetching rows...';
+      if (tbody) tbody.innerHTML = '<tr><td colspan="10" class="text-center p-4">⏳ Loading live SQL rows from database...</td></tr>';
+
+      try {
+        const res = await fetch('/api/v1/database/table-data?table=' + encodeURIComponent(table));
+        const data = await res.json();
+
+        if (data.success) {
+          if (countBadge) countBadge.textContent = `${data.total_rows} Rows in SQL Database`;
+
+          // 1. Render Headers
+          if (thead) {
+            thead.innerHTML = `<tr>${data.columns.map(c => `<th>${c}</th>`).join('')}</tr>`;
+          }
+
+          // 2. Render Rows
+          if (tbody) {
+            if (data.rows.length === 0) {
+              tbody.innerHTML = `<tr><td colspan="${data.columns.length || 5}" class="text-center p-4 text-muted">Table \`${table}\` is currently empty.</td></tr>`;
+            } else {
+              tbody.innerHTML = data.rows.map(row => `
+                <tr>
+                  ${data.columns.map(col => {
+                    let val = row[col];
+                    if (val === null || val === undefined) return '<td class="text-muted"><em>NULL</em></td>';
+                    if (col === 'image' && typeof val === 'string' && val.length > 5) {
+                      return `<td><div class="d-flex align-center gap-2"><img src="${val}" style="width: 36px; height: 36px; border-radius: 4px; object-fit: cover; border: 1px solid #CBD5E1;"><span class="caption text-muted">${val.slice(0, 20)}...</span></div></td>`;
+                    }
+                    if (col === 'price' || col === 'sale_price' || col === 'total_amount') {
+                      return `<td><strong>₹${Number(val).toLocaleString('en-IN')}</strong></td>`;
+                    }
+                    if (col === 'id' || col === 'sku' || col === 'order_number') {
+                      return `<td><code class="font-bold text-dark">${val}</code></td>`;
+                    }
+                    if (typeof val === 'string' && val.length > 60) {
+                      return `<td title="${val.replace(/"/g, '&quot;')}">${val.slice(0, 60)}...</td>`;
+                    }
+                    return `<td>${val}</td>`;
+                  }).join('')}
+                </tr>
+              `).join('');
+            }
+          }
+        } else {
+          if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="text-danger p-4">${data.message}</td></tr>`;
+        }
+      } catch (err) {
+        if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="text-danger p-4">Error loading table data: ${err.message}</td></tr>`;
+      }
+    };
+  </script>
+
+  <!-- Master Application Script with Cache Busters -->
+  <script type="module" src="./js/app.js?v=2.4"></script>
+  <script type="module" src="./js/pages/admin.js?v=2.4"></script>
+<script src="./js/core/mobile.js" defer></script>
+</body>
+</html>

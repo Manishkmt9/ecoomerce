@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Flagship Luxury UI Animations Showcase — GiftsKart</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #FAF7F5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1E293B;
+      margin: 0;
+      padding: 0;
+    }
+    .showcase-header {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: #FFFFFF;
+      padding: 36px 20px;
+      text-align: center;
+      border-bottom: 2px solid #F5CBCB;
+    }
+    .anim-card {
+      background: #FFFFFF;
+      border: 1.5px solid #F5CBCB;
+      border-radius: 24px;
+      box-shadow: 0 12px 36px rgba(126, 94, 155, 0.12);
+      padding: 28px;
+      margin-bottom: 32px;
+      transition: all 0.3s ease;
+    }
+    .anim-card:hover {
+      box-shadow: 0 18px 48px rgba(126, 94, 155, 0.2);
+    }
+    .anim-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: #FBEFEF;
+      color: #7E5E9B;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Showcase Banner -->
+  <header class="showcase-header">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <a href="index.html" class="btn btn-outline btn-sm mb-3" style="color: #F5CBCB; border-color: #F5CBCB; border-radius: 20px;">&larr; Back to GiftsKart Store</a>
+      <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 8px 0; font-family: 'Playfair Display', serif;">
+        ✨ 5 Flagship UI Animations Live Playground
+      </h1>
+      <p style="font-size: 14px; color: #CBD5E1; margin: 0;">
+        Interactive test studio for all 5 custom animations built for GiftsKart in our luxury Plum &amp; Blush palette.
+      </p>
+    </div>
+  </header>
+
+  <main style="max-width: 1040px; margin: 40px auto; padding: 0 20px;">
+
+    <!-- ============================================================
+         1. DELIVERY VAN ORDER CONFIRM ANIMATION
+         ============================================================ -->
+    <div class="anim-card">
+      <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+        <div>
+          <span class="anim-tag">ANIMATION #1</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0;">
+            🚚 Order Confirm Delivery Van Animation
+          </h2>
+          <p class="caption text-muted mb-0">Delivery van drives up, rear shutter lifts, keepsake parcel hops in, and van zooms off.</p>
+        </div>
+        <button type="button" class="btn btn-primary font-bold" onclick="testDeliveryVanAnimation()" style="border-radius: 12px; padding: 10px 22px;">
+          ▶️ Play Van Animation
+        </button>
+      </div>
+
+      <!-- In-page Live Preview Box -->
+      <div style="background: #1E293B; border-radius: 20px; padding: 24px; text-align: center; border: 1.5px solid #F5CBCB;">
+        <div style="color: #F5CBCB; font-size: 12px; font-weight: 700; margin-bottom: 4px;">GiftsKart Priority Air Express</div>
+        <h4 style="color: #FFFFFF; font-size: 16px; margin: 0 0 8px 0;" id="demo-van-status-text">Click "Play Van Animation" to test the live sequence</h4>
+        
+        <div class="van-road-track" style="margin: 12px auto; max-width: 400px;">
+          <div class="van-road-line"></div>
+          
+          <!-- Hopping Parcel -->
+          <div class="van-parcel-box" id="demo-anim-parcel">
+            🎁
+          </div>
+
+          <!-- GiftsKart Van SVG -->
+          <svg class="van-truck-svg" id="demo-anim-truck" viewBox="0 0 110 60">
+            <g>
+              <polygon points="98,34 110,25 110,48 98,42" fill="rgba(254, 240, 138, 0.45)"/>
+              <rect x="10" y="12" width="60" height="34" rx="4" fill="#7E5E9B" stroke="#F5CBCB" stroke-width="1.5"/>
+              <text x="18" y="32" fill="#FFFFFF" font-size="7" font-weight="900" letter-spacing="0.5">GIFTSKART</text>
+              <text x="24" y="39" fill="#FFE2E2" font-size="4.5" font-weight="700">EXPRESS</text>
+
+              <!-- Rear Roller Shutter -->
+              <g id="demo-anim-shutter" style="transition: transform 0.3s ease;">
+                <rect x="11" y="14" width="12" height="28" fill="#1E293B" rx="2"/>
+                <line x1="11" y1="19" x2="23" y2="19" stroke="#64748B" stroke-width="1"/>
+                <line x1="11" y1="24" x2="23" y2="24" stroke="#64748B" stroke-width="1"/>
+                <line x1="11" y1="29" x2="23" y2="29" stroke="#64748B" stroke-width="1"/>
+                <line x1="11" y1="34" x2="23" y2="34" stroke="#64748B" stroke-width="1"/>
+                <line x1="11" y1="39" x2="23" y2="39" stroke="#64748B" stroke-width="1"/>
+              </g>
+
+              <!-- Cabin -->
+              <path d="M70,22 L84,22 L96,34 L96,46 L70,46 Z" fill="#9333EA" stroke="#F5CBCB" stroke-width="1.5"/>
+              <path d="M73,25 L83,25 L92,34 L73,34 Z" fill="#93C5FD" opacity="0.85"/>
+              <circle cx="28" cy="47" r="7" fill="#0F172A" stroke="#CBD5E1" stroke-width="2"/>
+              <circle cx="28" cy="47" r="3" fill="#94A3B8"/>
+              <circle cx="82" cy="47" r="7" fill="#0F172A" stroke="#CBD5E1" stroke-width="2"/>
+              <circle cx="82" cy="47" r="3" fill="#94A3B8"/>
+              <circle cx="96" cy="38" r="2.5" fill="#FEF08A"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         2. 3D INTERACTIVE FLIPPING CREDIT CARD
+         ============================================================ -->
+    <div class="anim-card">
+      <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+        <div>
+          <span class="anim-tag">ANIMATION #2</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0;">
+            💳 3D Interactive Flipping Credit Card
+          </h2>
+          <p class="caption text-muted mb-0">Type card details to see live update. Focusing on CVV or clicking "Flip Card" smoothly rotates it 180°!</p>
+        </div>
+        <button type="button" class="btn btn-outline font-bold" onclick="toggleCardFlip()" style="border-radius: 12px; padding: 10px 22px;">
+          🔄 Flip Card (180°)
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; align-items: center;">
+        
+        <!-- 3D Card Object -->
+        <div class="card-3d-scene" style="max-width: 360px; margin: 0 auto;">
+          <div class="card-3d-object" id="demo-card-3d">
+            
+            <!-- Front Face -->
+            <div style="position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(135deg, #7E5E9B 0%, #A888B5 60%, #C5B3D3 100%); color: #FFFFFF; padding: 20px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid rgba(255,255,255,0.4); box-shadow: 0 16px 36px rgba(126, 94, 155, 0.35); overflow: hidden;">
+              <div style="position: absolute; right: -25px; top: -25px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%); pointer-events: none;"></div>
+              
+              <div class="d-flex justify-between align-center">
+                <div style="width: 40px; height: 28px; background: linear-gradient(135deg, #FFE2E2, #F5CBCB); border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: #7E5E9B; letter-spacing: 0.5px;">CHIP</div>
+                <div style="font-size: 13.5px; font-weight: 800; letter-spacing: 1px;">GIFTS<span style="color: #FFE2E2;">KART</span></div>
+              </div>
+
+              <div style="font-size: 18px; font-weight: 800; letter-spacing: 3px; font-family: monospace; text-shadow: 0 2px 4px rgba(0,0,0,0.3);" id="demo-disp-card-number">
+                4532 8921 4481 9012
+              </div>
+
+              <div class="d-flex justify-between align-center">
+                <div>
+                  <div style="font-size: 8px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Cardholder</div>
+                  <div style="font-size: 12.5px; font-weight: 700; text-transform: uppercase;" id="demo-disp-card-name">SOPHIA SHARMA</div>
+                </div>
+                <div>
+                  <div style="font-size: 8px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Expires</div>
+                  <div style="font-size: 12.5px; font-weight: 700;" id="demo-disp-card-expiry">08/29</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Back Face (CVV) -->
+            <div style="position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(135deg, #4A3560 0%, #7E5E9B 100%); color: #FFFFFF; padding: 18px 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid rgba(255,255,255,0.4); box-shadow: 0 16px 36px rgba(126, 94, 155, 0.35);">
+              <div style="height: 38px; background: #0F172A; width: 100%; margin-top: 2px;"></div>
+              <div style="padding: 0 20px;">
+                <div style="font-size: 9px; opacity: 0.85; margin-bottom: 3px;">SECURITY CODE (CVV)</div>
+                <div style="background: #FFFFFF; color: #1E293B; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-family: monospace; font-weight: 900; font-size: 14px; letter-spacing: 2px;" id="demo-disp-card-cvv">
+                  842
+                </div>
+              </div>
+              <div style="padding: 0 20px; font-size: 8.5px; opacity: 0.75; text-align: center;">
+                🔒 256-bit bank-grade SSL security for GiftsKart Keepsakes.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Live Inputs -->
+        <div>
+          <label class="caption font-bold text-dark mb-1 d-block">Test Live Card Input Sync</label>
+          <input type="text" class="fk-input mb-2" placeholder="Card Number" value="4532 8921 4481 9012" oninput="document.getElementById('demo-disp-card-number').textContent = this.value || '•••• •••• •••• ••••'">
+          <input type="text" class="fk-input mb-2" placeholder="Cardholder Name" value="Sophia Sharma" oninput="document.getElementById('demo-disp-card-name').textContent = (this.value || 'NAME ON CARD').toUpperCase()">
+          <div class="d-flex gap-2">
+            <input type="text" class="fk-input" placeholder="MM/YY" value="08/29" style="max-width: 120px;" oninput="document.getElementById('demo-disp-card-expiry').textContent = this.value || 'MM/YY'">
+            <input type="password" class="fk-input" placeholder="CVV (Focus to Flip)" value="842" style="max-width: 140px;" onfocus="document.getElementById('demo-card-3d').classList.add('is-flipped')" onblur="document.getElementById('demo-card-3d').classList.remove('is-flipped')" oninput="document.getElementById('demo-disp-card-cvv').textContent = this.value || '•••'">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================================
+         3. ORBITAL RING 4-DIGIT OTP VERIFICATION
+         ============================================================ -->
+    <div class="anim-card">
+      <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+        <div>
+          <span class="anim-tag">ANIMATION #3</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0;">
+            🔢 Orbital Ring 4-Digit OTP Verification
+          </h2>
+          <p class="caption text-muted mb-0">Circular rotating orbital ring with 4 orbiting number nodes that pulse and emit emerald success glow.</p>
+        </div>
+        <button type="button" class="btn btn-outline font-bold" onclick="testOtpFill()" style="border-radius: 12px; padding: 10px 22px;">
+          ✨ Auto-Fill OTP (9999)
+        </button>
+      </div>
+
+      <div style="text-align: center; max-width: 320px; margin: 0 auto;">
+        
+        <!-- Orbital Ring Stage -->
+        <div class="otp-orbit-container" style="margin: 16px auto;">
+          <div class="otp-orbit-ring"></div>
+          <div class="otp-orbit-node otp-node-top" id="demo-orbit-0">•</div>
+          <div class="otp-orbit-node otp-node-right" id="demo-orbit-1">•</div>
+          <div class="otp-orbit-node otp-node-bottom" id="demo-orbit-2">•</div>
+          <div class="otp-orbit-node otp-node-left" id="demo-orbit-3">•</div>
+          <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #FBEFEF 0%, #FFE2E2 100%); border: 1.5px solid #7E5E9B; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(126, 94, 155, 0.2);" id="demo-orbit-center">
+            🔐
+          </div>
+        </div>
+
+        <!-- 4 Digit Inputs -->
+        <div class="d-flex justify-center gap-2 mb-3" style="justify-content: center;">
+          <input type="text" class="demo-otp-box" data-idx="0" maxlength="1" style="width: 48px; height: 52px; text-align: center; font-size: 22px; font-weight: 800; border: 1.5px solid #7E5E9B; border-radius: 12px; background: #FFF8FA; color: #7E5E9B; outline: none;" value="">
+          <input type="text" class="demo-otp-box" data-idx="1" maxlength="1" style="width: 48px; height: 52px; text-align: center; font-size: 22px; font-weight: 800; border: 1.5px solid #7E5E9B; border-radius: 12px; background: #FFF8FA; color: #7E5E9B; outline: none;" value="">
+          <input type="text" class="demo-otp-box" data-idx="2" maxlength="1" style="width: 48px; height: 52px; text-align: center; font-size: 22px; font-weight: 800; border: 1.5px solid #7E5E9B; border-radius: 12px; background: #FFF8FA; color: #7E5E9B; outline: none;" value="">
+          <input type="text" class="demo-otp-box" data-idx="3" maxlength="1" style="width: 48px; height: 52px; text-align: center; font-size: 22px; font-weight: 800; border: 1.5px solid #7E5E9B; border-radius: 12px; background: #FFF8FA; color: #7E5E9B; outline: none;" value="">
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         4. DIAGONAL BLADE AUTH SWITCHER
+         ============================================================ -->
+    <div class="anim-card">
+      <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+        <div>
+          <span class="anim-tag">ANIMATION #4</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0;">
+            🔀 Smooth Diagonal Blade Auth Switcher
+          </h2>
+          <p class="caption text-muted mb-0">Angled luxury plum blade glides across with a smooth curve when toggling forms.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline font-bold" onclick="testBladeSwitch('login')" style="border-radius: 10px;">
+            Sign In View
+          </button>
+          <button type="button" class="btn btn-primary font-bold" onclick="testBladeSwitch('register')" style="border-radius: 10px;">
+            Create Account View
+          </button>
+        </div>
+      </div>
+
+      <div style="position: relative; max-width: 440px; margin: 0 auto; background: #FFF8FA; border: 1.5px solid #F5CBCB; border-radius: 20px; padding: 28px; overflow: hidden; min-height: 220px;">
+        
+        <!-- Gliding Blade -->
+        <div id="demo-blade" style="position: absolute; inset: 0; background: linear-gradient(135deg, #7E5E9B 0%, #C5B3D3 100%); clip-path: polygon(0 0, 115% 0, 85% 100%, 0% 100%); transform: translateX(-120%); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); z-index: 50; pointer-events: none;"></div>
+
+        <!-- View Content -->
+        <div id="demo-view-content">
+          <h3 style="font-size: 18px; font-weight: 800; color: #1E293B; margin: 0 0 6px 0;" id="demo-blade-heading">Welcome Back 👋</h3>
+          <p class="caption text-muted mb-3" id="demo-blade-sub">Sign in to continue your personalized gifting journey.</p>
+          <input type="text" class="fk-input mb-2" placeholder="Mobile / Email" value="sophia@example.com">
+          <button type="button" class="btn btn-primary w-100 font-bold" style="border-radius: 10px; height: 42px;">Sign In &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         5. 3D FLOATING KEEPSAKE STAGE & SWITCHER
+         ============================================================ -->
+    <div class="anim-card">
+      <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+        <div>
+          <span class="anim-tag">ANIMATION #5</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #1E293B; margin: 0;">
+            🌟 3D Floating Keepsake Stage &amp; Variant Switcher
+          </h2>
+          <p class="caption text-muted mb-0">Continuous floating levitation. Click any thumbnail to rotate product in 3D and switch variants.</p>
+        </div>
+      </div>
+
+      <div style="max-width: 380px; margin: 0 auto; background: #FFFFFF; border: 1.5px solid #F5CBCB; border-radius: 24px; padding: 20px; box-shadow: 0 16px 40px rgba(126, 94, 155, 0.18);">
+        
+        <!-- Floating Stage -->
+        <div style="position: relative; width: 100%; aspect-ratio: 1; border-radius: 18px; overflow: hidden; background: radial-gradient(circle, #FFE2E2 0%, #FBEFEF 100%); display: flex; align-items: center; justify-content: center; border: 1px solid #F5CBCB;">
+          <div style="position: absolute; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(197, 179, 211, 0.4) 0%, transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+          <img src="assets/uploads/prod_6a6ad9e0d7494.webp" id="demo-hero-img" class="stage-floating-keepsake" style="width: 80%; height: 80%; object-fit: contain; filter: drop-shadow(0 12px 20px rgba(126, 94, 155, 0.35));">
+          <span class="badge badge-primary font-bold" id="demo-hero-badge" style="position: absolute; top: 12px; left: 12px; font-size: 11px; z-index: 2;">⭐ #1 Bestseller</span>
+        </div>
+
+        <div class="pt-3 text-left">
+          <div class="d-flex justify-between align-center">
+            <strong style="color: #1E293B; font-size: 15px;" id="demo-hero-title">Personalized LED Photo Frame</strong>
+            <span class="caption text-primary font-bold">4.9 ★★★★★</span>
+          </div>
+          <div class="d-flex justify-between align-center mt-2">
+            <div style="color: #7E5E9B; font-size: 17px; font-weight: 800;" id="demo-hero-price">₹999 <span class="caption text-muted" style="text-decoration: line-through; font-weight: 400; font-size: 12px;">₹1,299</span></div>
+            <a href="product.html?id=prod_21" class="btn btn-sm btn-primary font-bold" style="padding: 5px 14px; font-size: 12px; border-radius: 8px;">Personalize &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 4 Switcher Thumbnails -->
+        <div class="d-flex gap-2 mt-3 pt-2 border-top">
+          <div class="stage-keepsake-thumb is-active p-1 rounded demo-thumb" onclick="demoSwitchStage(this, 'Personalized LED Photo Frame', '₹999', '₹1,299', 'assets/uploads/prod_6a6ad9e0d7494.webp', '⭐ #1 Bestseller')" style="flex: 1; border: 1.5px solid #7E5E9B; background: #FFFFFF; border-radius: 10px; text-align: center;">
+            <img src="assets/uploads/prod_6a6ad9e0d7494.webp" style="width: 32px; height: 32px; object-fit: cover; border-radius: 6px; margin: 0 auto; display: block;">
+            <div style="font-size: 9.5px; font-weight: 700; color: #1E293B; margin-top: 2px;">01 Frame</div>
+          </div>
+          <div class="stage-keepsake-thumb p-1 rounded demo-thumb" onclick="demoSwitchStage(this, 'Personalized 3D Moon Lamp', '₹999', '₹1,499', 'assets/uploads/prod_6a6ad9e1c0d45.webp', '🌙 Warm Glow')" style="flex: 1; border: 1.5px solid #F5CBCB; background: #FFFFFF; border-radius: 10px; text-align: center;">
+            <img src="assets/uploads/prod_6a6ad9e1c0d45.webp" style="width: 32px; height: 32px; object-fit: cover; border-radius: 6px; margin: 0 auto; display: block;">
+            <div style="font-size: 9.5px; font-weight: 700; color: #1E293B; margin-top: 2px;">02 Moon</div>
+          </div>
+          <div class="stage-keepsake-thumb p-1 rounded demo-thumb" onclick="demoSwitchStage(this, '3D Optical Crystal Portrait', '₹1,499', '₹1,999', 'assets/uploads/prod_6a6ad9e1d87e0.webp', '💎 K9 Crystal')" style="flex: 1; border: 1.5px solid #F5CBCB; background: #FFFFFF; border-radius: 10px; text-align: center;">
+            <img src="assets/uploads/prod_6a6ad9e1d87e0.webp" style="width: 32px; height: 32px; object-fit: cover; border-radius: 6px; margin: 0 auto; display: block;">
+            <div style="font-size: 9.5px; font-weight: 700; color: #1E293B; margin-top: 2px;">03 Crystal</div>
+          </div>
+          <div class="stage-keepsake-thumb p-1 rounded demo-thumb" onclick="demoSwitchStage(this, 'Spotify Acrylic Music Plaque', '₹699', '₹999', 'assets/uploads/prod_6a6ad9e1f13da.webp', '🎵 Scan Song')" style="flex: 1; border: 1.5px solid #F5CBCB; background: #FFFFFF; border-radius: 10px; text-align: center;">
+            <img src="assets/uploads/prod_6a6ad9e1f13da.webp" style="width: 32px; height: 32px; object-fit: cover; border-radius: 6px; margin: 0 auto; display: block;">
+            <div style="font-size: 9.5px; font-weight: 700; color: #1E293B; margin-top: 2px;">04 Music</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // 1. Delivery Van Test
+    function testDeliveryVanAnimation() {
+      const truck = document.getElementById('demo-anim-truck');
+      const parcel = document.getElementById('demo-anim-parcel');
+      const shutter = document.getElementById('demo-anim-shutter');
+      const statusText = document.getElementById('demo-van-status-text');
+
+      // Reset
+      truck.style.transition = 'none';
+      truck.style.transform = 'translateX(0px)';
+      parcel.style.animation = 'none';
+      shutter.style.transform = 'translateY(0)';
+      statusText.textContent = '📦 Packing Keepsake Gift Box...';
+
+      setTimeout(() => {
+        truck.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+        truck.style.transform = 'translateX(220px)';
+      }, 50);
+
+      // Shutter up & parcel hop
+      setTimeout(() => {
+        shutter.style.transform = 'translateY(-14px)';
+        parcel.style.animation = 'parcelHop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+        statusText.textContent = '🚚 Loading into GiftsKart Express Van...';
+      }, 750);
+
+      // Shutter down & Zoom off
+      setTimeout(() => {
+        shutter.style.transform = 'translateY(0)';
+        statusText.textContent = '✨ Dispatched! Crafting Your Memories Forever...';
+        truck.style.transform = 'translateX(550px)';
+      }, 1400);
+
+      setTimeout(() => {
+        statusText.textContent = '✓ Sequence Completed! Ready to replay.';
+      }, 2300);
+    }
+
+    // 2. 3D Card Flip
+    function toggleCardFlip() {
+      const card = document.getElementById('demo-card-3d');
+      if (card) card.classList.toggle('is-flipped');
+    }
+
+    // 3. Orbital OTP
+    function syncDemoOtp() {
+      const boxes = document.querySelectorAll('.demo-otp-box');
+      let filled = 0;
+      boxes.forEach((b, i) => {
+        const node = document.getElementById('demo-orbit-' + i);
+        if (node) {
+          node.textContent = b.value || '•';
+          if (b.value) {
+            node.classList.add('is-filled');
+            filled++;
+          } else {
+            node.classList.remove('is-filled');
+          }
+        }
+      });
+      const center = document.getElementById('demo-orbit-center');
+      if (center) {
+        if (filled === 4) {
+          center.textContent = '✨';
+          center.style.background = '#ECFDF5';
+          center.style.borderColor = '#10B981';
+        } else {
+          center.textContent = '🔐';
+          center.style.background = 'linear-gradient(135deg, #FBEFEF 0%, #FFE2E2 100%)';
+          center.style.borderColor = '#7E5E9B';
+        }
+      }
+    }
+
+    document.querySelectorAll('.demo-otp-box').forEach((box, idx, arr) => {
+      box.oninput = () => {
+        box.value = box.value.replace(/\D/g, '').slice(-1);
+        syncDemoOtp();
+        if (box.value && idx < arr.length - 1) arr[idx + 1].focus();
+      };
+      box.onkeydown = (e) => {
+        if (e.key === 'Backspace' && !box.value && idx > 0) {
+          arr[idx - 1].focus();
+          arr[idx - 1].value = '';
+          syncDemoOtp();
+        }
+      };
+    });
+
+    function testOtpFill() {
+      const boxes = document.querySelectorAll('.demo-otp-box');
+      boxes.forEach(b => b.value = '9');
+      syncDemoOtp();
+    }
+
+    // 4. Blade Switcher
+    function testBladeSwitch(type) {
+      const blade = document.getElementById('demo-blade');
+      const heading = document.getElementById('demo-blade-heading');
+      const sub = document.getElementById('demo-blade-sub');
+
+      if (blade) {
+        blade.style.transform = 'translateX(0%)';
+        setTimeout(() => {
+          if (type === 'register') {
+            heading.textContent = 'Create New Account ✨';
+            sub.textContent = 'Join the GiftsKart Inner Circle in 30 seconds.';
+          } else {
+            heading.textContent = 'Welcome Back 👋';
+            sub.textContent = 'Sign in to continue your personalized gifting journey.';
+          }
+          blade.style.transform = 'translateX(120%)';
+          setTimeout(() => { blade.style.transform = 'translateX(-120%)'; }, 450);
+        }, 200);
+      }
+    }
+
+    // 5. Stage Switcher
+    function demoSwitchStage(el, title, price, del, img, badge) {
+      document.querySelectorAll('.demo-thumb').forEach(t => {
+        t.classList.remove('is-active');
+        t.style.borderColor = '#F5CBCB';
+      });
+      el.classList.add('is-active');
+      el.style.borderColor = '#7E5E9B';
+
+      const heroImg = document.getElementById('demo-hero-img');
+      const heroTitle = document.getElementById('demo-hero-title');
+      const heroPrice = document.getElementById('demo-hero-price');
+      const heroBadge = document.getElementById('demo-hero-badge');
+
+      if (heroImg) {
+        heroImg.style.transform = 'scale(0.85) rotateY(35deg)';
+        heroImg.style.opacity = '0.4';
+        setTimeout(() => {
+          heroImg.src = img;
+          heroTitle.textContent = title;
+          heroPrice.innerHTML = price + ' <span class="caption text-muted" style="text-decoration: line-through; font-weight: 400; font-size: 12px;">' + del + '</span>';
+          heroBadge.textContent = badge;
+          heroImg.style.transform = 'scale(1) rotateY(0deg)';
+          heroImg.style.opacity = '1';
+        }, 180);
+      }
+    }
+  </script>
+</body>
+</html>

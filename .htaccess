@@ -1,0 +1,15 @@
+# ====================================================================
+# Gifts Kart - Root Directory Protection & Routing
+# ====================================================================
+
+<IfModule mod_rewrite.c>
+    Options -Indexes -MultiViews
+    RewriteEngine On
+
+    # Deny direct access to private folders
+    RewriteRule ^(config|app|storage|logs)/ - [F,L,NC]
+
+    # Route /api/v1/* requests into public/index.php
+    RewriteCond %{REQUEST_URI} ^/api/v1 [NC]
+    RewriteRule ^api/v1/(.*)$ public/index.php [QSA,L]
+</IfModule>
